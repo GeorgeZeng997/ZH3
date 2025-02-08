@@ -1,0 +1,44 @@
+build:
+  generated-by: csolution version 0.0.0+g24802e38
+  solution: ../data/TestSolution/ContextMap/context-map.csolution.yml
+  project: ../data/TestSolution/ContextMap/project1.cproject.yml
+  context: project1.Debug+RteTest_ARMCM3
+  compiler: AC6
+  device: RteTest_ARMCM3
+  device-pack: ARM::RteTest_DFP@0.2.0
+  processor:
+    fpu: off
+    core: Cortex-M3
+  packs:
+    - pack: ARM::RteTest_DFP@0.2.0
+      path: ${CMSIS_PACK_ROOT}/ARM/RteTest_DFP/0.2.0
+  define:
+    - ARMCM3
+  define-asm:
+    - ARMCM3
+  add-path:
+    - ${CMSIS_PACK_ROOT}/ARM/RteTest_DFP/0.2.0/Device/ARM/ARMCM3/Include
+  add-path-asm:
+    - ${CMSIS_PACK_ROOT}/ARM/RteTest_DFP/0.2.0/Device/ARM/ARMCM3/Include
+  output-dirs:
+    intdir: tmp/project1/RteTest_ARMCM3/Debug
+    outdir: out/project1/RteTest_ARMCM3/Debug
+    rtedir: ../data/TestSolution/ContextMap/RTE
+  output:
+    - type: elf
+      file: project1.axf
+  linker:
+    script: ../data/TestSolution/ContextMap/RTE/Device/RteTest_ARMCM3/ac6_linker_script.sct.src
+    regions: ../data/TestSolution/ContextMap/RTE/Device/RteTest_ARMCM3/regions_RteTest_ARMCM3.h
+  groups:
+    - group: Source
+      files:
+        - file: ../data/TestSolution/ContextMap/MappedDebug1.c
+          category: sourceC
+        - file: ../data/TestSolution/ContextMap/MappedTarget1.c
+          category: sourceC
+  licenses:
+    - license: <unknown>
+      license-agreement: ${CMSIS_PACK_ROOT}/ARM/RteTest_DFP/0.2.0/Doc/license.txt
+      packs:
+        - pack: ARM::RteTest_DFP@0.2.0

@@ -1,0 +1,24 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/Open-CMSIS-Pack/devtools/main/tools/projmgr/schemas/csolution.schema.json
+
+solution:
+
+  build-types:
+    - type: CompatibleLayers
+    - type: IncompatibleLayers
+    - type: OptionalLayerType
+
+  target-types:
+    - type: Board3
+      board: RteTest Dummy board
+      device: :cm0_core0
+    - type: AnyBoard
+      device: RteTest_ARMCM3
+    - type: BoardSpecific
+      board: RteTest board listing
+
+  projects:
+    - project: genericlayers.cproject.yml
+
+  packs:
+    - pack: ARM::RteTest
+    - pack: ARM::RteTest_DFP

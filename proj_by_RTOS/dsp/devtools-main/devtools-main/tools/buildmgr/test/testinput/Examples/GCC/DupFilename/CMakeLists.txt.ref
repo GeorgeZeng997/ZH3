@@ -1,0 +1,63 @@
+# CMSIS Build CMakeLists generated on 2022-08-23T15:48:24
+
+cmake_minimum_required(VERSION 3.22)
+
+# Target options
+
+set(TARGET Project)
+set(CPU Cortex-M0)
+set(PRJ_DIR "C:/sandbox/build/tools/buildmgr/test/integrationtests/testdata/Examples/GCC/DupFilename")
+set(OUT_DIR "C:/sandbox/build/tools/buildmgr/test/integrationtests/testdata/Examples/GCC/DupFilename/OutDir")
+set(INT_DIR "C:/sandbox/build/tools/buildmgr/test/integrationtests/testdata/Examples/GCC/DupFilename/IntDir")
+set(FPU NO_FPU)
+set(SECURE Non-secure)
+set(CC_FLAGS_GLOBAL "-O -Wall -gdwarf-2 -mapcs-frame -mthumb")
+set(LD_FLAGS_GLOBAL "--specs=nosys.specs -mcpu=cortex-m3 -mthumb")
+
+set(DEFINES
+  ARMCM0
+  _RTE_
+)
+
+set(INC_PATHS
+  "C:/sandbox/build/tools/buildmgr/test/integrationtests/testdata/Examples/GCC/DupFilename/RTE/_Project"
+  "C:/sandbox/build/tools/buildmgr/test/integrationtests/testdata/Packs/ARM/RteTest_DFP/0.2.0/Device/ARM/ARMCM0/Include"
+)
+
+set(CC_SRC_FILES
+  "C:/sandbox/build/tools/buildmgr/test/integrationtests/testdata/Examples/GCC/DupFilename/main.c"
+  "C:/sandbox/build/tools/buildmgr/test/integrationtests/testdata/Packs/ARM/RteTest/0.1.0/Dummy/Subfolder/dummy.c"
+  "C:/sandbox/build/tools/buildmgr/test/integrationtests/testdata/Packs/ARM/RteTest/0.1.0/Dummy/dummy.c"
+)
+
+# Toolchain config map
+
+set(REGISTERED_TOOLCHAIN_ROOT "C:/Compilers/GCC/10.3.1/bin")
+set(REGISTERED_TOOLCHAIN_VERSION "10.3.1")
+set(TOOLCHAIN_VERSION_MIN "9.2.1")
+include ("C:/sandbox/cbuild/etc/GCC.10.3.1.cmake")
+include ("C:/sandbox/cbuild/etc/CMSIS-Build-Utils.cmake")
+
+# Setup project
+
+project(${TARGET} LANGUAGES C)
+
+cbuild_get_running_toolchain(TOOLCHAIN_ROOT TOOLCHAIN_VERSION C)
+
+# Global Flags
+
+cbuild_get_system_includes(CC_SYS_INC_PATHS_LIST CC_SYS_INC_PATHS)
+set(CMAKE_C_FLAGS "${CC_CPU} ${CC_DEFINES} ${CC_SECURE} ${CC_FLAGS} ${CC_FLAGS_GLOBAL} ${CC_SYS_INC_PATHS}")
+set(CMAKE_C_LINK_FLAGS "${LD_CPU} ${LD_SECURE} ${LD_FLAGS_GLOBAL} ${LD_FLAGS}")
+
+# Compilation Database
+
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+add_custom_target(database COMMAND ${CMAKE_COMMAND} -E copy_if_different "${INT_DIR}/compile_commands.json" "${OUT_DIR}")
+
+# Setup Target
+
+add_executable(${TARGET} ${CC_SRC_FILES})
+set_target_properties(${TARGET} PROPERTIES PREFIX "" OUTPUT_NAME "${TARGET}")
+set_target_properties(${TARGET} PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${OUT_DIR})
+target_include_directories(${TARGET} PUBLIC ${INC_PATHS})

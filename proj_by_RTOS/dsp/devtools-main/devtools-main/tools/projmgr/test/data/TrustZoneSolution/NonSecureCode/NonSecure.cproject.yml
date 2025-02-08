@@ -1,0 +1,18 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/Open-CMSIS-Pack/devtools/main/tools/projmgr/schemas/cproject.schema.json
+
+project:
+  misc:
+    - for-compiler: AC6
+      C: [-fshort-enums, -fshort-wchar]
+  add-path:
+    - $OutDir(Secure)$
+  components:
+    - component: C Startup
+    - component: CMSIS CORE
+    - component: Keil RTX5 Library_NS
+  groups:
+    - group: Non-secure Code
+      files: 
+        - file: main_ns.c 
+        - file: $Source(Secure)$/interface.h
+        - file: $Output(Secure)$_CMSE_Lib.o

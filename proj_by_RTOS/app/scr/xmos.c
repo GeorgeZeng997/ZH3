@@ -1,0 +1,19 @@
+#include "config.h"
+
+xmos_cmd_t xmos_cmd_array[] = {
+    {XMOS_CMD_BOOT, ""},
+    {XMOS_CMD_READ_PRODUCT, ""},
+    {XMOS_CMD_READ_BOOT_CONFIG, ""},
+    {XMOS_CMD_READ_AUDIO_MODE, ""},
+    {XMOS_CMD_READ_CLIENT_CONFIG, ""},
+    {XMOS_CMD_COMPLETE, ""},
+    {XMOS_CMD_SEND_STATUS, ""},
+    {XMOS_CMD_SEND_MEDIA_CTRL, ""},
+    {XMOS_CMD_SEND_FORMAT, ""},
+    {XMOS_CMD_SEND_AUDIO_MODE, ""},
+    {XMOS_CMD_SEND_PLAY_VOLUME, ""},
+    {XMOS_CMD_SEND_RECORD_VOLUME, ""},
+    {XMOS_CMD_SEND_UPDATE_SUCCESS,""},
+    {XMOS_CMD_SEND_UPDATE_FAILURE,""},
+    {XMOS_CMD_SEND_UPDATE_RESTART,""},
+};

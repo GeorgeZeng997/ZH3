@@ -1,0 +1,417 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<package schemaVersion="1.4" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>ARM</vendor>
+  <name>RteTest</name>
+  <url>www.keil.com/pack/</url>
+  <description>
+    Testing pack reader and RTE model features.
+    Some PackChk warnings are expected: missing version of config file
+  </description>
+ 
+  <licenseSets>
+    <licenseSet id="APIlicense">
+    <license name="licenses/apache2.0.txt" title="Apache 2.0 open-source license" spdx="Apache-2.0" url="https://www.apache.org/licenses/LICENSE-2.0"/>
+  </licenseSet>
+  <licenseSet id="TestPropLicense">
+    <license name="licenses/ProprietaryLicense.txt" title="Proprietary Test License" url="https://open-cmsis-pack.github.io/Open-CMSIS-Pack-Spec/main/html/pdsc_licenseSets_pg.html"/>
+  </licenseSet>
+  <licenseSet id="TestDefLicenses" default="true" gating="true">
+    <license name="licenses/licenseBsd.txt" title="BSD-3 Clause License for components" spdx="BSD-3-Clause" url="https://opensource.org/license/bsd-3-clause/"/>
+    <license name="licenses/licenseMit.txt" title="MIT License for device support" spdx="MIT" url="https://opensource.org/license/mit/"/>
+  </licenseSet>
+  </licenseSets>
+
+  <releases>
+    <release version="0.1.0" date="2021-02-17">
+      initial version copied from ARM.PreInclude pack
+    </release>
+  </releases>
+
+  <requirements>
+    <packages>
+      <package vendor="ARM" name="RteTest_DFP" version="0.1.1:0.2.0"/>
+    </packages>
+  </requirements>
+
+  <conditions>
+    <condition id="CM4">
+      <description>Conditional dependency, only for Cortex-M4 devices</description>
+      <require Dcore="Cortex-M4"/>
+      <require Cclass="RteTest" Cgroup="G_B" Cversion="1.0.0" />
+    </condition>
+    <condition id="CM3">
+      <require Dcore="Cortex-M3"/>
+    </condition>
+    <condition id="Conditional Dependency">
+      <accept condition="CM3"/>
+      <accept condition="CM4"/>
+    </condition>
+    <condition id="Incompatible">
+      <deny Cclass="RteTest" Cgroup="Dependency" Csub="Incompatible_component"/>
+    </condition>
+    <condition id="Incompatible Variant">
+      <require Cclass="RteTest" Cgroup="Dependency" Csub="Variant" Cvariant="Compatible"/>
+    </condition>
+    <condition id="Missing">
+      <require Cclass="RteTest" Cgroup="Dependency" Csub="Missing"/>
+    </condition>
+    <condition id="GlobalFile">
+      <require Cclass="RteTest" Cgroup="GlobalFile"/>
+    </condition>      
+    <condition id="LocalFile">
+      <require Cclass="RteTest" Cgroup="LocalFile"/>
+    </condition>      
+    <condition id="AcceptDependency">
+      <accept condition="GlobalFile"/>
+      <accept condition="LocalFile"/>
+    </condition>
+    <condition id="DenyDependency">
+      <deny condition="GlobalFile"/>
+      <deny condition ="LocalFile"/>
+    </condition>
+    <condition id="RequireDependency">
+      <require condition="GlobalFile"/>
+      <require condition="LocalFile"/>
+    </condition>
+    <condition id="DenyRequireDependency">
+      <deny condition="RequireDependency"/>
+    </condition>
+    <condition id="DenyAcceptDependency">
+      <deny condition="AcceptDependency"/>
+    </condition>
+    <condition id="DenyDenyDependency">
+      <deny condition="DenyDependency"/>
+    </condition>
+    <condition id="DenyIncompatibleVariant">
+      <deny condition="Incompatible Variant"/>
+    </condition>
+
+  </conditions>
+
+  <apis>
+    <api Cclass="RteTest" Cgroup="ApiExclusive" Capiversion="1.0.0" exclusive="1" licenseSet="APIlicense">
+      <description>RteTest Exclusive API</description>
+      <files>
+        <file category="header" name="API/Exclusive.h"/>
+      </files>
+    </api>
+    <api Cclass="RteTest" Cgroup="ApiNonExclusive" Capiversion="1.0.0" exclusive="0" licenseSet="TestPropLicense">
+      <description>RteTest Non-Exclusive API</description>
+      <files>
+        <file category="header" name="API/NonExclusive.h"/>
+      </files>
+    </api>
+    <api Cclass="RteTest" Cgroup="ApiNonExclusive" Capiversion="1.1.0" exclusive="0" licenseSet="TestPropLicense">
+      <description>RteTest Non-Exclusive API 1.1.0</description>
+      <files>
+        <file category="header" name="API1/NonExclusive.h"/>
+      </files>
+    </api>
+    <api Cclass="RteTest" Cgroup="ApiNonExclusive" Capiversion="2.0.0" exclusive="0" licenseSet="TestPropLicense">
+      <description>RteTest Non-Exclusive API 2.0.0</description>
+      <files>
+        <file category="header" name="API2/NonExclusive.h"/>
+      </files>
+    </api>
+    <api Cclass="RteTest" Cgroup="TemplateFile" Capiversion="1.0.0" exclusive="1" licenseSet="TestPropLicense">
+      <description>RteTest Test API 2.0.0</description>
+      <files>
+        <file category="header" name="API/IConfig.h"/>
+        <file category="doc" name="API/index.html"/>
+      </files>
+    </api>
+  </apis>
+
+  <components>
+
+    <bundle Cbundle="BundleOne" Cclass="RteTestBundle" Cversion="1.1.0" Cvendor="ARM" isDefaultVariant="1" licenseSet="TestPropLicense">
+      <description>Test bundle one</description>
+      <doc>https://arm-software.github.io/CMSIS_5/Pack/html/pdsc_components_pg.html#Component_Bundle</doc>
+      <component Cgroup="G0" Cversion="1.0.0" >
+        <description>Bundle One, component G0, version differs from bundle</description>
+        <files>
+          <file category="doc" name="https://arm-software.github.io/CMSIS_5/Pack/html/cp_PackTutorial.html"/>
+        </files>
+      </component>
+      <component Cgroup="G1">
+        <description>Bundle One, component G1, only in bundle 1</description>
+        <files>
+          <file category="doc" name="https://arm-software.github.io/CMSIS_5/Pack/html/createPackUtil.html"/>
+        </files>
+      </component>
+      <component Cgroup="G2">
+        <description>Bundle One, component G2</description>
+        <files>
+          <file category="doc" name="https://arm-software.github.io/CMSIS_5/Pack/html/createPackUtil.html"/>
+        </files>
+      </component>
+    </bundle>
+
+    <bundle Cbundle="BundleTwo" Cclass="RteTestBundle" Cversion="1.2.0" Cvendor="ARM">
+      <description>Test bundle two</description>
+      <doc>https://arm-software.github.io/CMSIS_5/Pack/html/pdsc_components_pg.html#element_bundle</doc>
+      <component Cgroup="G0" Cversion="2.0.0" >
+        <description>Bundle Two, component G, version differs from bundle</description>
+        <files>
+          <file category="doc" name="https://arm-software.github.io/CMSIS_5/Pack/html/pdsc_conditions_pg.html"/>
+        </files>
+      </component>
+      <component Cgroup="G2">
+        <description>Bundle Two, component G2</description>
+        <files>
+          <file category="doc" name="https://arm-software.github.io/CMSIS_5/Pack/html/createPackUtil.html"/>
+        </files>
+      </component>
+    </bundle>
+
+    <component Cclass="RteTestBundle" Cgroup="G0" Cversion="0.9.0">
+      <description>Component G without bundle, but the same class and group as in bundle</description>
+      <files>
+        <file category="doc" name="https://arm-software.github.io/CMSIS_5/Pack/html/pdsc_components_pg.html"/>
+      </files>
+    </component>
+
+    <component Cclass="RteTest" Cgroup="G_A" Cversion="1.0.0" condition="Conditional Dependency" >
+      <description>Test component with conditional dependency</description>
+      <files>
+        <file category="doc" name="https://arm-software.github.io/CMSIS_5/Pack/html/pdsc_conditions_pg.html"/>
+      </files>
+    </component>
+    <component Cclass="RteTest" Cgroup="G_B" Cversion="1.0.0" >
+      <description>Test component</description>
+      <files>
+        <file category="doc" name="https://arm-software.github.io/CMSIS_5/Pack/html/pdsc_components_pg.html#element_components"/>
+      </files>
+    </component>
+    <component Cclass="RteTest" Cgroup="ComponentLevel" Cversion="0.0.1" maxInstances="2" licenseSet="TestPropLicense">
+      <description>Adding PreInclude on component level</description>
+      <RTE_Components_h>
+        #define COMPONENT_LEVEL 1
+      </RTE_Components_h>
+      <Pre_Include_Local_Component_h>
+        #define LOCAL_PRE_INCLUDE 1
+      </Pre_Include_Local_Component_h>
+      <files>
+        <file category="sourceC" name="ComponentLevel/ComponentLevel.c"/>
+        <file category="preIncludeLocal" name="ComponentLevel/ComponentLevel.h"/>
+        <file category="preIncludeLocal" name="ComponentLevel/ComponentLevelConfig.h" attr="config" />
+        <file category="header" name="ComponentLevel/Include/AbsoluteInclude.h"/>
+        <file category="header" attr="config" name="ComponentLevel/Include/MyDir/RelativeComponentLevelConfig.h" path="ComponentLevel/Include" />
+      </files>
+    </component>
+
+    <component Cclass="RteTest" Cgroup="GlobalLevel" Cversion="0.0.2">
+      <description>Adding PreInclude on global level</description>
+      <RTE_Components_h>
+        #define GLOBAL_LEVEL 1
+      </RTE_Components_h>
+      <Pre_Include_Global_h>
+        #define GLOBAL_PRE_INCLUDE 1
+      </Pre_Include_Global_h>
+      <files>
+        <file category="sourceC" name="GlobalLevel/GlobalLevel.c"/>
+        <file category="preIncludeGlobal" name="GlobalLevel/GlobalLevel.h"/>
+        <file category="preIncludeGlobal" name="GlobalLevel/GlobalLevelConfig.h" attr="config" version="0.0.2"/>
+        <file category="header" name="GlobalLevel/Include/RelativeInclude.h" path="GlobalLevel"/>
+        <file category="header" name="Include/Outside/OutsideInclude.h" path="Include"/>
+        <file category="header" attr="config" name="Include/Config/ConfigInclude.h" path="Include"/>
+      </files>
+    </component>
+
+    <component Cclass="RteTest" Cgroup="GlobalFile" Cversion="0.0.3">
+      <description>This component adds a pre-include file</description>
+      <files>
+        <file category="preIncludeGlobal" name="PreInclude/MyPreInclude.h"/>
+      </files>
+    </component>
+
+    <component Cclass="RteTest" Cgroup="LocalFile" Cversion="0.0.3">
+      <description>This component adds a pre-include file</description>
+      <files>
+        <file category="preIncludeLocal" name="PreInclude/MyLocalPreInclude.h"/>
+        <file category="sourceC" name="PreInclude/MyLocalPreInclude.c" />
+      </files>
+    </component>
+
+    <component Cclass="RteTest" Cgroup="MissingApi" Cversion="0.9.9" Capiversion="1.0.0">
+      <description>Tests Missing API</description>
+      <files>
+        <file category="other" name="Dummy/DummyFile.txt"/>
+      </files>
+    </component>
+
+    <component Cclass="RteTest" Cgroup="ApiExclusive" Csub="S1" Cversion="0.9.9" Capiversion="1.0.0">
+      <description>RteTest Exclusive API component S1</description>
+      <files>
+        <file category="other" name="Dummy/DummyFile.txt"/>
+      </files>
+    </component>
+
+    <component Cclass="RteTest" Cgroup="ApiExclusive" Csub="S2" Cversion="0.9.9" Capiversion="1.0.0">
+      <description>RteTest Exclusive API component S2</description>
+      <files>
+        <file category="other" name="Dummy/DummyFile.txt"/>
+      </files>
+    </component>
+
+    <component Cclass="RteTest" Cgroup="ApiNonExclusive" Csub="MissingApiVersion" Cversion="1.9.9" Capiversion="3.0.0">
+      <description>Tests Missing API version</description>
+      <files>
+        <file category="other" name="Dummy/DummyFile.txt"/>
+      </files>
+    </component>
+
+    <component Cclass="RteTest" Cgroup="ApiNonExclusive" Csub="MissingApiVersionMin" Cversion="0.9.9" Capiversion="0.1.0">
+      <description>Tests Missing API version min range</description>
+      <files>
+        <file category="other" name="Dummy/DummyFile.txt"/>
+      </files>
+    </component>
+
+    <component Cclass="RteTest" Cgroup="ApiNonExclusive" Csub="SN1" Cversion="0.9.9" Capiversion="1.1.0">
+      <description>Tests Non-Exclusive API component SN1</description>
+      <files>
+        <file category="other" name="Dummy/DummyFile.txt"/>
+      </files>
+    </component>
+
+    <component Cclass="RteTest" Cgroup="ApiNonExclusive" Csub="SN2" Cversion="0.9.9" Capiversion="1.0.0">
+      <description>Tests Non-Exclusive API component SN2</description>
+      <files>
+        <file category="other" name="Dummy/DummyFile.txt"/>
+      </files>
+    </component>
+
+    <component Cclass="RteTest" Cgroup="ApiNonExclusive" Csub="SN3" Cversion="1.9.9" Capiversion="2.0.0">
+      <description>Tests Non-Exclusive API component SN3</description>
+      <files>
+        <file category="other" name="Dummy/DummyFile.txt"/>
+      </files>
+    </component>
+
+
+    <component Cclass="RteTest" Cgroup="AcceptDependency" condition="AcceptDependency" Cversion="0.9.9">
+      <description>Component that has accept dependencies</description>
+      <files>
+        <file category="other" name="Dummy/DummyFile.txt"/>
+      </files>
+    </component>
+
+    <component Cclass="RteTest" Cgroup="RequireDependency"  condition="GlobalFile" Cversion="0.9.9">
+      <description>Component that has only require dependencies</description>
+      <files>
+        <file category="other" name="Dummy/DummyFile.txt"/>
+      </files>
+    </component>
+
+    <component Cclass="RteTest" Cgroup="DenyDependency" condition="DenyDependency" Cversion="0.9.9">
+      <description>Component that has deny dependencies</description>
+      <files>
+        <file category="other" name="Dummy/DummyFile.txt"/>
+      </files>
+    </component>
+
+    <component Cclass="RteTest" Cgroup="DenyRequireDependency" condition="DenyRequireDependency" Cversion="0.9.9">
+      <description>Component that has deny dependencies</description>
+      <files>
+        <file category="other" name="Dummy/DummyFile.txt"/>
+      </files>
+    </component>
+
+
+    <component Cclass="RteTest" Cgroup="Dependency" Csub="Incompatible_component" Cversion="0.9.9">
+      <description>Component that is not compatible to another</description>
+      <files>
+        <file category="other" name="Dummy/DummyFile.txt"/>
+      </files>
+    </component>
+
+    <component Cclass="RteTest" Cgroup="Dependency" Csub="Compatible_component" Cversion="0.9.9">
+      <description>Component that is not compatible to another</description>
+      <files>
+        <file category="other" name="Dummy/DummyFile.txt"/>
+      </files>
+    </component>
+
+    <component Cclass="RteTest" Cgroup="Dependency" Csub="Variant" Cversion="0.9.9" condition="CM3">
+      <description>Component without variant, only for M3</description>
+      <files>
+        <file category="other" name="Dummy/DummyFile.txt"/>
+      </files>
+    </component>
+
+    <component Cclass="RteTest" Cgroup="Dependency" Csub="Variant" Cvariant="Incompatible" Cversion="0.9.9">
+      <description>Component that does not satisfy variant dependency</description>
+      <files>
+        <file category="other" name="Dummy/DummyFile.txt"/>
+      </files>
+    </component>
+    <component Cclass="RteTest" Cgroup="Dependency" Csub="Variant" Cvariant="Compatible" Cversion="0.9.9" isDefaultVariant="1">
+      <description>Component that satisfies variant dependency</description>
+      <files>
+        <file category="other" name="Dummy/DummyFile.txt"/>
+      </files>
+    </component>
+
+    <component Cclass="RteTest" Cgroup="Check" Csub="Incompatible" condition="Incompatible" Cversion="0.9.9">
+      <description>Component that has condition that checks for incompatible selection</description>
+      <files>
+        <file category="other" name="Dummy/DummyFile.txt"/>
+      </files>
+    </component>
+
+    <component Cclass="RteTest" Cgroup="Check" Csub="IncompatibleVariant" condition="Incompatible Variant" Cversion="0.9.9">
+      <description>Component that has condition that checks for incompatible variant</description>
+      <files>
+        <file category="other" name="Dummy/DummyFile.txt"/>
+      </files>
+    </component>
+
+    <component Cclass="RteTest" Cgroup="Check" Csub="Missing" condition="Missing" Cversion="0.9.9">
+      <description>Component that has condition that checks for missing component</description>
+      <files>
+        <file category="other" name="Dummy/DummyFile.txt"/>
+      </files>
+    </component>
+
+    <component Cclass="RteTest" Cgroup="DupFilename" Cversion="0.9.9">
+      <description>Component having source files with the same filename</description>
+      <files>
+        <file category="sourceC" name="Dummy/dummy.c"/>
+        <file category="sourceC" name="Dummy/Subfolder/dummy.c"/>
+      </files>
+    </component>
+    <component Cclass="RteTest" Cgroup="TemplateFile" Capiversion="1.0.0" Cversion="0.9.9">
+      <description>Component having source files with the same filename</description>
+      <files>
+        <file category="sourceC" name="Dummy/dummy.c"/>
+        <file category="header" name="Include/Config/ConfigInclude.h" select="config include file"/>
+        <file category="header" attr="template" name="Template/template.h" select="dummy template file"/>
+      </files>
+    </component>
+  </components>
+
+  <examples>
+    <example name="PreInclude" folder="Examples/PreInclude" version="1.0.0" doc="Abstract.txt">
+      <description>PreInclude Test Application</description>
+      <board vendor="Keil" name="RteTest Dummy board" Dvendor="ARM:82" Dname="ARMCM0"/>
+      <project>
+        <environment name="uv" load="PreInclude.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="RteTest" Cgroup="GlobalLevel"/>
+      </attributes>
+    </example>
+    <example name="PreIncludeEnvFolder" folder="Examples" version="1.0.0" doc="PreInclude/Abstract.txt">
+      <description>PreInclude Test Application with different folder description</description>
+      <board vendor="Keil" name="RteTest Dummy board" Dvendor="ARM:82" Dname="ARMCM0"/>
+      <project>
+        <environment name="uv" folder="PreInclude" load="PreInclude.uvprojx"/>
+      </project>
+      <attributes>
+        <component Cclass="RteTest" Cgroup="GlobalLevel"/>
+      </attributes>
+    </example>
+  </examples>
+</package>

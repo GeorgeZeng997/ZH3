@@ -1,0 +1,144 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index e6aff61..fa90bc0 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -132,9 +132,9 @@ set(INSTALL_CMAKE_DIR "lib/cmake/${PROJECT_NAME}")
+ set(INSTALL_CMAKEDIR_ROOT share/cmake)
+ 
+ # Install Targets
+-install(EXPORT ${PROJECT_NAME}Targets
+-        FILE ${PROJECT_NAME}Targets.cmake
+-        DESTINATION "${INSTALL_CMAKE_DIR}")
++# install(EXPORT ${PROJECT_NAME}Targets
++        # FILE ${PROJECT_NAME}Targets.cmake
++        # DESTINATION "${INSTALL_CMAKE_DIR}")
+ 
+ include(CMakePackageConfigHelpers)
+ write_basic_package_version_file(
+diff --git a/src/json-validator.cpp b/src/json-validator.cpp
+index 0beb613..0a9122b 100644
+--- a/src/json-validator.cpp
++++ b/src/json-validator.cpp
+@@ -218,12 +218,16 @@ public:
+ 		// not by a plain name fragment
+ 		if (uri.pointer() != "") {
+ 			try {
+-				auto &subschema = file.unknown_keywords.at(uri.pointer()); // null is returned if not existing
+-				auto s = schema::make(subschema, this, {}, {{uri}});       //  A JSON Schema MUST be an object or a boolean.
+-				if (s) {                                                   // nullptr if invalid schema, e.g. null
+-					file.unknown_keywords.erase(uri.fragment());
+-					return s;
+-				}
++        if (!file.unknown_keywords.empty()) {
++          if (file.unknown_keywords.find(uri.pointer()) != file.unknown_keywords.end()) {
++            auto &subschema = file.unknown_keywords.at(uri.pointer()); // null is returned if not existing
++            auto s = schema::make(subschema, this, {}, {{uri}});       //  A JSON Schema MUST be an object or a boolean.
++            if (s) {                                                   // nullptr if invalid schema, e.g. null
++              file.unknown_keywords.erase(uri.fragment());
++              return s;
++            }
++          }
++        }
+ 			} catch (nlohmann::detail::out_of_range &) { // at() did not find it
+ 			}
+ 		}
+@@ -390,7 +394,7 @@ class logical_combination : public schema
+ 		// could accumulate esub details for anyOf and oneOf, but not clear how to select which subschema failure to report
+ 		// or how to report multiple such failures
+ 		if (count == 0)
+-			e.error(ptr, instance, "no subschema has succeeded, but one of them is required to validate");
++			e.error(ptr, instance, "schema check failed, verify syntax");
+ 	}
+ 
+ 	// specialized for each of the logical_combination_types
+@@ -423,7 +427,7 @@ template <>
+ bool logical_combination<allOf>::is_validate_complete(const json &, const json::json_pointer &, error_handler &e, const first_error_handler &esub, size_t)
+ {
+ 	if (esub)
+-		e.error(esub.ptr_, esub.instance_, "at least one subschema has failed, but all of them are required to validate - " + esub.message_);
++		e.error(esub.ptr_, esub.instance_, "schema check failed, verify syntax");
+ 	return esub;
+ }
+ 
+@@ -576,6 +580,32 @@ public:
+ 		attr = sch.find("enum");
+ 		if (attr != sch.end()) {
+ 			enum_ = {true, attr.value()};
++
++      // Adding corresponding YAML translated values
++      auto enumEx = enum_;
++      struct {
++        std::string truename, falsename;
++      } names[] = {
++        {"y", "n"},
++        {"yes", "no"},
++        {"true", "false"},
++        {"on", "off"},
++      };
++
++      auto enumValues = enum_;
++      for (auto &v : enum_.second) {
++        for (const auto &name : names) {
++          if (name.truename == v) {
++            enumEx.second.push_back(true);
++          }
++
++          if (name.falsename == v) {
++            enumEx.second.push_back(false);
++          }
++        }
++      }
++
++      enum_ = enumEx;
+ 			sch.erase(attr);
+ 		}
+ 
+@@ -693,7 +723,7 @@ class string : public schema
+ #ifndef NO_STD_REGEX
+ 		if (pattern_.first &&
+ 		    !REGEX_NAMESPACE::regex_search(instance.get<std::string>(), pattern_.second))
+-			e.error(ptr, instance, "instance does not match regex pattern: " + patternString_);
++			e.error(ptr, instance, "schema check failed, verify syntax");
+ #endif
+ 
+ 		if (format_.first) {
+@@ -973,7 +1003,7 @@ class object : public schema
+ 				first_error_handler additional_prop_err;
+ 				additionalProperties_->validate(ptr / p.key(), p.value(), patch, additional_prop_err);
+ 				if (additional_prop_err)
+-					e.error(ptr, instance, "validation failed for additional property '" + p.key() + "': " + additional_prop_err.message_);
++					e.error(ptr / p.key(), instance, "schema check failed, verify syntax");
+ 			}
+ 		}
+ 
+@@ -1256,17 +1286,24 @@ std::shared_ptr<schema> schema::make(json &schema,
+ 		auto attr = schema.find("$id"); // if $id is present, this schema can be referenced by this ID
+ 		                                // as an additional URI
+ 		if (attr != schema.end()) {
+-			if (std::find(uris.begin(),
+-			              uris.end(),
+-			              attr.value().get<std::string>()) == uris.end())
+-				uris.push_back(uris.back().derive(attr.value().get<std::string>())); // so add it to the list if it is not there already
++			//if (std::find(uris.begin(),
++			//              uris.end(),
++			//              attr.value().get<std::string>()) == uris.end())
++			//	uris.push_back(uris.back().derive(attr.value().get<std::string>())); // so add it to the list if it is not there already
+ 			schema.erase(attr);
+ 		}
+ 
+-		attr = schema.find("definitions");
++    // Consider $defs as a valid keyword
++    std::string defStr = "definitions";
++    attr = schema.find(defStr);
++    if (attr == schema.end()) {
++      defStr = "$defs";
++      attr = schema.find(defStr);
++    }
++
+ 		if (attr != schema.end()) {
+ 			for (auto &def : attr.value().items())
+-				schema::make(def.value(), root, {"definitions", def.key()}, uris);
++				schema::make(def.value(), root, {defStr, def.key()}, uris);
+ 			schema.erase(attr);
+ 		}
+ 

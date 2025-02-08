@@ -1,0 +1,80 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/Open-CMSIS-Pack/devtools/main/tools/projmgr/schemas/csolution.schema.json
+
+solution:
+  target-types:
+    - type: CM0
+      device: RteTest_ARMCM0
+      misc:
+        - for-compiler: AC6
+          C-CPP: [-C-CPP-type-CM0]
+          ASM: [-ASM-type-CM0]
+          Link: [-Link-type-CM0]
+          Lib: [-Lib-type-CM0]
+      define: 
+        - DEF-CM0
+        - DEF-CM0-to-be-removed
+      undefine:
+        - DEF-solution-to-be-removed
+      add-path:
+        - ./path/CM0
+        - ./path/CM0/to-be-removed
+      del-path:
+        - ./path/solution/to-be-removed
+    - type: CM3
+      device: RteTest_ARMCM3
+      misc:
+        - for-compiler: AC6
+          C-CPP: [-C-CPP-type-CM3]
+          ASM: [-ASM-type-CM3]
+          Link: [-Link-type-CM3]
+          Lib: [-Lib-type-CM3]
+      define:
+        - DEF-CM3
+        - DEF-CM3-to-be-removed
+      undefine:
+        - DEF-solution-to-be-removed
+      add-path:
+        - ./path/CM3
+        - ./path/CM3/to-be-removed
+      del-path:
+        - ./path/solution/to-be-removed
+
+  build-types:
+    - type: Debug
+      compiler: AC6
+      optimize: none
+      debug: on
+      define:
+        - DEF-Debug
+      undefine:
+        - DEF-CM0-to-be-removed
+        - DEF-CM3-to-be-removed
+      add-path:
+        - ./path/Debug
+      del-path:
+        - ./path/CM0/to-be-removed
+        - ./path/CM3/to-be-removed
+
+    - type: Release
+      compiler: GCC
+      optimize: size
+      debug: off
+      define:
+        - DEF-Release
+      undefine:
+        - DEF-CM0-to-be-removed
+        - DEF-CM3-to-be-removed
+      add-path:
+        - ./path/Release
+      del-path:
+        - ./path/CM0/to-be-removed
+        - ./path/CM3/to-be-removed
+
+  packs:
+    - pack: ARM::RteTest_DFP
+      path: ./SolutionSpecificPack/ARM
+
+  projects:
+    - project: ./TestProject1/test1.cproject.yml
+      for-context: +CM0
+

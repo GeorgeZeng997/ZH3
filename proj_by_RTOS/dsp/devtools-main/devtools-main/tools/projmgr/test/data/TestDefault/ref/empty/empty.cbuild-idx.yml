@@ -1,0 +1,28 @@
+build-idx:
+  generated-by: csolution version 0.0.0+g11955b66
+  cdefault: ${CMSIS_COMPILER_ROOT}/cdefault.yml
+  csolution: ../../data/TestDefault/empty.csolution.yml
+  tmpdir: tmp
+  cprojects:
+    - cproject: ../../data/TestDefault/project.cproject.yml
+  cbuilds:
+    - cbuild: project.Debug+TEST_TARGET.cbuild.yml
+      project: project
+      configuration: .Debug+TEST_TARGET
+      messages:
+        warnings:
+          - "'compiler' setting in cdefault.yml will be deprecated in CMSIS-Toolbox 3.0.0"
+          - "project.cproject.yml - 'device: Dname' is deprecated at this level and accepted in *.csolution.yml only"
+        info:
+          - empty.cbuild-pack.yml - file generated successfully
+          - project.Debug+TEST_TARGET.cbuild.yml - file generated successfully
+    - cbuild: project.Release+TEST_TARGET.cbuild.yml
+      project: project
+      configuration: .Release+TEST_TARGET
+      messages:
+        warnings:
+          - "'compiler' setting in cdefault.yml will be deprecated in CMSIS-Toolbox 3.0.0"
+          - "project.cproject.yml - 'device: Dname' is deprecated at this level and accepted in *.csolution.yml only"
+        info:
+          - empty.cbuild-pack.yml - file generated successfully
+          - project.Release+TEST_TARGET.cbuild.yml - file generated successfully

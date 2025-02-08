@@ -1,0 +1,25 @@
+### CMSIS Project Description ###
+
+project:
+  output:
+    type:
+      - bin
+      - hex
+  device: RteTest_ARMCM0_Dual:cm0_core0
+  define:
+    - DEF1-PROJ1-$elf(test-access-sequences3.Debug)$
+    - DEF2-PROJ1-$elf(test-access-sequences3.Release)$
+    - Device_$Dname$_Processor_$Pname$
+  components:
+    - component: CORE
+  groups:
+    - group: CMSE
+      files: 
+        - file: $cmse-lib(test-access-sequences3)$
+    - group: Artifacts
+      for-context: .Release
+      files: 
+        - file: $bin(test-access-sequences3)$
+        - file: $hex(test-access-sequences3)$
+  layers:
+    - layer: test-access-sequences.clayer.yml

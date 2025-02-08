@@ -1,0 +1,321 @@
+/*=======0=========1=========2=========3=========4=========5=========6=========7=========8=========9=========0=========1====*/
+/**
+\mainpage Overview
+
+<b>CMSIS-Build</b> is a set of tools, software frameworks, and work flows that improve productivity:
+
+  - \ref cprjFormat_pg "CPRJ" is a generic CMSIS-aware project file format that allows IDEs and command-line build tools to
+    share the same projects.
+  - A \ref CmdLineBuild "Continuous Integration (CI) work flow" for projects that are based on software components supplied
+    in CMSIS-Pack format.
+  - Software Layers enable code reuse across different targets. A software layer is a pre-configured software component
+    selection and user source code. 
+  - <b>CMSIS-Driver VIO</b></a> is a set of generic input/output
+    functions for example and test code. It allows to fast migration from evaluation boards to production hardware.
+
+The figure below shows how the <b>CMSIS-Build</b> components may be used to create a IoT cloud application:
+  - The <b>Board I/O</b> layer contains the drivers and device configuration for a specific evaluation board.
+  - The <b>Cloud</b> layer implements the software components that are required to connect to a Cloud Service Provider (CSP).
+  - The <b>Application Code</b> may start with a reference example and is expanded to application specific requirements that
+    access specialized peripherals.
+  
+\image html "Layer.png" "Software Layers and Virtual I/O"  
+
+Software layers and Virtual I/O simplify these use cases:
+
+<b>Port software from evaluation board to custom hardware:</b><br>
+- Frequently, the software development starts on an evaluation board, for example because production hardware is not yet
+  available. The <b>VIO component</b></a> allows you to use the I/O capabilities of an evaluation kit and disconnect
+  it when moving to production hardware. In case the production hardware uses a different device configuration or different
+  I/O drivers, the <b>Board I/O</b> layer may be swapped.
+
+<b>Deliver reference examples for many different evaluation boards:</b><br>
+- Reference examples are a great way to demonstrate a software solution. It is however expensive to support many different
+  evaluation boards. The VIO and CMSIS-Driver components give reference examples for a consistent interface to target
+  hardware. When such a consistent set of components is available as a <b>Board I/O</b> layer for many different evaluation
+  boards, it allows to run a <b>Cloud</b> layer together with a reference example. The tools for \ref CmdLineBuild allow to
+  combine various different layers and allow in this way to generate several different reference examples on a range of
+  evaluation boards.
+
+\section CB_Components Components of CMSIS-Build
+
+<b>Specification</b> of a generic project file format:
+ - \ref cprjFormat_pg describes all XML elements that are available for the project description and how to use them.
+
+<b>Tools</b> that support \ref CmdLineBuild with software packs and the generic project file format:
+  - \ref cbuildgen generates a standard CMakeLists.txt file and allows to manage software layers.
+*/
+
+
+/*=======0=========1=========2=========3=========4=========5=========6=========7=========8=========9=========0=========1====*/
+/**
+\page build_revisionHistory Revision history
+
+<table class="cmtable" summary="Revision History">
+  <tr>
+    <th>Version</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>2.6.0</td>
+    <td>Release notes:
+      - added support for trustzone mode 'secure-only'
+      - extended 'language-C' accepted values: c17 and c23
+      - updated cbuild2cmake utility v0.9.3
+      - updated cbuild utility v2.6.0
+      - updated cpackget utility v2.1.4
+      - updated csolution utility v2.6.0
+      - updated cbridge utility v0.9.11
+    </td>
+    <td>2.5.0</td>
+    <td>Release notes:
+      - added alpha quality support for ARMv7R and ARMv8A for CLANG and AC6
+      - enforce toolchains registration via environment variables
+      - updated IAR mapping handling for 'Secure' mode
+      - updated cbuild2cmake utility v0.9.2
+      - updated cbuild utility v2.5.0
+      - updated cpackget utility v2.1.3
+      - updated csolution utility v2.5.0
+      - updated cbridge utility v0.9.9
+    </td>
+    <td>2.4.0</td>
+    <td>Release notes:
+      - added support for Cortex-M52 (CLANG)
+      - updated cbuild2cmake utility v0.9.1 (alpha support)
+      - updated cbuild utility v2.4.0
+      - updated cpackget utility v2.1.2
+      - updated csolution utility v2.4.0
+      - updated cbridge utility v0.9.5
+      - updated and renamed AC6.6.18.0.cmake to AC6.6.16.2.cmake
+      - removed CMake info message concerning registered toolchain
+      - fixed undefines list calculation to only match key
+      - fixed missing CXX file option
+    </td>
+    <td>2.3.0</td>
+    <td>Release notes:
+      - added support for Cortex-M52 (only AC6)
+      - updated cbuild2cmake utility v0.9.0 (alpha support)
+      - updated cbuild utility v2.3.0
+      - updated cpackget utility v2.1.1
+      - updated csolution utility v2.3.0
+      - updated cbridge utility v0.9.4
+    </td>
+    <td>2.3.0-dev0</td>
+    <td>Release candidate:
+      - added cbuild2cmake utility v0.9.0-dev0 (alpha support)
+      - added `optimize` option `debug`
+      - fixed CLANG system includes and mfpu
+      - updated cbuild utility v2.3.0-dev0
+      - updated cpackget utility v2.1.0
+      - updated csolution utility v2.3.0-dev0
+      - updated cbridge utility v0.9.3
+    </td>
+    <td>2.2.1</td>
+    <td>Release notes:
+      - updated cbuild utility v2.2.1
+      - updated csolution utility v2.2.1
+      - updated cbridge utility v0.9.2
+      - restored 'RteKernel::GetUrlFromIndex' return value when local pack repo is absent
+    </td>
+    <td>2.2.0</td>
+    <td>Release notes:
+      - updated cbuild utility v2.2.0
+      - updated cpackget utility v2.0.0
+      - updated csolution utility v2.2.0
+      - updated alpha clang support to v17.0.1
+      - added cbridge utility v0.9.1
+      - added 'warnings' option 'all'
+      - added '*.src' file extension as linker script source for pre-processing
+      - fixed GPDSC without components
+      - fixed IAR single precision FPU error
+    </td>
+    <td>2.1.0</td>
+    <td>Release notes:
+      - updated cbuild utility v2.1.0
+      - updated cpackget utility v1.0.1
+      - updated csolution utility v2.1.0
+      - added linker file pre-processor secure flags 
+      - fixed handling of AC6 projects with only legacy assembly files
+    </td>
+    <td>2.0.0</td>
+    <td>Release notes:
+      - updated cbuild utility v2.0.0
+      - updated cpackget utility v1.0.0
+      - added support for LLVM/Clang
+      - enabled linker defines as trigger for preprocessing
+      - set initial CMake flags for AC6 compiler check
+    </td>
+    <td>2.0.0-dev3</td>
+    <td>Release for review of initial development:
+      - updated cbuild utility v2.0.0-dev3
+      - removed AC5 support
+      - added support for standard language options
+      - added CPRJ schema version check
+    </td>
+    <td>2.0.0-dev2</td>
+    <td>Release for review of initial development:
+      - updated cbuild utility v2.0.0-dev2
+    </td>
+    <td>2.0.0-dev1</td>
+    <td>Release for review of initial development:
+      - updated cpackget utility v0.9.4
+    </td>
+    <td>2.0.0-dev0</td>
+    <td>Release for review of initial development:
+      - updated cbuild utility v2.0.0-dev0
+      - reworked output file types
+      - added GCC libraries group for rescanning
+    </td>
+    <td>1.7.0</td>
+    <td>Release for review of initial development:
+      - updated cbuild utility v1.6.2
+      - extended CPRJ: added 'regions' and 'defines' into 'ldflags' and created 'ldlibs'
+      - extended CMake generation: linker script pre-processing and library flags handling
+      - fixed regression: GPDSC reading and validation
+    </td>
+    <td>1.6.0</td>
+    <td>Release for review of initial development:
+      - updated cbuild utility v1.6.1
+      - added support for Cortex-M85 for GCC toolchain
+      - added tests for IAR toolchain
+    </td>
+    <td>1.5.0</td>
+    <td>Release for review of initial development:
+      - updated cbuild utility v1.5.0
+      - updated cpackget utility v0.9.2
+      - added Star-MC1 flags for Arm Compiler
+      - added Star-MC1, Cortex-M55 and Cortex-M85 for IAR Compiler
+      - added 'output' filenames customization handling
+      - added 'gendir' component instance attribute
+      - rework toolchain registration
+      - fixed: include paths order
+      - fixed: file specific defines
+    </td>
+    <td>1.4.0</td>
+    <td>Release for review of initial development:
+      - updated cbuild utility v1.4.0
+      - updated cpackget utility v0.9.0
+      - disable the update of RTE folder contents by default
+      - added '--update-rte' flag to enable the optional update of RTE folder
+      - fixed: handle legacy armasm hexadecimal defines
+    </td>
+    <td>1.3.0</td>
+    <td>Release for review of initial development:
+      - updated cbuild utility v1.3.0
+      - updated cpackget utility v0.8.5
+      - added compiler abstractions mappings
+      - added 'ldcflag' and 'ldcxxflag' handling
+      - added support for branch protection
+      - added support for 'linux-arm64' host platform​
+      - added support for toolchain environment variables
+    </td>
+    <td>1.2.0</td>
+    <td>Release for review of initial development:
+      - updated cbuild utility v1.2.0.
+      - updated cpackget utility v0.8.1.
+      - added -V/--version option.
+      - added component attribute 'rtedir' allowing config files path customization.
+    </td>
+    <td>1.1.0</td>
+    <td>Release for review of initial development:
+      - updated cbuild utility v1.1.0.
+      - updated cpackget utility v0.8.0.
+      - simplified use of environment variables.
+      - fixed config path for device dependent component.
+      - fixed selection of latest compatible toolchain.
+    </td>
+    <td>1.0.0</td>
+    <td>Release for review of initial development:
+      - updated cbuild utility v1.0.0.
+      - updated cpackget utility v0.7.0.
+      - updated gcc support v11.2.1.
+      - added CMake dependency on linker script.
+    </td>
+    <td>0.11.3</td>
+    <td>Release for review of initial development:
+      - fixed packlist generation.
+    </td>
+    <td>0.11.2</td>
+    <td>Release for review of initial development:
+      - updated cpackget utility v0.5.0.
+      - added support for board variable $B.
+      - fixed pack 'path' handling.
+    </td>
+    <td>0.11.1</td>
+    <td>Release for review of initial development:
+      - updated cbuild utility v0.9.1.
+      - updated cpackget utility v0.4.1.
+      - updated AC6 compiler support v6.18.0.
+    </td>
+    <td>0.11.0</td>
+    <td>Release for review of initial development:
+      - new cbuild utility v0.9.0 replacing cbuild.sh.
+      - updated cpackget utility v0.4.0.
+      - added access sequences handling.
+    </td>
+  </tr>
+  <tr>
+    <td>0.10.6</td>
+    <td>Release for review of initial development:
+      - updated cpackget utility v0.3.2.
+      - updated help menu.
+      - extended support for defines/undefines/includes/excludes at component/group/file level.
+      - added support for 'path' attribute in package requirement.
+      - added generation of list of missing packs in json format.
+    </td>
+  </tr>
+  <tr>
+    <td>0.10.5</td>
+    <td>Release for review of initial development:
+      - new support for IAR compiler.
+      - updated cpackget utility v0.3.1.
+      - removed source file naming limitations​.
+      - fixed: base path of pre-include files with config attribute.
+      - fixed: AC6/GCC cpu compiler option for Cortex-M33 with FPU and no DSP.
+    </td>
+  </tr>
+  <tr>
+    <td>0.10.4</td>
+    <td>Release for review of initial development:
+      - new cpackget utility replacing cp_init.sh and cp_install.sh.
+      - new layer compose command line options: --name , --description (see usage for more information).
+      - added handling of multiple quotation marks inside defines and compiler flags.
+    </td>
+  </tr>
+  <tr>
+    <td>0.10.3</td>
+    <td>Release for review of initial development:
+      - new CMake support replacing GNU Makefile generation with CMakelists.txt generation.
+      - removed MDK specific scripts.
+      - added macOS support.
+    </td>
+  </tr>
+  <tr>
+    <td>0.10.0</td>
+    <td>Release for review of initial development:
+      - new command line options: --update, --quiet, --log, --intdir, --outdir (see usage for more information).
+      - building an executable always creates binaries in ELF, HEX and BIN format in output directory.
+      - added build progress information to build output.
+      - added makefile target 'rebuild' (clean + build).
+      - added makefile self-dependency. Generated makefile is only written if the content changed.
+      - added makefile target 'database' for generating a compilation database file.
+      - added special handling for layer files (layer.\<layer name>.\<ext>) copied unconditionally along with the layer on extract, remove, compose and add commands of cbuildgen.
+      - added special handling for layer markdown files (layer.\<layer name>.md) being concatenated into README.md on compose command of cbuildgen.
+      - fixed: #970 Toolchain configuration files corrected to handle Cortex-M0+, Cortex-M35P, SC000, SC300 and ARMV81MML based devices.
+      - fixed: #971 Unnecessary rebuild of libraries when using GCC toolchain.
+    </td>
+  </tr>
+  <tr>
+    <td>0.9.0</td>
+    <td>Release for review of initial development:
+      - added layer description to project format specification.
+      - added support for multiple compilers.
+      - added commands for layer operations to cbuildgen.
+    </td>
+  </tr>
+  <tr>
+    <td>0.1.0</td>
+    <td>Release for alpha review</td>
+  </tr>
+</table>
+*/

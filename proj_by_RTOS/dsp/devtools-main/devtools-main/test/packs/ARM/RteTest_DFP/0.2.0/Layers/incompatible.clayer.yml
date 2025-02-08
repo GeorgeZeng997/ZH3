@@ -1,0 +1,19 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/Open-CMSIS-Pack/devtools/main/tools/projmgr/schemas/clayer.schema.json
+
+layer:
+
+  type: Incompatible
+  
+  components:
+    - component: Device:Test variant
+  
+  connections:
+    - connect: Incompatible Connections
+      provides:
+        - MultipleProvided                     # same connection is provided multiple times with identical values
+        - MultipleProvidedNonIdentical0: 111   # same connection is provided multiple times with non identical values
+        - MultipleProvidedNonIdentical1: 222   # same connection is provided multiple times with non identical values
+      consumes:
+        - ProvidedDontMatch: -1                # consumed connection doesn't match provided one
+        - ProvidedEmpty: 123                   # consumed connection doesn't match empty provided one
+        - AddedValueHigherThanProvided: +100   # added consumed values are equal to provided
