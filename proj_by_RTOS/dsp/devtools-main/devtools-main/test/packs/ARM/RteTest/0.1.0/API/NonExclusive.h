@@ -1,1 +1,0 @@
-// NonExclusive.h

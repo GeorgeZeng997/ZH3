@@ -1,7 +1,0 @@
-name: "CodeQL config"
-paths-ignore:
-  - external
-  - docs
-  - test
-  - cmake
-debug: false

@@ -1,3 +1,0 @@
-cbuild-pack:
-  resolved-packs:
-    - resolved-pack: ARM::RteTest_DFP@0.2.0

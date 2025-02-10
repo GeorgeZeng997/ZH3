@@ -1,7 +1,0 @@
-# yaml-language-server: $schema=https://raw.githubusercontent.com/Open-CMSIS-Pack/devtools/main/tools/projmgr/schemas/cproject.schema.json
-
-project:
-  layers:
-    - layer: ./layers/target/CM35P.clayer.yml
-    - layer: ./layers/config/Release.clayer.yml
-    - layer: ./layers/app/SecureCode/Secure.clayer.yml

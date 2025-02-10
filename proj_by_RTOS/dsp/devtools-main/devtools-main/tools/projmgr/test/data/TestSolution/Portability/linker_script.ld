@@ -1,1 +1,0 @@
-// linker_script.ld

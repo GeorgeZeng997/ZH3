@@ -1,5 +1,0 @@
-layer: "Invalid"
-  name: 2
-  defines:
-- DEF_LAYER2
-    - DEF: oxff
