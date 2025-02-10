@@ -1,6 +1,6 @@
 Dependencies for Project 'rtos', Target 'Target 1': (DO NOT MODIFY !)
-F (.\app\scr\config.c)(0x678A1A18)(--c99 --gnu -c --cpu Cortex-M4.fp -g -O0 --apcs=interwork --split_sections -I .\freeRTOS\include -I .\freeRTOS\portable\RVDS\ARM_CM4F -I .\freeRTOS\scr -I .\app\inc -I .\RTE\Device\GD32F303VE -I .\dsp\Include-I.\RTE\_Target_1-ID:\keil_stm\ARM\PACK\ARM\CMSIS\5.3.0\CMSIS\Include-ID:\keil_stm\ARM\PACK\GigaDevice\GD32F30x_DFP\2.2.3\Device\Firmware\Peripherals\inc-ID:\keil_stm\ARM\PACK\GigaDevice\GD32F30x_DFP\2.2.3\Device\Include-ID:\keil_stm\ARM\PACK\GigaDevice\GD32F30x_DFP\2.2.3\Device\Template-D__UVISION_VERSION="525" -D_RTE_ -DGD32F30X_HD -DGD32F30X_HD-o .\objects\config.o --omf_browse .\objects\config.crf --depend .\objects\config.d)
-I (.\app\inc\config.h)(0x6789AAF8)
+F (.\app\scr\config.c)(0x67A6D4EF)(--c99 --gnu -c --cpu Cortex-M4.fp -g -O0 --apcs=interwork --split_sections -I .\freeRTOS\include -I .\freeRTOS\portable\RVDS\ARM_CM4F -I .\freeRTOS\scr -I .\app\inc -I .\RTE\Device\GD32F303VE -I .\dsp\Include-I.\RTE\_Target_1-ID:\keil_stm\ARM\PACK\ARM\CMSIS\5.3.0\CMSIS\Include-ID:\keil_stm\ARM\PACK\GigaDevice\GD32F30x_DFP\2.2.3\Device\Firmware\Peripherals\inc-ID:\keil_stm\ARM\PACK\GigaDevice\GD32F30x_DFP\2.2.3\Device\Include-ID:\keil_stm\ARM\PACK\GigaDevice\GD32F30x_DFP\2.2.3\Device\Template-D__UVISION_VERSION="525" -D_RTE_ -DGD32F30X_HD -DGD32F30X_HD-o .\objects\config.o --omf_browse .\objects\config.crf --depend .\objects\config.d)
+I (.\app\inc\config.h)(0x678F709B)
 I (D:\keil_stm\ARM\PACK\GigaDevice\GD32F30x_DFP\2.2.3\Device\Include\gd32f30x.h)(0x61AEC528)
 I (D:\keil_stm\ARM\PACK\ARM\CMSIS\5.3.0\CMSIS\Include\core_cm4.h)(0x5A8E1FE2)
 I (D:\keil_stm\ARM\ARMCC\include\stdint.h)(0x599ECD2E)
@@ -37,12 +37,12 @@ I (D:\keil_stm\ARM\PACK\GigaDevice\GD32F30x_DFP\2.2.3\Device\Firmware\Peripheral
 I (D:\keil_stm\ARM\ARMCC\include\stdio.h)(0x599ECD2C)
 I (D:\keil_stm\ARM\PACK\GigaDevice\GD32F30x_DFP\2.2.3\Device\Firmware\Peripherals\inc\gd32f30x_dac.h)(0x65DC5767)
 I (D:\keil_stm\ARM\ARMCC\include\string.h)(0x599ECD2C)
-I (.\app\inc\flash.h)(0x6780BCB2)
+I (.\app\inc\flash.h)(0x67906C18)
 I (.\app\inc\lcd.h)(0x678DED88)
 I (.\app\inc\picture.h)(0x678DE580)
 I (.\app\inc\st7789.h)(0x67444112)
 I (.\app\inc\encoder.h)(0x6781179B)
-I (.\app\inc\menu.h)(0x678E027D)
+I (.\app\inc\menu.h)(0x67A6CE3A)
 I (.\app\inc\user_data.h)(0x678DC13E)
 I (.\app\inc\test.h)(0x67257722)
 I (.\app\inc\i2c.h)(0x678A298E)
@@ -51,6 +51,7 @@ I (.\app\inc\ir.h)(0x678E0DBB)
 I (.\app\inc\xmos.h)(0x6785BEA0)
 I (.\app\inc\usart.h)(0x678232EA)
 I (.\app\inc\fmc.h)(0x678232A8)
+I (.\app\inc\tone.h)(0x678F49CF)
 I (.\freeRTOS\include\FreeRTOS.h)(0x6715C46F)
 I (D:\keil_stm\ARM\ARMCC\include\stddef.h)(0x599ECD2C)
 I (.\app\inc\FreeRTOSConfig.h)(0x677DE6F0)
@@ -66,7 +67,7 @@ I (.\freeRTOS\include\semphr.h)(0x5F5FC7FE)
 I (.\freeRTOS\include\event_groups.h)(0x5F5FC7FE)
 I (.\freeRTOS\include\timers.h)(0x5F5FC7FE)
 F (.\app\scr\int.c)(0x6785B772)(--c99 --gnu -c --cpu Cortex-M4.fp -g -O0 --apcs=interwork --split_sections -I .\freeRTOS\include -I .\freeRTOS\portable\RVDS\ARM_CM4F -I .\freeRTOS\scr -I .\app\inc -I .\RTE\Device\GD32F303VE -I .\dsp\Include-I.\RTE\_Target_1-ID:\keil_stm\ARM\PACK\ARM\CMSIS\5.3.0\CMSIS\Include-ID:\keil_stm\ARM\PACK\GigaDevice\GD32F30x_DFP\2.2.3\Device\Firmware\Peripherals\inc-ID:\keil_stm\ARM\PACK\GigaDevice\GD32F30x_DFP\2.2.3\Device\Include-ID:\keil_stm\ARM\PACK\GigaDevice\GD32F30x_DFP\2.2.3\Device\Template-D__UVISION_VERSION="525" -D_RTE_ -DGD32F30X_HD -DGD32F30X_HD-o .\objects\int.o --omf_browse .\objects\int.crf --depend .\objects\int.d)
-I (.\app\inc\config.h)(0x6789AAF8)
+I (.\app\inc\config.h)(0x678F709B)
 I (D:\keil_stm\ARM\PACK\GigaDevice\GD32F30x_DFP\2.2.3\Device\Include\gd32f30x.h)(0x61AEC528)
 I (D:\keil_stm\ARM\PACK\ARM\CMSIS\5.3.0\CMSIS\Include\core_cm4.h)(0x5A8E1FE2)
 I (D:\keil_stm\ARM\ARMCC\include\stdint.h)(0x599ECD2E)
@@ -103,12 +104,12 @@ I (D:\keil_stm\ARM\PACK\GigaDevice\GD32F30x_DFP\2.2.3\Device\Firmware\Peripheral
 I (D:\keil_stm\ARM\ARMCC\include\stdio.h)(0x599ECD2C)
 I (D:\keil_stm\ARM\PACK\GigaDevice\GD32F30x_DFP\2.2.3\Device\Firmware\Peripherals\inc\gd32f30x_dac.h)(0x65DC5767)
 I (D:\keil_stm\ARM\ARMCC\include\string.h)(0x599ECD2C)
-I (.\app\inc\flash.h)(0x6780BCB2)
+I (.\app\inc\flash.h)(0x67906C18)
 I (.\app\inc\lcd.h)(0x678DED88)
 I (.\app\inc\picture.h)(0x678DE580)
 I (.\app\inc\st7789.h)(0x67444112)
 I (.\app\inc\encoder.h)(0x6781179B)
-I (.\app\inc\menu.h)(0x678E027D)
+I (.\app\inc\menu.h)(0x67A6CE3A)
 I (.\app\inc\user_data.h)(0x678DC13E)
 I (.\app\inc\test.h)(0x67257722)
 I (.\app\inc\i2c.h)(0x678A298E)
@@ -117,6 +118,7 @@ I (.\app\inc\ir.h)(0x678E0DBB)
 I (.\app\inc\xmos.h)(0x6785BEA0)
 I (.\app\inc\usart.h)(0x678232EA)
 I (.\app\inc\fmc.h)(0x678232A8)
+I (.\app\inc\tone.h)(0x678F49CF)
 I (.\freeRTOS\include\FreeRTOS.h)(0x6715C46F)
 I (D:\keil_stm\ARM\ARMCC\include\stddef.h)(0x599ECD2C)
 I (.\app\inc\FreeRTOSConfig.h)(0x677DE6F0)
@@ -132,7 +134,7 @@ I (.\freeRTOS\include\semphr.h)(0x5F5FC7FE)
 I (.\freeRTOS\include\event_groups.h)(0x5F5FC7FE)
 I (.\freeRTOS\include\timers.h)(0x5F5FC7FE)
 F (.\app\scr\main.c)(0x678DBB58)(--c99 --gnu -c --cpu Cortex-M4.fp -g -O0 --apcs=interwork --split_sections -I .\freeRTOS\include -I .\freeRTOS\portable\RVDS\ARM_CM4F -I .\freeRTOS\scr -I .\app\inc -I .\RTE\Device\GD32F303VE -I .\dsp\Include-I.\RTE\_Target_1-ID:\keil_stm\ARM\PACK\ARM\CMSIS\5.3.0\CMSIS\Include-ID:\keil_stm\ARM\PACK\GigaDevice\GD32F30x_DFP\2.2.3\Device\Firmware\Peripherals\inc-ID:\keil_stm\ARM\PACK\GigaDevice\GD32F30x_DFP\2.2.3\Device\Include-ID:\keil_stm\ARM\PACK\GigaDevice\GD32F30x_DFP\2.2.3\Device\Template-D__UVISION_VERSION="525" -D_RTE_ -DGD32F30X_HD -DGD32F30X_HD-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
-I (.\app\inc\config.h)(0x6789AAF8)
+I (.\app\inc\config.h)(0x678F709B)
 I (D:\keil_stm\ARM\PACK\GigaDevice\GD32F30x_DFP\2.2.3\Device\Include\gd32f30x.h)(0x61AEC528)
 I (D:\keil_stm\ARM\PACK\ARM\CMSIS\5.3.0\CMSIS\Include\core_cm4.h)(0x5A8E1FE2)
 I (D:\keil_stm\ARM\ARMCC\include\stdint.h)(0x599ECD2E)
@@ -169,12 +171,12 @@ I (D:\keil_stm\ARM\PACK\GigaDevice\GD32F30x_DFP\2.2.3\Device\Firmware\Peripheral
 I (D:\keil_stm\ARM\ARMCC\include\stdio.h)(0x599ECD2C)
 I (D:\keil_stm\ARM\PACK\GigaDevice\GD32F30x_DFP\2.2.3\Device\Firmware\Peripherals\inc\gd32f30x_dac.h)(0x65DC5767)
 I (D:\keil_stm\ARM\ARMCC\include\string.h)(0x599ECD2C)
-I (.\app\inc\flash.h)(0x6780BCB2)
+I (.\app\inc\flash.h)(0x67906C18)
 I (.\app\inc\lcd.h)(0x678DED88)
 I (.\app\inc\picture.h)(0x678DE580)
 I (.\app\inc\st7789.h)(0x67444112)
 I (.\app\inc\encoder.h)(0x6781179B)
-I (.\app\inc\menu.h)(0x678E027D)
+I (.\app\inc\menu.h)(0x67A6CE3A)
 I (.\app\inc\user_data.h)(0x678DC13E)
 I (.\app\inc\test.h)(0x67257722)
 I (.\app\inc\i2c.h)(0x678A298E)
@@ -183,6 +185,7 @@ I (.\app\inc\ir.h)(0x678E0DBB)
 I (.\app\inc\xmos.h)(0x6785BEA0)
 I (.\app\inc\usart.h)(0x678232EA)
 I (.\app\inc\fmc.h)(0x678232A8)
+I (.\app\inc\tone.h)(0x678F49CF)
 I (.\freeRTOS\include\FreeRTOS.h)(0x6715C46F)
 I (D:\keil_stm\ARM\ARMCC\include\stddef.h)(0x599ECD2C)
 I (.\app\inc\FreeRTOSConfig.h)(0x677DE6F0)
@@ -197,8 +200,8 @@ I (.\freeRTOS\include\queue.h)(0x5F5FC7FE)
 I (.\freeRTOS\include\semphr.h)(0x5F5FC7FE)
 I (.\freeRTOS\include\event_groups.h)(0x5F5FC7FE)
 I (.\freeRTOS\include\timers.h)(0x5F5FC7FE)
-F (.\app\scr\flash.c)(0x678DE5E9)(--c99 --gnu -c --cpu Cortex-M4.fp -g -O0 --apcs=interwork --split_sections -I .\freeRTOS\include -I .\freeRTOS\portable\RVDS\ARM_CM4F -I .\freeRTOS\scr -I .\app\inc -I .\RTE\Device\GD32F303VE -I .\dsp\Include-I.\RTE\_Target_1-ID:\keil_stm\ARM\PACK\ARM\CMSIS\5.3.0\CMSIS\Include-ID:\keil_stm\ARM\PACK\GigaDevice\GD32F30x_DFP\2.2.3\Device\Firmware\Peripherals\inc-ID:\keil_stm\ARM\PACK\GigaDevice\GD32F30x_DFP\2.2.3\Device\Include-ID:\keil_stm\ARM\PACK\GigaDevice\GD32F30x_DFP\2.2.3\Device\Template-D__UVISION_VERSION="525" -D_RTE_ -DGD32F30X_HD -DGD32F30X_HD-o .\objects\flash.o --omf_browse .\objects\flash.crf --depend .\objects\flash.d)
-I (.\app\inc\config.h)(0x6789AAF8)
+F (.\app\scr\flash.c)(0x67906C18)(--c99 --gnu -c --cpu Cortex-M4.fp -g -O0 --apcs=interwork --split_sections -I .\freeRTOS\include -I .\freeRTOS\portable\RVDS\ARM_CM4F -I .\freeRTOS\scr -I .\app\inc -I .\RTE\Device\GD32F303VE -I .\dsp\Include-I.\RTE\_Target_1-ID:\keil_stm\ARM\PACK\ARM\CMSIS\5.3.0\CMSIS\Include-ID:\keil_stm\ARM\PACK\GigaDevice\GD32F30x_DFP\2.2.3\Device\Firmware\Peripherals\inc-ID:\keil_stm\ARM\PACK\GigaDevice\GD32F30x_DFP\2.2.3\Device\Include-ID:\keil_stm\ARM\PACK\GigaDevice\GD32F30x_DFP\2.2.3\Device\Template-D__UVISION_VERSION="525" -D_RTE_ -DGD32F30X_HD -DGD32F30X_HD-o .\objects\flash.o --omf_browse .\objects\flash.crf --depend .\objects\flash.d)
+I (.\app\inc\config.h)(0x678F709B)
 I (D:\keil_stm\ARM\PACK\GigaDevice\GD32F30x_DFP\2.2.3\Device\Include\gd32f30x.h)(0x61AEC528)
 I (D:\keil_stm\ARM\PACK\ARM\CMSIS\5.3.0\CMSIS\Include\core_cm4.h)(0x5A8E1FE2)
 I (D:\keil_stm\ARM\ARMCC\include\stdint.h)(0x599ECD2E)
@@ -235,12 +238,12 @@ I (D:\keil_stm\ARM\PACK\GigaDevice\GD32F30x_DFP\2.2.3\Device\Firmware\Peripheral
 I (D:\keil_stm\ARM\ARMCC\include\stdio.h)(0x599ECD2C)
 I (D:\keil_stm\ARM\PACK\GigaDevice\GD32F30x_DFP\2.2.3\Device\Firmware\Peripherals\inc\gd32f30x_dac.h)(0x65DC5767)
 I (D:\keil_stm\ARM\ARMCC\include\string.h)(0x599ECD2C)
-I (.\app\inc\flash.h)(0x6780BCB2)
+I (.\app\inc\flash.h)(0x67906C18)
 I (.\app\inc\lcd.h)(0x678DED88)
 I (.\app\inc\picture.h)(0x678DE580)
 I (.\app\inc\st7789.h)(0x67444112)
 I (.\app\inc\encoder.h)(0x6781179B)
-I (.\app\inc\menu.h)(0x678E027D)
+I (.\app\inc\menu.h)(0x67A6CE3A)
 I (.\app\inc\user_data.h)(0x678DC13E)
 I (.\app\inc\test.h)(0x67257722)
 I (.\app\inc\i2c.h)(0x678A298E)
@@ -249,6 +252,7 @@ I (.\app\inc\ir.h)(0x678E0DBB)
 I (.\app\inc\xmos.h)(0x6785BEA0)
 I (.\app\inc\usart.h)(0x678232EA)
 I (.\app\inc\fmc.h)(0x678232A8)
+I (.\app\inc\tone.h)(0x678F49CF)
 I (.\freeRTOS\include\FreeRTOS.h)(0x6715C46F)
 I (D:\keil_stm\ARM\ARMCC\include\stddef.h)(0x599ECD2C)
 I (.\app\inc\FreeRTOSConfig.h)(0x677DE6F0)
@@ -263,8 +267,8 @@ I (.\freeRTOS\include\queue.h)(0x5F5FC7FE)
 I (.\freeRTOS\include\semphr.h)(0x5F5FC7FE)
 I (.\freeRTOS\include\event_groups.h)(0x5F5FC7FE)
 I (.\freeRTOS\include\timers.h)(0x5F5FC7FE)
-F (.\app\scr\lcd.c)(0x678EF8CC)(--c99 --gnu -c --cpu Cortex-M4.fp -g -O0 --apcs=interwork --split_sections -I .\freeRTOS\include -I .\freeRTOS\portable\RVDS\ARM_CM4F -I .\freeRTOS\scr -I .\app\inc -I .\RTE\Device\GD32F303VE -I .\dsp\Include-I.\RTE\_Target_1-ID:\keil_stm\ARM\PACK\ARM\CMSIS\5.3.0\CMSIS\Include-ID:\keil_stm\ARM\PACK\GigaDevice\GD32F30x_DFP\2.2.3\Device\Firmware\Peripherals\inc-ID:\keil_stm\ARM\PACK\GigaDevice\GD32F30x_DFP\2.2.3\Device\Include-ID:\keil_stm\ARM\PACK\GigaDevice\GD32F30x_DFP\2.2.3\Device\Template-D__UVISION_VERSION="525" -D_RTE_ -DGD32F30X_HD -DGD32F30X_HD-o .\objects\lcd.o --omf_browse .\objects\lcd.crf --depend .\objects\lcd.d)
-I (.\app\inc\config.h)(0x6789AAF8)
+F (.\app\scr\lcd.c)(0x67A6D2ED)(--c99 --gnu -c --cpu Cortex-M4.fp -g -O0 --apcs=interwork --split_sections -I .\freeRTOS\include -I .\freeRTOS\portable\RVDS\ARM_CM4F -I .\freeRTOS\scr -I .\app\inc -I .\RTE\Device\GD32F303VE -I .\dsp\Include-I.\RTE\_Target_1-ID:\keil_stm\ARM\PACK\ARM\CMSIS\5.3.0\CMSIS\Include-ID:\keil_stm\ARM\PACK\GigaDevice\GD32F30x_DFP\2.2.3\Device\Firmware\Peripherals\inc-ID:\keil_stm\ARM\PACK\GigaDevice\GD32F30x_DFP\2.2.3\Device\Include-ID:\keil_stm\ARM\PACK\GigaDevice\GD32F30x_DFP\2.2.3\Device\Template-D__UVISION_VERSION="525" -D_RTE_ -DGD32F30X_HD -DGD32F30X_HD-o .\objects\lcd.o --omf_browse .\objects\lcd.crf --depend .\objects\lcd.d)
+I (.\app\inc\config.h)(0x678F709B)
 I (D:\keil_stm\ARM\PACK\GigaDevice\GD32F30x_DFP\2.2.3\Device\Include\gd32f30x.h)(0x61AEC528)
 I (D:\keil_stm\ARM\PACK\ARM\CMSIS\5.3.0\CMSIS\Include\core_cm4.h)(0x5A8E1FE2)
 I (D:\keil_stm\ARM\ARMCC\include\stdint.h)(0x599ECD2E)
@@ -301,12 +305,12 @@ I (D:\keil_stm\ARM\PACK\GigaDevice\GD32F30x_DFP\2.2.3\Device\Firmware\Peripheral
 I (D:\keil_stm\ARM\ARMCC\include\stdio.h)(0x599ECD2C)
 I (D:\keil_stm\ARM\PACK\GigaDevice\GD32F30x_DFP\2.2.3\Device\Firmware\Peripherals\inc\gd32f30x_dac.h)(0x65DC5767)
 I (D:\keil_stm\ARM\ARMCC\include\string.h)(0x599ECD2C)
-I (.\app\inc\flash.h)(0x6780BCB2)
+I (.\app\inc\flash.h)(0x67906C18)
 I (.\app\inc\lcd.h)(0x678DED88)
 I (.\app\inc\picture.h)(0x678DE580)
 I (.\app\inc\st7789.h)(0x67444112)
 I (.\app\inc\encoder.h)(0x6781179B)
-I (.\app\inc\menu.h)(0x678E027D)
+I (.\app\inc\menu.h)(0x67A6CE3A)
 I (.\app\inc\user_data.h)(0x678DC13E)
 I (.\app\inc\test.h)(0x67257722)
 I (.\app\inc\i2c.h)(0x678A298E)
@@ -315,6 +319,7 @@ I (.\app\inc\ir.h)(0x678E0DBB)
 I (.\app\inc\xmos.h)(0x6785BEA0)
 I (.\app\inc\usart.h)(0x678232EA)
 I (.\app\inc\fmc.h)(0x678232A8)
+I (.\app\inc\tone.h)(0x678F49CF)
 I (.\freeRTOS\include\FreeRTOS.h)(0x6715C46F)
 I (D:\keil_stm\ARM\ARMCC\include\stddef.h)(0x599ECD2C)
 I (.\app\inc\FreeRTOSConfig.h)(0x677DE6F0)
@@ -330,7 +335,7 @@ I (.\freeRTOS\include\semphr.h)(0x5F5FC7FE)
 I (.\freeRTOS\include\event_groups.h)(0x5F5FC7FE)
 I (.\freeRTOS\include\timers.h)(0x5F5FC7FE)
 F (.\app\scr\encoder.c)(0x67811B7E)(--c99 --gnu -c --cpu Cortex-M4.fp -g -O0 --apcs=interwork --split_sections -I .\freeRTOS\include -I .\freeRTOS\portable\RVDS\ARM_CM4F -I .\freeRTOS\scr -I .\app\inc -I .\RTE\Device\GD32F303VE -I .\dsp\Include-I.\RTE\_Target_1-ID:\keil_stm\ARM\PACK\ARM\CMSIS\5.3.0\CMSIS\Include-ID:\keil_stm\ARM\PACK\GigaDevice\GD32F30x_DFP\2.2.3\Device\Firmware\Peripherals\inc-ID:\keil_stm\ARM\PACK\GigaDevice\GD32F30x_DFP\2.2.3\Device\Include-ID:\keil_stm\ARM\PACK\GigaDevice\GD32F30x_DFP\2.2.3\Device\Template-D__UVISION_VERSION="525" -D_RTE_ -DGD32F30X_HD -DGD32F30X_HD-o .\objects\encoder.o --omf_browse .\objects\encoder.crf --depend .\objects\encoder.d)
-I (.\app\inc\config.h)(0x6789AAF8)
+I (.\app\inc\config.h)(0x678F709B)
 I (D:\keil_stm\ARM\PACK\GigaDevice\GD32F30x_DFP\2.2.3\Device\Include\gd32f30x.h)(0x61AEC528)
 I (D:\keil_stm\ARM\PACK\ARM\CMSIS\5.3.0\CMSIS\Include\core_cm4.h)(0x5A8E1FE2)
 I (D:\keil_stm\ARM\ARMCC\include\stdint.h)(0x599ECD2E)
@@ -367,12 +372,12 @@ I (D:\keil_stm\ARM\PACK\GigaDevice\GD32F30x_DFP\2.2.3\Device\Firmware\Peripheral
 I (D:\keil_stm\ARM\ARMCC\include\stdio.h)(0x599ECD2C)
 I (D:\keil_stm\ARM\PACK\GigaDevice\GD32F30x_DFP\2.2.3\Device\Firmware\Peripherals\inc\gd32f30x_dac.h)(0x65DC5767)
 I (D:\keil_stm\ARM\ARMCC\include\string.h)(0x599ECD2C)
-I (.\app\inc\flash.h)(0x6780BCB2)
+I (.\app\inc\flash.h)(0x67906C18)
 I (.\app\inc\lcd.h)(0x678DED88)
 I (.\app\inc\picture.h)(0x678DE580)
 I (.\app\inc\st7789.h)(0x67444112)
 I (.\app\inc\encoder.h)(0x6781179B)
-I (.\app\inc\menu.h)(0x678E027D)
+I (.\app\inc\menu.h)(0x67A6CE3A)
 I (.\app\inc\user_data.h)(0x678DC13E)
 I (.\app\inc\test.h)(0x67257722)
 I (.\app\inc\i2c.h)(0x678A298E)
@@ -381,6 +386,7 @@ I (.\app\inc\ir.h)(0x678E0DBB)
 I (.\app\inc\xmos.h)(0x6785BEA0)
 I (.\app\inc\usart.h)(0x678232EA)
 I (.\app\inc\fmc.h)(0x678232A8)
+I (.\app\inc\tone.h)(0x678F49CF)
 I (.\freeRTOS\include\FreeRTOS.h)(0x6715C46F)
 I (D:\keil_stm\ARM\ARMCC\include\stddef.h)(0x599ECD2C)
 I (.\app\inc\FreeRTOSConfig.h)(0x677DE6F0)
@@ -395,8 +401,8 @@ I (.\freeRTOS\include\queue.h)(0x5F5FC7FE)
 I (.\freeRTOS\include\semphr.h)(0x5F5FC7FE)
 I (.\freeRTOS\include\event_groups.h)(0x5F5FC7FE)
 I (.\freeRTOS\include\timers.h)(0x5F5FC7FE)
-F (.\app\scr\menu.c)(0x678EF88F)(--c99 --gnu -c --cpu Cortex-M4.fp -g -O0 --apcs=interwork --split_sections -I .\freeRTOS\include -I .\freeRTOS\portable\RVDS\ARM_CM4F -I .\freeRTOS\scr -I .\app\inc -I .\RTE\Device\GD32F303VE -I .\dsp\Include-I.\RTE\_Target_1-ID:\keil_stm\ARM\PACK\ARM\CMSIS\5.3.0\CMSIS\Include-ID:\keil_stm\ARM\PACK\GigaDevice\GD32F30x_DFP\2.2.3\Device\Firmware\Peripherals\inc-ID:\keil_stm\ARM\PACK\GigaDevice\GD32F30x_DFP\2.2.3\Device\Include-ID:\keil_stm\ARM\PACK\GigaDevice\GD32F30x_DFP\2.2.3\Device\Template-D__UVISION_VERSION="525" -D_RTE_ -DGD32F30X_HD -DGD32F30X_HD-o .\objects\menu.o --omf_browse .\objects\menu.crf --depend .\objects\menu.d)
-I (.\app\inc\config.h)(0x6789AAF8)
+F (.\app\scr\menu.c)(0x67A6D4BF)(--c99 --gnu -c --cpu Cortex-M4.fp -g -O0 --apcs=interwork --split_sections -I .\freeRTOS\include -I .\freeRTOS\portable\RVDS\ARM_CM4F -I .\freeRTOS\scr -I .\app\inc -I .\RTE\Device\GD32F303VE -I .\dsp\Include-I.\RTE\_Target_1-ID:\keil_stm\ARM\PACK\ARM\CMSIS\5.3.0\CMSIS\Include-ID:\keil_stm\ARM\PACK\GigaDevice\GD32F30x_DFP\2.2.3\Device\Firmware\Peripherals\inc-ID:\keil_stm\ARM\PACK\GigaDevice\GD32F30x_DFP\2.2.3\Device\Include-ID:\keil_stm\ARM\PACK\GigaDevice\GD32F30x_DFP\2.2.3\Device\Template-D__UVISION_VERSION="525" -D_RTE_ -DGD32F30X_HD -DGD32F30X_HD-o .\objects\menu.o --omf_browse .\objects\menu.crf --depend .\objects\menu.d)
+I (.\app\inc\config.h)(0x678F709B)
 I (D:\keil_stm\ARM\PACK\GigaDevice\GD32F30x_DFP\2.2.3\Device\Include\gd32f30x.h)(0x61AEC528)
 I (D:\keil_stm\ARM\PACK\ARM\CMSIS\5.3.0\CMSIS\Include\core_cm4.h)(0x5A8E1FE2)
 I (D:\keil_stm\ARM\ARMCC\include\stdint.h)(0x599ECD2E)
@@ -433,12 +439,12 @@ I (D:\keil_stm\ARM\PACK\GigaDevice\GD32F30x_DFP\2.2.3\Device\Firmware\Peripheral
 I (D:\keil_stm\ARM\ARMCC\include\stdio.h)(0x599ECD2C)
 I (D:\keil_stm\ARM\PACK\GigaDevice\GD32F30x_DFP\2.2.3\Device\Firmware\Peripherals\inc\gd32f30x_dac.h)(0x65DC5767)
 I (D:\keil_stm\ARM\ARMCC\include\string.h)(0x599ECD2C)
-I (.\app\inc\flash.h)(0x6780BCB2)
+I (.\app\inc\flash.h)(0x67906C18)
 I (.\app\inc\lcd.h)(0x678DED88)
 I (.\app\inc\picture.h)(0x678DE580)
 I (.\app\inc\st7789.h)(0x67444112)
 I (.\app\inc\encoder.h)(0x6781179B)
-I (.\app\inc\menu.h)(0x678E027D)
+I (.\app\inc\menu.h)(0x67A6CE3A)
 I (.\app\inc\user_data.h)(0x678DC13E)
 I (.\app\inc\test.h)(0x67257722)
 I (.\app\inc\i2c.h)(0x678A298E)
@@ -447,6 +453,7 @@ I (.\app\inc\ir.h)(0x678E0DBB)
 I (.\app\inc\xmos.h)(0x6785BEA0)
 I (.\app\inc\usart.h)(0x678232EA)
 I (.\app\inc\fmc.h)(0x678232A8)
+I (.\app\inc\tone.h)(0x678F49CF)
 I (.\freeRTOS\include\FreeRTOS.h)(0x6715C46F)
 I (D:\keil_stm\ARM\ARMCC\include\stddef.h)(0x599ECD2C)
 I (.\app\inc\FreeRTOSConfig.h)(0x677DE6F0)
@@ -462,7 +469,7 @@ I (.\freeRTOS\include\semphr.h)(0x5F5FC7FE)
 I (.\freeRTOS\include\event_groups.h)(0x5F5FC7FE)
 I (.\freeRTOS\include\timers.h)(0x5F5FC7FE)
 F (.\app\scr\wdg.c)(0x6720531E)(--c99 --gnu -c --cpu Cortex-M4.fp -g -O0 --apcs=interwork --split_sections -I .\freeRTOS\include -I .\freeRTOS\portable\RVDS\ARM_CM4F -I .\freeRTOS\scr -I .\app\inc -I .\RTE\Device\GD32F303VE -I .\dsp\Include-I.\RTE\_Target_1-ID:\keil_stm\ARM\PACK\ARM\CMSIS\5.3.0\CMSIS\Include-ID:\keil_stm\ARM\PACK\GigaDevice\GD32F30x_DFP\2.2.3\Device\Firmware\Peripherals\inc-ID:\keil_stm\ARM\PACK\GigaDevice\GD32F30x_DFP\2.2.3\Device\Include-ID:\keil_stm\ARM\PACK\GigaDevice\GD32F30x_DFP\2.2.3\Device\Template-D__UVISION_VERSION="525" -D_RTE_ -DGD32F30X_HD -DGD32F30X_HD-o .\objects\wdg.o --omf_browse .\objects\wdg.crf --depend .\objects\wdg.d)
-I (.\app\inc\config.h)(0x6789AAF8)
+I (.\app\inc\config.h)(0x678F709B)
 I (D:\keil_stm\ARM\PACK\GigaDevice\GD32F30x_DFP\2.2.3\Device\Include\gd32f30x.h)(0x61AEC528)
 I (D:\keil_stm\ARM\PACK\ARM\CMSIS\5.3.0\CMSIS\Include\core_cm4.h)(0x5A8E1FE2)
 I (D:\keil_stm\ARM\ARMCC\include\stdint.h)(0x599ECD2E)
@@ -499,12 +506,12 @@ I (D:\keil_stm\ARM\PACK\GigaDevice\GD32F30x_DFP\2.2.3\Device\Firmware\Peripheral
 I (D:\keil_stm\ARM\ARMCC\include\stdio.h)(0x599ECD2C)
 I (D:\keil_stm\ARM\PACK\GigaDevice\GD32F30x_DFP\2.2.3\Device\Firmware\Peripherals\inc\gd32f30x_dac.h)(0x65DC5767)
 I (D:\keil_stm\ARM\ARMCC\include\string.h)(0x599ECD2C)
-I (.\app\inc\flash.h)(0x6780BCB2)
+I (.\app\inc\flash.h)(0x67906C18)
 I (.\app\inc\lcd.h)(0x678DED88)
 I (.\app\inc\picture.h)(0x678DE580)
 I (.\app\inc\st7789.h)(0x67444112)
 I (.\app\inc\encoder.h)(0x6781179B)
-I (.\app\inc\menu.h)(0x678E027D)
+I (.\app\inc\menu.h)(0x67A6CE3A)
 I (.\app\inc\user_data.h)(0x678DC13E)
 I (.\app\inc\test.h)(0x67257722)
 I (.\app\inc\i2c.h)(0x678A298E)
@@ -513,6 +520,7 @@ I (.\app\inc\ir.h)(0x678E0DBB)
 I (.\app\inc\xmos.h)(0x6785BEA0)
 I (.\app\inc\usart.h)(0x678232EA)
 I (.\app\inc\fmc.h)(0x678232A8)
+I (.\app\inc\tone.h)(0x678F49CF)
 I (.\freeRTOS\include\FreeRTOS.h)(0x6715C46F)
 I (D:\keil_stm\ARM\ARMCC\include\stddef.h)(0x599ECD2C)
 I (.\app\inc\FreeRTOSConfig.h)(0x677DE6F0)
@@ -528,7 +536,7 @@ I (.\freeRTOS\include\semphr.h)(0x5F5FC7FE)
 I (.\freeRTOS\include\event_groups.h)(0x5F5FC7FE)
 I (.\freeRTOS\include\timers.h)(0x5F5FC7FE)
 F (.\app\scr\user_data.c)(0x678DC13E)(--c99 --gnu -c --cpu Cortex-M4.fp -g -O0 --apcs=interwork --split_sections -I .\freeRTOS\include -I .\freeRTOS\portable\RVDS\ARM_CM4F -I .\freeRTOS\scr -I .\app\inc -I .\RTE\Device\GD32F303VE -I .\dsp\Include-I.\RTE\_Target_1-ID:\keil_stm\ARM\PACK\ARM\CMSIS\5.3.0\CMSIS\Include-ID:\keil_stm\ARM\PACK\GigaDevice\GD32F30x_DFP\2.2.3\Device\Firmware\Peripherals\inc-ID:\keil_stm\ARM\PACK\GigaDevice\GD32F30x_DFP\2.2.3\Device\Include-ID:\keil_stm\ARM\PACK\GigaDevice\GD32F30x_DFP\2.2.3\Device\Template-D__UVISION_VERSION="525" -D_RTE_ -DGD32F30X_HD -DGD32F30X_HD-o .\objects\user_data.o --omf_browse .\objects\user_data.crf --depend .\objects\user_data.d)
-I (.\app\inc\config.h)(0x6789AAF8)
+I (.\app\inc\config.h)(0x678F709B)
 I (D:\keil_stm\ARM\PACK\GigaDevice\GD32F30x_DFP\2.2.3\Device\Include\gd32f30x.h)(0x61AEC528)
 I (D:\keil_stm\ARM\PACK\ARM\CMSIS\5.3.0\CMSIS\Include\core_cm4.h)(0x5A8E1FE2)
 I (D:\keil_stm\ARM\ARMCC\include\stdint.h)(0x599ECD2E)
@@ -565,12 +573,12 @@ I (D:\keil_stm\ARM\PACK\GigaDevice\GD32F30x_DFP\2.2.3\Device\Firmware\Peripheral
 I (D:\keil_stm\ARM\ARMCC\include\stdio.h)(0x599ECD2C)
 I (D:\keil_stm\ARM\PACK\GigaDevice\GD32F30x_DFP\2.2.3\Device\Firmware\Peripherals\inc\gd32f30x_dac.h)(0x65DC5767)
 I (D:\keil_stm\ARM\ARMCC\include\string.h)(0x599ECD2C)
-I (.\app\inc\flash.h)(0x6780BCB2)
+I (.\app\inc\flash.h)(0x67906C18)
 I (.\app\inc\lcd.h)(0x678DED88)
 I (.\app\inc\picture.h)(0x678DE580)
 I (.\app\inc\st7789.h)(0x67444112)
 I (.\app\inc\encoder.h)(0x6781179B)
-I (.\app\inc\menu.h)(0x678E027D)
+I (.\app\inc\menu.h)(0x67A6CE3A)
 I (.\app\inc\user_data.h)(0x678DC13E)
 I (.\app\inc\test.h)(0x67257722)
 I (.\app\inc\i2c.h)(0x678A298E)
@@ -579,6 +587,7 @@ I (.\app\inc\ir.h)(0x678E0DBB)
 I (.\app\inc\xmos.h)(0x6785BEA0)
 I (.\app\inc\usart.h)(0x678232EA)
 I (.\app\inc\fmc.h)(0x678232A8)
+I (.\app\inc\tone.h)(0x678F49CF)
 I (.\freeRTOS\include\FreeRTOS.h)(0x6715C46F)
 I (D:\keil_stm\ARM\ARMCC\include\stddef.h)(0x599ECD2C)
 I (.\app\inc\FreeRTOSConfig.h)(0x677DE6F0)
@@ -594,7 +603,7 @@ I (.\freeRTOS\include\semphr.h)(0x5F5FC7FE)
 I (.\freeRTOS\include\event_groups.h)(0x5F5FC7FE)
 I (.\freeRTOS\include\timers.h)(0x5F5FC7FE)
 F (.\app\scr\i2c.c)(0x678E1D9F)(--c99 --gnu -c --cpu Cortex-M4.fp -g -O0 --apcs=interwork --split_sections -I .\freeRTOS\include -I .\freeRTOS\portable\RVDS\ARM_CM4F -I .\freeRTOS\scr -I .\app\inc -I .\RTE\Device\GD32F303VE -I .\dsp\Include-I.\RTE\_Target_1-ID:\keil_stm\ARM\PACK\ARM\CMSIS\5.3.0\CMSIS\Include-ID:\keil_stm\ARM\PACK\GigaDevice\GD32F30x_DFP\2.2.3\Device\Firmware\Peripherals\inc-ID:\keil_stm\ARM\PACK\GigaDevice\GD32F30x_DFP\2.2.3\Device\Include-ID:\keil_stm\ARM\PACK\GigaDevice\GD32F30x_DFP\2.2.3\Device\Template-D__UVISION_VERSION="525" -D_RTE_ -DGD32F30X_HD -DGD32F30X_HD-o .\objects\i2c.o --omf_browse .\objects\i2c.crf --depend .\objects\i2c.d)
-I (.\app\inc\config.h)(0x6789AAF8)
+I (.\app\inc\config.h)(0x678F709B)
 I (D:\keil_stm\ARM\PACK\GigaDevice\GD32F30x_DFP\2.2.3\Device\Include\gd32f30x.h)(0x61AEC528)
 I (D:\keil_stm\ARM\PACK\ARM\CMSIS\5.3.0\CMSIS\Include\core_cm4.h)(0x5A8E1FE2)
 I (D:\keil_stm\ARM\ARMCC\include\stdint.h)(0x599ECD2E)
@@ -631,12 +640,12 @@ I (D:\keil_stm\ARM\PACK\GigaDevice\GD32F30x_DFP\2.2.3\Device\Firmware\Peripheral
 I (D:\keil_stm\ARM\ARMCC\include\stdio.h)(0x599ECD2C)
 I (D:\keil_stm\ARM\PACK\GigaDevice\GD32F30x_DFP\2.2.3\Device\Firmware\Peripherals\inc\gd32f30x_dac.h)(0x65DC5767)
 I (D:\keil_stm\ARM\ARMCC\include\string.h)(0x599ECD2C)
-I (.\app\inc\flash.h)(0x6780BCB2)
+I (.\app\inc\flash.h)(0x67906C18)
 I (.\app\inc\lcd.h)(0x678DED88)
 I (.\app\inc\picture.h)(0x678DE580)
 I (.\app\inc\st7789.h)(0x67444112)
 I (.\app\inc\encoder.h)(0x6781179B)
-I (.\app\inc\menu.h)(0x678E027D)
+I (.\app\inc\menu.h)(0x67A6CE3A)
 I (.\app\inc\user_data.h)(0x678DC13E)
 I (.\app\inc\test.h)(0x67257722)
 I (.\app\inc\i2c.h)(0x678A298E)
@@ -645,6 +654,7 @@ I (.\app\inc\ir.h)(0x678E0DBB)
 I (.\app\inc\xmos.h)(0x6785BEA0)
 I (.\app\inc\usart.h)(0x678232EA)
 I (.\app\inc\fmc.h)(0x678232A8)
+I (.\app\inc\tone.h)(0x678F49CF)
 I (.\freeRTOS\include\FreeRTOS.h)(0x6715C46F)
 I (D:\keil_stm\ARM\ARMCC\include\stddef.h)(0x599ECD2C)
 I (.\app\inc\FreeRTOSConfig.h)(0x677DE6F0)
@@ -661,7 +671,7 @@ I (.\freeRTOS\include\event_groups.h)(0x5F5FC7FE)
 I (.\freeRTOS\include\timers.h)(0x5F5FC7FE)
 F (.\app\scr\ir.c)(0x678E107E)(--c99 --gnu -c --cpu Cortex-M4.fp -g -O0 --apcs=interwork --split_sections -I .\freeRTOS\include -I .\freeRTOS\portable\RVDS\ARM_CM4F -I .\freeRTOS\scr -I .\app\inc -I .\RTE\Device\GD32F303VE -I .\dsp\Include-I.\RTE\_Target_1-ID:\keil_stm\ARM\PACK\ARM\CMSIS\5.3.0\CMSIS\Include-ID:\keil_stm\ARM\PACK\GigaDevice\GD32F30x_DFP\2.2.3\Device\Firmware\Peripherals\inc-ID:\keil_stm\ARM\PACK\GigaDevice\GD32F30x_DFP\2.2.3\Device\Include-ID:\keil_stm\ARM\PACK\GigaDevice\GD32F30x_DFP\2.2.3\Device\Template-D__UVISION_VERSION="525" -D_RTE_ -DGD32F30X_HD -DGD32F30X_HD-o .\objects\ir.o --omf_browse .\objects\ir.crf --depend .\objects\ir.d)
 I (.\app\inc\ir.h)(0x678E0DBB)
-I (.\app\inc\config.h)(0x6789AAF8)
+I (.\app\inc\config.h)(0x678F709B)
 I (D:\keil_stm\ARM\PACK\GigaDevice\GD32F30x_DFP\2.2.3\Device\Include\gd32f30x.h)(0x61AEC528)
 I (D:\keil_stm\ARM\PACK\ARM\CMSIS\5.3.0\CMSIS\Include\core_cm4.h)(0x5A8E1FE2)
 I (D:\keil_stm\ARM\ARMCC\include\stdint.h)(0x599ECD2E)
@@ -698,12 +708,12 @@ I (D:\keil_stm\ARM\PACK\GigaDevice\GD32F30x_DFP\2.2.3\Device\Firmware\Peripheral
 I (D:\keil_stm\ARM\ARMCC\include\stdio.h)(0x599ECD2C)
 I (D:\keil_stm\ARM\PACK\GigaDevice\GD32F30x_DFP\2.2.3\Device\Firmware\Peripherals\inc\gd32f30x_dac.h)(0x65DC5767)
 I (D:\keil_stm\ARM\ARMCC\include\string.h)(0x599ECD2C)
-I (.\app\inc\flash.h)(0x6780BCB2)
+I (.\app\inc\flash.h)(0x67906C18)
 I (.\app\inc\lcd.h)(0x678DED88)
 I (.\app\inc\picture.h)(0x678DE580)
 I (.\app\inc\st7789.h)(0x67444112)
 I (.\app\inc\encoder.h)(0x6781179B)
-I (.\app\inc\menu.h)(0x678E027D)
+I (.\app\inc\menu.h)(0x67A6CE3A)
 I (.\app\inc\user_data.h)(0x678DC13E)
 I (.\app\inc\test.h)(0x67257722)
 I (.\app\inc\i2c.h)(0x678A298E)
@@ -711,6 +721,7 @@ I (.\app\inc\adc.h)(0x6743FA98)
 I (.\app\inc\xmos.h)(0x6785BEA0)
 I (.\app\inc\usart.h)(0x678232EA)
 I (.\app\inc\fmc.h)(0x678232A8)
+I (.\app\inc\tone.h)(0x678F49CF)
 I (.\freeRTOS\include\FreeRTOS.h)(0x6715C46F)
 I (D:\keil_stm\ARM\ARMCC\include\stddef.h)(0x599ECD2C)
 I (.\app\inc\FreeRTOSConfig.h)(0x677DE6F0)
@@ -726,7 +737,7 @@ I (.\freeRTOS\include\semphr.h)(0x5F5FC7FE)
 I (.\freeRTOS\include\event_groups.h)(0x5F5FC7FE)
 I (.\freeRTOS\include\timers.h)(0x5F5FC7FE)
 F (.\app\scr\usart.c)(0x6785BEB8)(--c99 --gnu -c --cpu Cortex-M4.fp -g -O0 --apcs=interwork --split_sections -I .\freeRTOS\include -I .\freeRTOS\portable\RVDS\ARM_CM4F -I .\freeRTOS\scr -I .\app\inc -I .\RTE\Device\GD32F303VE -I .\dsp\Include-I.\RTE\_Target_1-ID:\keil_stm\ARM\PACK\ARM\CMSIS\5.3.0\CMSIS\Include-ID:\keil_stm\ARM\PACK\GigaDevice\GD32F30x_DFP\2.2.3\Device\Firmware\Peripherals\inc-ID:\keil_stm\ARM\PACK\GigaDevice\GD32F30x_DFP\2.2.3\Device\Include-ID:\keil_stm\ARM\PACK\GigaDevice\GD32F30x_DFP\2.2.3\Device\Template-D__UVISION_VERSION="525" -D_RTE_ -DGD32F30X_HD -DGD32F30X_HD-o .\objects\usart.o --omf_browse .\objects\usart.crf --depend .\objects\usart.d)
-I (.\app\inc\config.h)(0x6789AAF8)
+I (.\app\inc\config.h)(0x678F709B)
 I (D:\keil_stm\ARM\PACK\GigaDevice\GD32F30x_DFP\2.2.3\Device\Include\gd32f30x.h)(0x61AEC528)
 I (D:\keil_stm\ARM\PACK\ARM\CMSIS\5.3.0\CMSIS\Include\core_cm4.h)(0x5A8E1FE2)
 I (D:\keil_stm\ARM\ARMCC\include\stdint.h)(0x599ECD2E)
@@ -763,12 +774,12 @@ I (D:\keil_stm\ARM\PACK\GigaDevice\GD32F30x_DFP\2.2.3\Device\Firmware\Peripheral
 I (D:\keil_stm\ARM\ARMCC\include\stdio.h)(0x599ECD2C)
 I (D:\keil_stm\ARM\PACK\GigaDevice\GD32F30x_DFP\2.2.3\Device\Firmware\Peripherals\inc\gd32f30x_dac.h)(0x65DC5767)
 I (D:\keil_stm\ARM\ARMCC\include\string.h)(0x599ECD2C)
-I (.\app\inc\flash.h)(0x6780BCB2)
+I (.\app\inc\flash.h)(0x67906C18)
 I (.\app\inc\lcd.h)(0x678DED88)
 I (.\app\inc\picture.h)(0x678DE580)
 I (.\app\inc\st7789.h)(0x67444112)
 I (.\app\inc\encoder.h)(0x6781179B)
-I (.\app\inc\menu.h)(0x678E027D)
+I (.\app\inc\menu.h)(0x67A6CE3A)
 I (.\app\inc\user_data.h)(0x678DC13E)
 I (.\app\inc\test.h)(0x67257722)
 I (.\app\inc\i2c.h)(0x678A298E)
@@ -777,6 +788,7 @@ I (.\app\inc\ir.h)(0x678E0DBB)
 I (.\app\inc\xmos.h)(0x6785BEA0)
 I (.\app\inc\usart.h)(0x678232EA)
 I (.\app\inc\fmc.h)(0x678232A8)
+I (.\app\inc\tone.h)(0x678F49CF)
 I (.\freeRTOS\include\FreeRTOS.h)(0x6715C46F)
 I (D:\keil_stm\ARM\ARMCC\include\stddef.h)(0x599ECD2C)
 I (.\app\inc\FreeRTOSConfig.h)(0x677DE6F0)
@@ -792,7 +804,7 @@ I (.\freeRTOS\include\semphr.h)(0x5F5FC7FE)
 I (.\freeRTOS\include\event_groups.h)(0x5F5FC7FE)
 I (.\freeRTOS\include\timers.h)(0x5F5FC7FE)
 F (.\app\scr\xmos.c)(0x6785BE9F)(--c99 --gnu -c --cpu Cortex-M4.fp -g -O0 --apcs=interwork --split_sections -I .\freeRTOS\include -I .\freeRTOS\portable\RVDS\ARM_CM4F -I .\freeRTOS\scr -I .\app\inc -I .\RTE\Device\GD32F303VE -I .\dsp\Include-I.\RTE\_Target_1-ID:\keil_stm\ARM\PACK\ARM\CMSIS\5.3.0\CMSIS\Include-ID:\keil_stm\ARM\PACK\GigaDevice\GD32F30x_DFP\2.2.3\Device\Firmware\Peripherals\inc-ID:\keil_stm\ARM\PACK\GigaDevice\GD32F30x_DFP\2.2.3\Device\Include-ID:\keil_stm\ARM\PACK\GigaDevice\GD32F30x_DFP\2.2.3\Device\Template-D__UVISION_VERSION="525" -D_RTE_ -DGD32F30X_HD -DGD32F30X_HD-o .\objects\xmos.o --omf_browse .\objects\xmos.crf --depend .\objects\xmos.d)
-I (.\app\inc\config.h)(0x6789AAF8)
+I (.\app\inc\config.h)(0x678F709B)
 I (D:\keil_stm\ARM\PACK\GigaDevice\GD32F30x_DFP\2.2.3\Device\Include\gd32f30x.h)(0x61AEC528)
 I (D:\keil_stm\ARM\PACK\ARM\CMSIS\5.3.0\CMSIS\Include\core_cm4.h)(0x5A8E1FE2)
 I (D:\keil_stm\ARM\ARMCC\include\stdint.h)(0x599ECD2E)
@@ -829,12 +841,12 @@ I (D:\keil_stm\ARM\PACK\GigaDevice\GD32F30x_DFP\2.2.3\Device\Firmware\Peripheral
 I (D:\keil_stm\ARM\ARMCC\include\stdio.h)(0x599ECD2C)
 I (D:\keil_stm\ARM\PACK\GigaDevice\GD32F30x_DFP\2.2.3\Device\Firmware\Peripherals\inc\gd32f30x_dac.h)(0x65DC5767)
 I (D:\keil_stm\ARM\ARMCC\include\string.h)(0x599ECD2C)
-I (.\app\inc\flash.h)(0x6780BCB2)
+I (.\app\inc\flash.h)(0x67906C18)
 I (.\app\inc\lcd.h)(0x678DED88)
 I (.\app\inc\picture.h)(0x678DE580)
 I (.\app\inc\st7789.h)(0x67444112)
 I (.\app\inc\encoder.h)(0x6781179B)
-I (.\app\inc\menu.h)(0x678E027D)
+I (.\app\inc\menu.h)(0x67A6CE3A)
 I (.\app\inc\user_data.h)(0x678DC13E)
 I (.\app\inc\test.h)(0x67257722)
 I (.\app\inc\i2c.h)(0x678A298E)
@@ -843,6 +855,7 @@ I (.\app\inc\ir.h)(0x678E0DBB)
 I (.\app\inc\xmos.h)(0x6785BEA0)
 I (.\app\inc\usart.h)(0x678232EA)
 I (.\app\inc\fmc.h)(0x678232A8)
+I (.\app\inc\tone.h)(0x678F49CF)
 I (.\freeRTOS\include\FreeRTOS.h)(0x6715C46F)
 I (D:\keil_stm\ARM\ARMCC\include\stddef.h)(0x599ECD2C)
 I (.\app\inc\FreeRTOSConfig.h)(0x677DE6F0)
@@ -858,7 +871,7 @@ I (.\freeRTOS\include\semphr.h)(0x5F5FC7FE)
 I (.\freeRTOS\include\event_groups.h)(0x5F5FC7FE)
 I (.\freeRTOS\include\timers.h)(0x5F5FC7FE)
 F (.\app\scr\fmc.c)(0x6785BE9F)(--c99 --gnu -c --cpu Cortex-M4.fp -g -O0 --apcs=interwork --split_sections -I .\freeRTOS\include -I .\freeRTOS\portable\RVDS\ARM_CM4F -I .\freeRTOS\scr -I .\app\inc -I .\RTE\Device\GD32F303VE -I .\dsp\Include-I.\RTE\_Target_1-ID:\keil_stm\ARM\PACK\ARM\CMSIS\5.3.0\CMSIS\Include-ID:\keil_stm\ARM\PACK\GigaDevice\GD32F30x_DFP\2.2.3\Device\Firmware\Peripherals\inc-ID:\keil_stm\ARM\PACK\GigaDevice\GD32F30x_DFP\2.2.3\Device\Include-ID:\keil_stm\ARM\PACK\GigaDevice\GD32F30x_DFP\2.2.3\Device\Template-D__UVISION_VERSION="525" -D_RTE_ -DGD32F30X_HD -DGD32F30X_HD-o .\objects\fmc.o --omf_browse .\objects\fmc.crf --depend .\objects\fmc.d)
-I (.\app\inc\config.h)(0x6789AAF8)
+I (.\app\inc\config.h)(0x678F709B)
 I (D:\keil_stm\ARM\PACK\GigaDevice\GD32F30x_DFP\2.2.3\Device\Include\gd32f30x.h)(0x61AEC528)
 I (D:\keil_stm\ARM\PACK\ARM\CMSIS\5.3.0\CMSIS\Include\core_cm4.h)(0x5A8E1FE2)
 I (D:\keil_stm\ARM\ARMCC\include\stdint.h)(0x599ECD2E)
@@ -895,12 +908,12 @@ I (D:\keil_stm\ARM\PACK\GigaDevice\GD32F30x_DFP\2.2.3\Device\Firmware\Peripheral
 I (D:\keil_stm\ARM\ARMCC\include\stdio.h)(0x599ECD2C)
 I (D:\keil_stm\ARM\PACK\GigaDevice\GD32F30x_DFP\2.2.3\Device\Firmware\Peripherals\inc\gd32f30x_dac.h)(0x65DC5767)
 I (D:\keil_stm\ARM\ARMCC\include\string.h)(0x599ECD2C)
-I (.\app\inc\flash.h)(0x6780BCB2)
+I (.\app\inc\flash.h)(0x67906C18)
 I (.\app\inc\lcd.h)(0x678DED88)
 I (.\app\inc\picture.h)(0x678DE580)
 I (.\app\inc\st7789.h)(0x67444112)
 I (.\app\inc\encoder.h)(0x6781179B)
-I (.\app\inc\menu.h)(0x678E027D)
+I (.\app\inc\menu.h)(0x67A6CE3A)
 I (.\app\inc\user_data.h)(0x678DC13E)
 I (.\app\inc\test.h)(0x67257722)
 I (.\app\inc\i2c.h)(0x678A298E)
@@ -909,6 +922,7 @@ I (.\app\inc\ir.h)(0x678E0DBB)
 I (.\app\inc\xmos.h)(0x6785BEA0)
 I (.\app\inc\usart.h)(0x678232EA)
 I (.\app\inc\fmc.h)(0x678232A8)
+I (.\app\inc\tone.h)(0x678F49CF)
 I (.\freeRTOS\include\FreeRTOS.h)(0x6715C46F)
 I (D:\keil_stm\ARM\ARMCC\include\stddef.h)(0x599ECD2C)
 I (.\app\inc\FreeRTOSConfig.h)(0x677DE6F0)
@@ -1048,10 +1062,10 @@ I (.\freeRTOS\portable\RVDS\ARM_CM4F\portmacro.h)(0x5F5FC800)
 I (.\freeRTOS\include\mpu_wrappers.h)(0x5F5FC7FE)
 I (.\freeRTOS\include\task.h)(0x5F5FC7FE)
 I (.\freeRTOS\include\list.h)(0x5F5FC7FE)
-F (.\app\inc\config.h)(0x6789AAF8)()
+F (.\app\inc\config.h)(0x678F709B)()
 F (.\app\inc\FreeRTOSConfig.h)(0x677DE6F0)()
 F (.\app\inc\int.h)(0x67170C6D)()
-F (.\app\inc\flash.h)(0x6780BCB2)()
+F (.\app\inc\flash.h)(0x67906C18)()
 F (.\app\inc\lcd.h)(0x678DED88)()
 F (.\app\inc\picture.h)(0x678DE580)()
 F (.\app\inc\st7789.h)(0x67444112)()
@@ -1059,7 +1073,7 @@ F (.\app\inc\adc.h)(0x6743FA98)()
 F (.\app\inc\encoder.h)(0x6781179B)()
 F (.\app\inc\i2c.h)(0x678A298E)()
 F (.\app\inc\ir.h)(0x678E0DBB)()
-F (.\app\inc\menu.h)(0x678E027D)()
+F (.\app\inc\menu.h)(0x67A6CE3A)()
 F (.\app\inc\test.h)(0x67257722)()
 F (.\app\inc\user_data.h)(0x678DC13E)()
 F (.\app\inc\wdg.h)(0x671F5FA7)()
@@ -1067,15 +1081,15 @@ F (.\app\inc\xmos.h)(0x6785BEA0)()
 F (.\app\inc\fmc.h)(0x678232A8)()
 F (.\app\inc\usart.h)(0x678232EA)()
 F (.\app\inc\adc.h)(0x6743FA98)()
-F (.\app\inc\config.h)(0x6789AAF8)()
+F (.\app\inc\config.h)(0x678F709B)()
 F (.\app\inc\encoder.h)(0x6781179B)()
-F (.\app\inc\flash.h)(0x6780BCB2)()
+F (.\app\inc\flash.h)(0x67906C18)()
 F (.\app\inc\FreeRTOSConfig.h)(0x677DE6F0)()
 F (.\app\inc\i2c.h)(0x678A298E)()
 F (.\app\inc\int.h)(0x67170C6D)()
 F (.\app\inc\key_scan.h)(0x00000000)()
 F (.\app\inc\lcd.h)(0x678DED88)()
-F (.\app\inc\menu.h)(0x678E027D)()
+F (.\app\inc\menu.h)(0x67A6CE3A)()
 F (.\app\inc\picture.h)(0x678DE580)()
 F (.\app\inc\st7789.h)(0x67444112)()
 F (.\app\inc\test.h)(0x67257722)()

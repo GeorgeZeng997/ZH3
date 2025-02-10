@@ -79,10 +79,12 @@ typedef struct
     uint8_t def;
     uint8_t mode_f;//0 = unselected,1 = selected
     uint8_t menu2_fun;
+    uint8_t power_on;
 }menu_misc_t;
 
 extern menu_misc_t menu_misc;
 extern menu_blk_t menu_blk;
+extern menu_msg_qu_t menu_msg_qu;
 
 void menu_msg_check_in(menu_msg_t msg);
 void menu_task(void *p);

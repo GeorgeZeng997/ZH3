@@ -21,87 +21,14 @@ Target DLL:      Segger\JL2CM3.dll V2.99.29.0
 Dialog DLL:      TCM.DLL V1.35.1.0
  
 <h2>Project:</h2>
-E:\fosi_stuff\ZH3_V1_2\ZH3\proj_by_RTOS\rtos.uvprojx
+E:\fosi_stuff\ZH3_V1_2\ZH3_GITHUB\ZH3\proj_by_RTOS\rtos.uvprojx
 Project File Date:  01/16/2025
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 6 (build 750)', folder: 'D:\keil_stm\ARM\ARMCC\Bin'
 Build target 'Target 1'
-compiling lcd.c...
-app\scr\lcd.c(15): warning:  #188-D: enumerated type mixed with another type
-  lcd_msg_qu_t lcd_msg_qu = {0};
-app\scr\lcd.c(835): warning:  #188-D: enumerated type mixed with another type
-          lcd_display_picture(COORD_NUM_ONES_X, COORD_NUM_ONES_Y, FLASH_PICTURE_IDX_NUM_0 + ones_num);
-app\scr\lcd.c(836): warning:  #188-D: enumerated type mixed with another type
-          lcd_display_picture(COORD_NUM_TENS_X, COORD_NUM_TENS_Y, FLASH_PICTURE_IDX_NUM_0 + tens_num);
-app\scr\lcd.c(840): warning:  #188-D: enumerated type mixed with another type
-          lcd_display_picture(COORD_NUM_MID_X, COORD_NUM_ONES_Y, FLASH_PICTURE_IDX_NUM_0 + ones_num);
-app\scr\lcd.c(868): warning:  #188-D: enumerated type mixed with another type
-          lcd_display_picture(COORD_LIT_NUM_ONES_X, COORD_LIT_NUM_ONES_Y, FLASH_PICTURE_IDX_LIT_NUM_0 + ones_num);
-app\scr\lcd.c(869): warning:  #188-D: enumerated type mixed with another type
-          lcd_display_picture(COORD_LIT_NUM_TENS_X, COORD_LIT_NUM_TENS_Y, FLASH_PICTURE_IDX_LIT_NUM_0 + tens_num);
-app\scr\lcd.c(873): warning:  #188-D: enumerated type mixed with another type
-          lcd_display_picture(COORD_LIT_NUM_MID_X, COORD_LIT_NUM_ONES_Y, FLASH_PICTURE_IDX_LIT_NUM_0 + ones_num);
-app\scr\lcd.c(899): warning:  #188-D: enumerated type mixed with another type
-          lcd_display_picture(COORD_LIT_NUM_ONES_X, COORD_LIT_NUM_ONES_Y, FLASH_PICTURE_IDX_LIT_NUM_0 + ones_num);
-app\scr\lcd.c(900): warning:  #188-D: enumerated type mixed with another type
-          lcd_display_picture(COORD_LIT_NUM_TENS_X, COORD_LIT_NUM_TENS_Y, FLASH_PICTURE_IDX_LIT_NUM_0 + tens_num);
-app\scr\lcd.c(904): warning:  #188-D: enumerated type mixed with another type
-          lcd_display_picture(COORD_LIT_NUM_MID_X, COORD_LIT_NUM_ONES_Y, FLASH_PICTURE_IDX_LIT_NUM_0 + ones_num);
-app\scr\lcd.c(1107): warning:  #1295-D: Deprecated declaration lcd_display_menu2_input_update - give arg types
-  void lcd_display_menu2_input_update();
-app\scr\lcd.c(1108): warning:  #1295-D: Deprecated declaration lcd_display_menu2_output_update - give arg types
-  void lcd_display_menu2_output_update();
-app\scr\lcd.c(1109): warning:  #1295-D: Deprecated declaration lcd_display_menu2_bass_update - give arg types
-  void lcd_display_menu2_bass_update();
-app\scr\lcd.c(1110): warning:  #1295-D: Deprecated declaration lcd_display_menu2_treble_update - give arg types
-  void lcd_display_menu2_treble_update();
-app\scr\lcd.c(1163): warning:  #188-D: enumerated type mixed with another type
-          flash_picture_idx = FLASH_PICTURE_IDX_INP_COAX + user_data.input;
-app\scr\lcd.c(1167): warning:  #188-D: enumerated type mixed with another type
-          flash_picture_idx = FLASH_PICTURE_IDX_INP_COAX_NA + user_data.input;
-app\scr\lcd.c(1176): warning:  #188-D: enumerated type mixed with another type
-          flash_picture_idx = FLASH_PICTURE_IDX_OUT_PO + user_data.output;
-app\scr\lcd.c(1180): warning:  #188-D: enumerated type mixed with another type
-          flash_picture_idx = FLASH_PICTURE_IDX_OUT_PO_NA + user_data.output;
-app\scr\lcd.c(1215): warning:  #1295-D: Deprecated declaration lcd_display_menu3_gain_update - give arg types
-  void lcd_display_menu3_gain_update();
-app\scr\lcd.c(1216): warning:  #1295-D: Deprecated declaration lcd_display_menu3_uac_update - give arg types
-  void lcd_display_menu3_uac_update();
-app\scr\lcd.c(1217): warning:  #1295-D: Deprecated declaration lcd_display_menu3_filt_update - give arg types
-  void lcd_display_menu3_filt_update();
-app\scr\lcd.c(1218): warning:  #1295-D: Deprecated declaration lcd_display_menu3_tone_update - give arg types
-  void lcd_display_menu3_tone_update();
-app\scr\lcd.c(1221): warning:  #188-D: enumerated type mixed with another type
-      static fun_st_t last_fun_st = -1;
-app\scr\lcd.c(1221): warning:  #68-D: integer conversion resulted in a change of sign
-      static fun_st_t last_fun_st = -1;
-app\scr\lcd.c(1275): warning:  #188-D: enumerated type mixed with another type
-          flash_picture_idx = FLASH_PICTURE_IDX_GAIN_L + user_data.gain;
-app\scr\lcd.c(1279): warning:  #188-D: enumerated type mixed with another type
-          flash_picture_idx = FLASH_PICTURE_IDX_GAIN_L_NA + user_data.gain;
-app\scr\lcd.c(1288): warning:  #188-D: enumerated type mixed with another type
-          flash_picture_idx = FLASH_PICTURE_IDX_UAC_1 + user_data.uac;
-app\scr\lcd.c(1292): warning:  #188-D: enumerated type mixed with another type
-          flash_picture_idx = FLASH_PICTURE_IDX_UAC_1_NA + user_data.uac;
-app\scr\lcd.c(1301): warning:  #188-D: enumerated type mixed with another type
-          flash_picture_idx = FLASH_PICTURE_IDX_FILT_0 + user_data.filter;
-app\scr\lcd.c(1305): warning:  #188-D: enumerated type mixed with another type
-          flash_picture_idx = FLASH_PICTURE_IDX_FILT_0_NA + user_data.filter;
-app\scr\lcd.c(1315): warning:  #188-D: enumerated type mixed with another type
-          flash_picture_idx = FLASH_PICTURE_IDX_TONE_NO + user_data.tone;
-app\scr\lcd.c(1319): warning:  #188-D: enumerated type mixed with another type
-          flash_picture_idx = FLASH_PICTURE_IDX_TONE_NO_NA + user_data.tone;
-app\scr\lcd.c(1327): warning:  #188-D: enumerated type mixed with another type
-      flash_picture_idx = FLASH_PICTURE_IDX_2MIN + user_data.lcd_bright;
-app\scr\lcd.c(1359): warning:  #188-D: enumerated type mixed with another type
-      flash_picture_idx = FLASH_PICTURE_IDX_NO + user_data.auto_st;
-app\scr\lcd.c: 34 warnings, 0 errors
-linking...
-Program Size: Code=32506 RO-data=378 RW-data=1320 ZI-data=59688  
-FromELF: creating hex file...
 After Build - User command #1: fromelf --bin --output ZH3_V1_2_FLASH.bin .\Objects\rtos.axf
-".\Objects\rtos.axf" - 0 Error(s), 34 Warning(s).
+".\Objects\rtos.axf" - 0 Error(s), 0 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -157,12 +84,12 @@ Package Vendor: GigaDevice
       Include file:  Device\Firmware\Peripherals\inc\gd32f30x_adc.h
 
    * Component: GigaDevice::Device:GD32F30x_StdPeripherals:BKP:2.2.0
-      Source file:   Device\Firmware\Peripherals\src\gd32f30x_bkp.c
       Include file:  Device\Firmware\Peripherals\inc\gd32f30x_bkp.h
+      Source file:   Device\Firmware\Peripherals\src\gd32f30x_bkp.c
 
    * Component: GigaDevice::Device:GD32F30x_StdPeripherals:CAN:2.2.0
-      Include file:  Device\Firmware\Peripherals\inc\gd32f30x_can.h
       Source file:   Device\Firmware\Peripherals\src\gd32f30x_can.c
+      Include file:  Device\Firmware\Peripherals\inc\gd32f30x_can.h
 
    * Component: GigaDevice::Device:GD32F30x_StdPeripherals:CRC:2.2.0
       Include file:  Device\Firmware\Peripherals\inc\gd32f30x_crc.h
@@ -177,12 +104,12 @@ Package Vendor: GigaDevice
       Source file:   Device\Firmware\Peripherals\src\gd32f30x_dbg.c
 
    * Component: GigaDevice::Device:GD32F30x_StdPeripherals:DMA:2.2.0
-      Source file:   Device\Firmware\Peripherals\src\gd32f30x_dma.c
       Include file:  Device\Firmware\Peripherals\inc\gd32f30x_dma.h
+      Source file:   Device\Firmware\Peripherals\src\gd32f30x_dma.c
 
    * Component: GigaDevice::Device:GD32F30x_StdPeripherals:ENET:2.2.0
-      Include file:  Device\Firmware\Peripherals\inc\gd32f30x_enet.h
       Source file:   Device\Firmware\Peripherals\src\gd32f30x_enet.c
+      Include file:  Device\Firmware\Peripherals\inc\gd32f30x_enet.h
 
    * Component: GigaDevice::Device:GD32F30x_StdPeripherals:EXMC:2.2.0
       Include file:  Device\Firmware\Peripherals\inc\gd32f30x_exmc.h
@@ -201,48 +128,48 @@ Package Vendor: GigaDevice
       Source file:   Device\Firmware\Peripherals\src\gd32f30x_fwdgt.c
 
    * Component: GigaDevice::Device:GD32F30x_StdPeripherals:GPIO:2.2.0
-      Include file:  Device\Firmware\Peripherals\inc\gd32f30x_gpio.h
       Source file:   Device\Firmware\Peripherals\src\gd32f30x_gpio.c
+      Include file:  Device\Firmware\Peripherals\inc\gd32f30x_gpio.h
 
    * Component: GigaDevice::Device:GD32F30x_StdPeripherals:I2C:2.2.0
-      Source file:   Device\Firmware\Peripherals\src\gd32f30x_i2c.c
       Include file:  Device\Firmware\Peripherals\inc\gd32f30x_i2c.h
+      Source file:   Device\Firmware\Peripherals\src\gd32f30x_i2c.c
 
    * Component: GigaDevice::Device:GD32F30x_StdPeripherals:MISC:2.2.0
-      Include file:  Device\Firmware\Peripherals\inc\gd32f30x_misc.h
       Source file:   Device\Firmware\Peripherals\src\gd32f30x_misc.c
+      Include file:  Device\Firmware\Peripherals\inc\gd32f30x_misc.h
 
    * Component: GigaDevice::Device:GD32F30x_StdPeripherals:PMU:2.2.0
       Include file:  Device\Firmware\Peripherals\inc\gd32f30x_pmu.h
       Source file:   Device\Firmware\Peripherals\src\gd32f30x_pmu.c
 
    * Component: GigaDevice::Device:GD32F30x_StdPeripherals:RCU:2.2.0
-      Include file:  Device\Firmware\Peripherals\inc\gd32f30x_rcu.h
       Source file:   Device\Firmware\Peripherals\src\gd32f30x_rcu.c
+      Include file:  Device\Firmware\Peripherals\inc\gd32f30x_rcu.h
 
    * Component: GigaDevice::Device:GD32F30x_StdPeripherals:RTC:2.2.0
-      Include file:  Device\Firmware\Peripherals\inc\gd32f30x_rtc.h
       Source file:   Device\Firmware\Peripherals\src\gd32f30x_rtc.c
+      Include file:  Device\Firmware\Peripherals\inc\gd32f30x_rtc.h
 
    * Component: GigaDevice::Device:GD32F30x_StdPeripherals:SDIO:2.2.0
-      Include file:  Device\Firmware\Peripherals\inc\gd32f30x_sdio.h
       Source file:   Device\Firmware\Peripherals\src\gd32f30x_sdio.c
+      Include file:  Device\Firmware\Peripherals\inc\gd32f30x_sdio.h
 
    * Component: GigaDevice::Device:GD32F30x_StdPeripherals:SPI_I2S:2.2.0
-      Include file:  Device\Firmware\Peripherals\inc\gd32f30x_spi.h
       Source file:   Device\Firmware\Peripherals\src\gd32f30x_spi.c
+      Include file:  Device\Firmware\Peripherals\inc\gd32f30x_spi.h
 
    * Component: GigaDevice::Device:GD32F30x_StdPeripherals:TIMER:2.2.0
-      Include file:  Device\Firmware\Peripherals\inc\gd32f30x_timer.h
       Source file:   Device\Firmware\Peripherals\src\gd32f30x_timer.c
+      Include file:  Device\Firmware\Peripherals\inc\gd32f30x_timer.h
 
    * Component: GigaDevice::Device:GD32F30x_StdPeripherals:USART:2.1.0
       Source file:   Device\Firmware\Peripherals\src\gd32f30x_usart.c
       Include file:  Device\Firmware\Peripherals\inc\gd32f30x_usart.h
 
    * Component: GigaDevice::Device:GD32F30x_StdPeripherals:WWDGT:2.2.0
-      Source file:   Device\Firmware\Peripherals\src\gd32f30x_wwdgt.c
       Include file:  Device\Firmware\Peripherals\inc\gd32f30x_wwdgt.h
+      Source file:   Device\Firmware\Peripherals\src\gd32f30x_wwdgt.c
 
    * Component: GigaDevice::Device:GD32F30x_libopt:2.2.0
       Include file:  Device\Template\gd32f30x_libopt.h

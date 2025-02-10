@@ -69,13 +69,12 @@ void menu_task(void *p)
             if (user_data.lcd_bright != LCD_BRIGHT_ST_0 || lcd_sleep_cnt != 0)
             {
                 menu_array_p[menu_blk.menu_array_p_idx](menu_msg_qu.menu_msg[menu_msg_qu.idx_out]);
-                //i2c_msg_check_in(I2C_MSG_WRITE_USER_DATA);
+                // i2c_msg_check_in(I2C_MSG_WRITE_USER_DATA);
             }
             else
             {
-                 lcd_display_menu(menu_blk.menu_array_p_idx);
-                 vTaskDelay(200);
-
+                lcd_display_menu(menu_blk.menu_array_p_idx);
+                vTaskDelay(200);
             }
             if (user_data.lcd_bright == LCD_BRIGHT_ST_0)
             {
@@ -89,26 +88,33 @@ void menu_task(void *p)
             }
 
             menu_msg_check_out();
-
-            switch (user_data.lcd_bright)
+            if (menu_blk.menu_array_p_idx != 0)
             {
-            case 0:
-                lcd_display_brightness(LCD_DISPLAY_BRIGHTNESS_LEVEL4);
-                break;
-            case 1:
-                lcd_display_brightness(LCD_DISPLAY_BRIGHTNESS_LEVEL2);
-                break;
-            case 2:
-                lcd_display_brightness(LCD_DISPLAY_BRIGHTNESS_LEVEL3);
-                break;
-            case 3:
-                lcd_display_brightness(LCD_DISPLAY_BRIGHTNESS_LEVEL4);
-                break;
-            case 4:
-                lcd_display_brightness(LCD_DISPLAY_BRIGHTNESS_MAX);
-                break;
-            default:
-                break;
+
+                switch (user_data.lcd_bright)
+                {
+                case 0:
+                    lcd_display_brightness(LCD_DISPLAY_BRIGHTNESS_LEVEL4);
+                    break;
+                case 1:
+                    lcd_display_brightness(LCD_DISPLAY_BRIGHTNESS_LEVEL2);
+                    break;
+                case 2:
+                    lcd_display_brightness(LCD_DISPLAY_BRIGHTNESS_LEVEL3);
+                    break;
+                case 3:
+                    lcd_display_brightness(LCD_DISPLAY_BRIGHTNESS_LEVEL4);
+                    break;
+                case 4:
+                    lcd_display_brightness(LCD_DISPLAY_BRIGHTNESS_MAX);
+                    break;
+                default:
+                    break;
+                }
+            }
+            else
+            {
+                menu_msg_qu.idx_in=menu_msg_qu.idx_out=menu_msg_qu.total=0;
             }
         }
         if (user_data.lcd_bright == LCD_BRIGHT_ST_0 && lcd_sleep_cnt && --lcd_sleep_cnt == 0)
@@ -118,7 +124,7 @@ void menu_task(void *p)
         }
         if (menu_blk.menu_array_p_idx != 1 && lcd_back_cnt && --lcd_back_cnt == 0)
         {
-            menu_blk.menu_array_p_idx = 1 ;
+            menu_blk.menu_array_p_idx = 1;
             lcd_display_menu(1);
             menu_misc.mode_f = 0;
             user_data.fun_st = FUN_ST_INPUT;
@@ -205,10 +211,9 @@ void menu_name1_proc(menu_msg_t msg)
         else if (user_data.ph_volume < 99)
         {
             lcd_display_volume(++user_data.ph_volume);
-            //user_data_save.ph_volume++;
+            // user_data_save.ph_volume++;
             i2c_msg_check_in(I2C_MSG_WRITE_USER_DATA);
             i2c_msg_check_in(I2C_MSG_WRITE_4493_DATA);
-
         }
         break;
     case MENU_MSG_REV:
@@ -220,7 +225,7 @@ void menu_name1_proc(menu_msg_t msg)
         else if (user_data.ph_volume > 0)
         {
             lcd_display_volume(--user_data.ph_volume);
-            //user_data_save.ph_volume--;
+            // user_data_save.ph_volume--;
             i2c_msg_check_in(I2C_MSG_WRITE_USER_DATA);
             i2c_msg_check_in(I2C_MSG_WRITE_4493_DATA);
         }
@@ -247,7 +252,7 @@ void menu_name2_proc(menu_msg_t msg)
     switch (msg)
     {
     case MENU_MSG_CLICK:
-        if(menu_misc.mode_f)
+        if (menu_misc.mode_f)
         {
             user_data_save_value();
             i2c_msg_check_in(I2C_MSG_WRITE_USER_DATA);
@@ -461,7 +466,7 @@ void menu_name3_proc(menu_msg_t msg)
     switch (msg)
     {
     case MENU_MSG_CLICK:
-        if(menu_misc.mode_f)
+        if (menu_misc.mode_f)
         {
             user_data_save_value();
             i2c_msg_check_in(I2C_MSG_WRITE_USER_DATA);
@@ -543,7 +548,7 @@ void menu_name3_proc(menu_msg_t msg)
         else
         {
             menu_blk.menu_array_p_idx--;
-            
+
             lcd_display_menu(2);
         }
         // i2c_msg_check_in(I2C_MSG_WRITE_USER_DATA);
@@ -595,7 +600,7 @@ void menu_name3_fwd()
     }
     else
     {
-        if (user_data.fun_st < FUN_ST_TONE+1)
+        if (user_data.fun_st < FUN_ST_TONE + 1)
         {
             user_data.fun_st++;
         }
@@ -670,7 +675,7 @@ void menu_name4_proc(menu_msg_t msg)
         menu_blk.menu_array_p_idx = 1;
         user_data.fun_st = FUN_ST_INPUT;
         menu_misc.mode_f = 0;
-        
+
         break;
     case MENU_MSG_LONG_HOLD:
 
@@ -762,33 +767,33 @@ void option_select(option_idx_t option_idx)
 void menu_init()
 {
 
-    menu_blk.menu_array_p_idx = MENU_IDX_NAME1;
-    // lcd_fill_screen(BLACK);
-    menu1_init();
-    switch (user_data.lcd_bright)
-    {
-    case 0:
-        user_data.lcd_bright_value = LCD_DISPLAY_BRIGHTNESS_LEVEL4;
-        lcd_display_brightness(LCD_DISPLAY_BRIGHTNESS_LEVEL4);
-        break;
-    case 1:
-        user_data.lcd_bright_value = LCD_DISPLAY_BRIGHTNESS_LEVEL2;
-        lcd_display_brightness(LCD_DISPLAY_BRIGHTNESS_LEVEL2);
-        break;
-    case 2:
-        user_data.lcd_bright_value = LCD_DISPLAY_BRIGHTNESS_LEVEL3;
-        lcd_display_brightness(LCD_DISPLAY_BRIGHTNESS_LEVEL3);
-        break;
-    case 3:
-        user_data.lcd_bright_value = LCD_DISPLAY_BRIGHTNESS_LEVEL4;
-        lcd_display_brightness(LCD_DISPLAY_BRIGHTNESS_LEVEL4);
-        break;
-    case 4:
-        user_data.lcd_bright_value = LCD_DISPLAY_BRIGHTNESS_MAX;
-        lcd_display_brightness(LCD_DISPLAY_BRIGHTNESS_MAX);
-        break;
-    default:
-        break;
-    }
+    menu_blk.menu_array_p_idx = MENU_IDX_NAME0;
+     lcd_fill_screen(BLACK);
+    //menu1_init();
+    // switch (user_data.lcd_bright)
+    // {
+    // case 0:
+    //     user_data.lcd_bright_value = LCD_DISPLAY_BRIGHTNESS_LEVEL4;
+    //     lcd_display_brightness(LCD_DISPLAY_BRIGHTNESS_LEVEL4);
+    //     break;
+    // case 1:
+    //     user_data.lcd_bright_value = LCD_DISPLAY_BRIGHTNESS_LEVEL2;
+    //     lcd_display_brightness(LCD_DISPLAY_BRIGHTNESS_LEVEL2);
+    //     break;
+    // case 2:
+    //     user_data.lcd_bright_value = LCD_DISPLAY_BRIGHTNESS_LEVEL3;
+    //     lcd_display_brightness(LCD_DISPLAY_BRIGHTNESS_LEVEL3);
+    //     break;
+    // case 3:
+    //     user_data.lcd_bright_value = LCD_DISPLAY_BRIGHTNESS_LEVEL4;
+    //     lcd_display_brightness(LCD_DISPLAY_BRIGHTNESS_LEVEL4);
+    //     break;
+    // case 4:
+    //     user_data.lcd_bright_value = LCD_DISPLAY_BRIGHTNESS_MAX;
+    //     lcd_display_brightness(LCD_DISPLAY_BRIGHTNESS_MAX);
+    //     break;
+    // default:
+    //     break;
+    // }
     //  lcd_msg_check_in(LCD_MSG_FLASH, NULL, lcd_pic_attr_custom);
 }

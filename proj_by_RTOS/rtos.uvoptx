@@ -120,7 +120,6 @@
         <SetRegEntry>
           <Number>0</Number>
           <Key>DLGUARM</Key>
-          <Name>d</Name>
         </SetRegEntry>
         <SetRegEntry>
           <Number>0</Number>
@@ -154,7 +153,7 @@
           <Type>0</Type>
           <LineNumber>247</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134238724</Address>
+          <Address>134238780</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -164,6 +163,22 @@
           <Filename>.\app\scr\menu.c</Filename>
           <ExecCommand></ExecCommand>
           <Expression>\\rtos\app/scr/menu.c\247</Expression>
+        </Bp>
+        <Bp>
+          <Number>1</Number>
+          <Type>0</Type>
+          <LineNumber>971</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>134237752</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>.\app\scr\lcd.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression>\\rtos\app/scr/lcd.c\971</Expression>
         </Bp>
       </Breakpoint>
       <WatchWindow1>
@@ -336,6 +351,11 @@
           <count>33</count>
           <WinNumber>1</WinNumber>
           <ItemText>user_data</ItemText>
+        </Ww>
+        <Ww>
+          <count>34</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>menu_msg_qu</ItemText>
         </Ww>
       </WatchWindow1>
       <MemoryWindow1>

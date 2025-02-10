@@ -14,9 +14,6 @@
             "path": "app/scr/config.c"
           },
           {
-            "path": "app/scr/key_scan.c"
-          },
-          {
             "path": "app/scr/int.c"
           },
           {
@@ -44,9 +41,6 @@
             "path": "app/scr/i2c.c"
           },
           {
-            "path": "app/scr/adc.c"
-          },
-          {
             "path": "app/scr/ir.c"
           },
           {
@@ -54,6 +48,9 @@
           },
           {
             "path": "app/scr/xmos.c"
+          },
+          {
+            "path": "app/scr/fmc.c"
           }
         ],
         "folders": []
@@ -116,9 +113,6 @@
             "path": "app/inc/int.h"
           },
           {
-            "path": "app/inc/key_scan.h"
-          },
-          {
             "path": "app/inc/flash.h"
           },
           {
@@ -156,6 +150,12 @@
           },
           {
             "path": "app/inc/xmos.h"
+          },
+          {
+            "path": "app/inc/fmc.h"
+          },
+          {
+            "path": "app/inc/usart.h"
           }
         ],
         "folders": []
@@ -266,12 +266,182 @@
       },
       {
         "name": "::CMSIS",
-        "files": [],
+        "files": [
+          {
+            "path": "RTE/CMSIS/RTX_Config.c"
+          },
+          {
+            "path": "RTE/CMSIS/RTX_Config.h"
+          }
+        ],
         "folders": []
       },
       {
         "name": "::Device",
-        "files": [],
+        "files": [
+          {
+            "path": "RTE/Device/GD32F303RE/gd32f30x_adc.c"
+          },
+          {
+            "path": "RTE/Device/GD32F303RE/gd32f30x_bkp.c"
+          },
+          {
+            "path": "RTE/Device/GD32F303RE/gd32f30x_can.c"
+          },
+          {
+            "path": "RTE/Device/GD32F303RE/gd32f30x_crc.c"
+          },
+          {
+            "path": "RTE/Device/GD32F303RE/gd32f30x_ctc.c"
+          },
+          {
+            "path": "RTE/Device/GD32F303RE/gd32f30x_dbg.c"
+          },
+          {
+            "path": "RTE/Device/GD32F303RE/gd32f30x_dma.c"
+          },
+          {
+            "path": "RTE/Device/GD32F303RE/gd32f30x_enet.c"
+          },
+          {
+            "path": "RTE/Device/GD32F303RE/gd32f30x_exmc.c"
+          },
+          {
+            "path": "RTE/Device/GD32F303RE/gd32f30x_exti.c"
+          },
+          {
+            "path": "RTE/Device/GD32F303RE/gd32f30x_fmc.c"
+          },
+          {
+            "path": "RTE/Device/GD32F303RE/gd32f30x_fwdgt.c"
+          },
+          {
+            "path": "RTE/Device/GD32F303RE/gd32f30x_gpio.c"
+          },
+          {
+            "path": "RTE/Device/GD32F303RE/gd32f30x_i2c.c"
+          },
+          {
+            "path": "RTE/Device/GD32F303RE/gd32f30x_misc.c"
+          },
+          {
+            "path": "RTE/Device/GD32F303RE/gd32f30x_pmu.c"
+          },
+          {
+            "path": "RTE/Device/GD32F303RE/gd32f30x_rcu.c"
+          },
+          {
+            "path": "RTE/Device/GD32F303RE/gd32f30x_rtc.c"
+          },
+          {
+            "path": "RTE/Device/GD32F303RE/gd32f30x_sdio.c"
+          },
+          {
+            "path": "RTE/Device/GD32F303RE/gd32f30x_spi.c"
+          },
+          {
+            "path": "RTE/Device/GD32F303RE/gd32f30x_timer.c"
+          },
+          {
+            "path": "RTE/Device/GD32F303RE/gd32f30x_usart.c"
+          },
+          {
+            "path": "RTE/Device/GD32F303RE/gd32f30x_wwdgt.c"
+          },
+          {
+            "path": "RTE/Device/GD32F303RE/startup_gd32f30x_hd.s"
+          },
+          {
+            "path": "RTE/Device/GD32F303RE/system_gd32f30x.c"
+          },
+          {
+            "path": "RTE/Device/GD32F303VE/gd32f30x_adc.c"
+          },
+          {
+            "path": "RTE/Device/GD32F303VE/gd32f30x_bkp.c"
+          },
+          {
+            "path": "RTE/Device/GD32F303VE/gd32f30x_can.c"
+          },
+          {
+            "path": "RTE/Device/GD32F303VE/gd32f30x_crc.c"
+          },
+          {
+            "path": "RTE/Device/GD32F303VE/gd32f30x_ctc.c"
+          },
+          {
+            "path": "RTE/Device/GD32F303VE/gd32f30x_dac.c"
+          },
+          {
+            "path": "RTE/Device/GD32F303VE/gd32f30x_dbg.c"
+          },
+          {
+            "path": "RTE/Device/GD32F303VE/gd32f30x_dma.c"
+          },
+          {
+            "path": "RTE/Device/GD32F303VE/gd32f30x_enet.c"
+          },
+          {
+            "path": "RTE/Device/GD32F303VE/gd32f30x_exmc.c"
+          },
+          {
+            "path": "RTE/Device/GD32F303VE/gd32f30x_exti.c"
+          },
+          {
+            "path": "RTE/Device/GD32F303VE/gd32f30x_fmc.c"
+          },
+          {
+            "path": "RTE/Device/GD32F303VE/gd32f30x_fwdgt.c"
+          },
+          {
+            "path": "RTE/Device/GD32F303VE/gd32f30x_gpio.c"
+          },
+          {
+            "path": "RTE/Device/GD32F303VE/gd32f30x_i2c.c"
+          },
+          {
+            "path": "RTE/Device/GD32F303VE/gd32f30x_misc.c"
+          },
+          {
+            "path": "RTE/Device/GD32F303VE/gd32f30x_pmu.c"
+          },
+          {
+            "path": "RTE/Device/GD32F303VE/gd32f30x_rcu.c"
+          },
+          {
+            "path": "RTE/Device/GD32F303VE/gd32f30x_rtc.c"
+          },
+          {
+            "path": "RTE/Device/GD32F303VE/gd32f30x_sdio.c"
+          },
+          {
+            "path": "RTE/Device/GD32F303VE/gd32f30x_spi.c"
+          },
+          {
+            "path": "RTE/Device/GD32F303VE/gd32f30x_timer.c"
+          },
+          {
+            "path": "RTE/Device/GD32F303VE/gd32f30x_usart.c"
+          },
+          {
+            "path": "RTE/Device/GD32F303VE/gd32f30x_wwdgt.c"
+          },
+          {
+            "path": "RTE/Device/GD32F303VE/startup_gd32f30x_hd.s"
+          },
+          {
+            "path": "RTE/Device/GD32F303VE/system_gd32f30x.c"
+          }
+        ],
+        "folders": []
+      },
+      {
+        "name": "::USB",
+        "files": [
+          {
+            "path": "RTE/USB/USBD_Config_HID_0.h"
+          }
+        ],
         "folders": []
       }
     ]
@@ -421,6 +591,7 @@
           "app/inc",
           "RTE/Device/GD32F303VE",
           "dsp/Include",
+          "RTE/CMSIS",
           "RTE/_Target 1"
         ],
         "libList": [],
@@ -435,13 +606,13 @@
           "afterBuildTasks": [
             {
               "name": "[Copy linker output for Keil User Commands]",
-              "command": "mkdir ${KEIL_OUTPUT_DIR} & copy \"${OutDir}\\${ProjectName}.axf\" \"${KEIL_OUTPUT_DIR}\\${KEIL_OUTPUT_NAME}.axf\"",
+              "command": "mkdir ${KEIL_OUTPUT_DIR} & copy \"${OutDir}\\${ProjectName}.axf\" \"${KEIL_OUTPUT_DIR}\\${ProjectName}.axf\"",
               "disable": false,
               "abortAfterFailed": true
             },
             {
-              "name": "fromelf --bin --output ZH3_V0_1.bin .\\Objects\\ZH3_V0_1.axf",
-              "command": "fromelf --bin --output ZH3_V0_1.bin .\\Objects\\ZH3_V0_1.axf",
+              "name": "fromelf --bin --output ZH3_V1_2_FLASH.bin .\\Objects\\rtos.axf",
+              "command": "fromelf --bin --output ZH3_V1_2_FLASH.bin .\\Objects\\rtos.axf",
               "disable": false,
               "abortAfterFailed": true
             }

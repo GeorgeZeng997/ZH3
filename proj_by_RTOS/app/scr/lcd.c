@@ -927,6 +927,7 @@ void lcd_display_menu(uint8_t menu_idx)
         // lcd_display_brightness(LCD_DISPLAY_BRIGHTNESS_BLACK);
         // lcd_fill_screen(BLACK);
         menu0_init();
+        
         break;
     case 1:
         menu1_init();
@@ -967,6 +968,7 @@ void menu0_init()
         vTaskDelay(100);
     }
     lcd_display_rectangle(0, 0, 240, 240, DAKE_FOSI);
+    
 }
 void menu1_init()
 {
