@@ -236,6 +236,7 @@ void flash_msg_proc()
         break;
     case FLASH_MSG_WRITE_TONE:
         flash_st = TONE_ST_WRITE_START;
+        
         break;
     default:
         break;
@@ -699,7 +700,21 @@ void flash_task(void *pvParameters)
         case TONE_ST_WRITE_START:
             gpio_bit_reset(GPIO_TONE_CS_PORT, GPIO_TONE_CS_PIN);
             tone_config();
-            flash_st = TONE_ST_WRITE_CHA_TREBLE_DATA;
+            flash_st = TONE_ST_WRITE_DATA;
+            break;
+        case TONE_ST_WRITE_DATA:
+        {
+            uint8_t cmd = FLASH_CMD_INVAL;
+            uint32_t addr = flash_blk.flash_addr_tmp;
+            uint8_t *data = NULL;
+            uint32_t data_length = 1;
+            flash_tx_buf_setting(cmd, addr, data, data_length);
+        }
+            flash_st = TONE_ST_WRITE_DATA_WAITING;
+            break;
+        case TONE_ST_WRITE_DATA_WAITING:
+
+            flash_st = TONE_ST_WRITE_COMPLETE;
             break;
         case TONE_ST_WRITE_CHA_TREBLE_DATA:
         {
