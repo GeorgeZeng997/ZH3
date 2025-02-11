@@ -188,14 +188,17 @@ void lcd_config()
 }
 SemaphoreHandle_t lcd_sema;
 SemaphoreHandle_t menu_sema;
+SemaphoreHandle_t flash_sema;
 
 void semaphore_config()
 {
     lcd_sema = xSemaphoreCreateBinary();
     menu_sema = xSemaphoreCreateBinary();
+    flash_sema = xSemaphoreCreateBinary();
 
     xSemaphoreGive(lcd_sema);
     xSemaphoreGive(menu_sema);
+    xSemaphoreGive(flash_sema);
 }
 
 void pwm_config()

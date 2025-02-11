@@ -153,27 +153,37 @@ flash_picture_atrribute_t flash_picture_array[] =
 
 void flash_msg_check_in(uint8_t *data, flash_picture_idx_t flash_picture_idx, flash_msg_st_t flash_msg_st)
 {
-    if (flash_msg_qu.total < FLASH_MSG_FRAME_BUF_SIZE)
+    if (flash_msg_qu.total >= FLASH_MSG_FRAME_BUF_SIZE)
+        return;
+    if (xSemaphoreTake(flash_sema, portMAX_DELAY) == pdTRUE)
     {
-        flash_msg_qu.frame[flash_msg_qu.idx_in].msg = flash_msg_st;
-        flash_msg_qu.frame[flash_msg_qu.idx_in].buf_p = data;
-        flash_msg_qu.frame[flash_msg_qu.idx_in].flash_picture_idx = flash_picture_idx;
-        // flash_msg_qu.frame[flash_msg_qu.idx_in].length = 2*flash_picture_array[flash_picture_idx].width*flash_picture_array[flash_picture_idx].height;
-        if (++flash_msg_qu.idx_in >= FLASH_MSG_FRAME_BUF_SIZE)
+        if (flash_msg_qu.total < FLASH_MSG_FRAME_BUF_SIZE)
         {
-            flash_msg_qu.idx_in = 0;
+            flash_msg_qu.frame[flash_msg_qu.idx_in].msg = flash_msg_st;
+            flash_msg_qu.frame[flash_msg_qu.idx_in].buf_p = data;
+            flash_msg_qu.frame[flash_msg_qu.idx_in].flash_picture_idx = flash_picture_idx;
+            // flash_msg_qu.frame[flash_msg_qu.idx_in].length = 2*flash_picture_array[flash_picture_idx].width*flash_picture_array[flash_picture_idx].height;
+            if (++flash_msg_qu.idx_in >= FLASH_MSG_FRAME_BUF_SIZE)
+            {
+                flash_msg_qu.idx_in = 0;
+            }
+            flash_msg_qu.total++;
         }
-        flash_msg_qu.total++;
     }
+    xSemaphoreGive(flash_sema);
 }
 
 void flash_msg_check_out()
 {
-    if (++flash_msg_qu.idx_out >= FLASH_MSG_FRAME_BUF_SIZE)
+    if (xSemaphoreTake(flash_sema, portMAX_DELAY) == pdTRUE)
     {
-        flash_msg_qu.idx_out = 0;
+        if (++flash_msg_qu.idx_out >= FLASH_MSG_FRAME_BUF_SIZE)
+        {
+            flash_msg_qu.idx_out = 0;
+        }
+        flash_msg_qu.total--;
     }
-    flash_msg_qu.total--;
+    xSemaphoreGive(flash_sema);
 }
 
 void flash_tx_buf_setting(uint8_t cmd, uint32_t addr, uint8_t *data, uint32_t data_length)
@@ -236,7 +246,7 @@ void flash_msg_proc()
         break;
     case FLASH_MSG_WRITE_TONE:
         flash_st = TONE_ST_WRITE_START;
-        
+
         break;
     default:
         break;
@@ -269,144 +279,155 @@ unsigned short modem_bus_crc16(const unsigned char *buf, unsigned short len, uin
 }
 void flash_task(void *pvParameters)
 {
-    // //MENU 1
-    // flash_msg_check_in(NULL, FLASH_PICTURE_IDX_MENU_1_ADD, FLASH_MSG_BLOCK_ERASE);
-    // flash_msg_check_in(image_menu_1, FLASH_PICTURE_IDX_MENU_1, FLASH_MSG_WRITE_IDX);
-    //   //BOT LEFT
-    //   flash_msg_check_in(image_LO,FLASH_PICTURE_IDX_LO,FLASH_MSG_WRITE_IDX);
-    // flash_msg_check_in(image_PO,FLASH_PICTURE_IDX_PO,FLASH_MSG_WRITE_ONLY);
-    //   flash_msg_check_in(image_R_X,FLASH_PICTURE_IDX_R_X,FLASH_MSG_WRITE_IDX);
+    #ifdef PICTURE_DL1
+    //MENU 1
+    flash_msg_check_in(NULL, FLASH_PICTURE_IDX_MENU_1_ADD, FLASH_MSG_BLOCK_ERASE);
+    flash_msg_check_in(image_menu_1, FLASH_PICTURE_IDX_MENU_1, FLASH_MSG_WRITE_IDX);
+      //BOT LEFT
+      flash_msg_check_in(image_LO,FLASH_PICTURE_IDX_LO,FLASH_MSG_WRITE_IDX);
+    flash_msg_check_in(image_PO,FLASH_PICTURE_IDX_PO,FLASH_MSG_WRITE_ONLY);
+      flash_msg_check_in(image_R_X,FLASH_PICTURE_IDX_R_X,FLASH_MSG_WRITE_IDX);
 
-    // //BOT RIGHT
-    //  flash_msg_check_in(image_TONE,FLASH_PICTURE_IDX_TONE,FLASH_MSG_WRITE_IDX);
-    //  flash_msg_check_in(image_TONE_2,FLASH_PICTURE_IDX_TONE_2,FLASH_MSG_WRITE_ONLY);
-    //  flash_msg_check_in(image_VOL,FLASH_PICTURE_IDX_VOL,FLASH_MSG_WRITE_IDX);
-    //  flash_msg_check_in(image_VOL_2,FLASH_PICTURE_IDX_VOL_2,FLASH_MSG_WRITE_ONLY);
-
-    // //TOP LEFT
-    // flash_msg_check_in(image_DSD_64, FLASH_PICTURE_IDX_DSD_64, FLASH_MSG_WRITE_IDX);
-    // flash_msg_check_in(image_DSD_128, FLASH_PICTURE_IDX_DSD_128, FLASH_MSG_WRITE_ONLY);
-    // flash_msg_check_in(image_DSD_256, FLASH_PICTURE_IDX_DSD_256, FLASH_MSG_WRITE_IDX);
-    // flash_msg_check_in(image_DSD_512, FLASH_PICTURE_IDX_DSD_512, FLASH_MSG_WRITE_ONLY);
-    // flash_msg_check_in(image_PCM_44, FLASH_PICTURE_IDX_PCM_44, FLASH_MSG_WRITE_IDX);
-    // flash_msg_check_in(image_PCM_48, FLASH_PICTURE_IDX_PCM_48, FLASH_MSG_WRITE_ONLY);
-    // flash_msg_check_in(image_PCM_88, FLASH_PICTURE_IDX_PCM_88, FLASH_MSG_WRITE_IDX);
-    // flash_msg_check_in(image_PCM_96, FLASH_PICTURE_IDX_PCM_96, FLASH_MSG_WRITE_ONLY);
-    // flash_msg_check_in(image_PCM_176, FLASH_PICTURE_IDX_PCM_176, FLASH_MSG_WRITE_IDX);
-    // flash_msg_check_in(image_PCM_192, FLASH_PICTURE_IDX_PCM_192, FLASH_MSG_WRITE_ONLY);
-    // flash_msg_check_in(image_PCM_352, FLASH_PICTURE_IDX_PCM_352, FLASH_MSG_WRITE_IDX);
-    // flash_msg_check_in(image_PCM_384, FLASH_PICTURE_IDX_PCM_384, FLASH_MSG_WRITE_ONLY);
-    // flash_msg_check_in(image_PCM_705, FLASH_PICTURE_IDX_PCM_705, FLASH_MSG_WRITE_IDX);
-    // flash_msg_check_in(image_PCM_768, FLASH_PICTURE_IDX_PCM_768, FLASH_MSG_WRITE_ONLY);
-    // //TOP RIGHT
-    // flash_msg_check_in(image_COAX, FLASH_PICTURE_IDX_COAX, FLASH_MSG_WRITE_IDX);
-    // flash_msg_check_in(image_OPT, FLASH_PICTURE_IDX_OPT, FLASH_MSG_WRITE_ONLY);
-    // flash_msg_check_in(image_RCA, FLASH_PICTURE_IDX_RCA, FLASH_MSG_WRITE_IDX);
-    // flash_msg_check_in(image_USB, FLASH_PICTURE_IDX_USB, FLASH_MSG_WRITE_ONLY);
-    // //NUM
-    // flash_msg_check_in(image_MUTE, FLASH_PICTURE_IDX_MUTE, FLASH_MSG_WRITE_IDX);
-    // flash_msg_check_in(image_NUM_0, FLASH_PICTURE_IDX_NUM_0, FLASH_MSG_WRITE_ONLY);
-    // flash_msg_check_in(image_NUM_1, FLASH_PICTURE_IDX_NUM_1, FLASH_MSG_WRITE_ONLY);
-    // flash_msg_check_in(image_NUM_2, FLASH_PICTURE_IDX_NUM_2, FLASH_MSG_WRITE_ONLY);
-    // flash_msg_check_in(image_NUM_3, FLASH_PICTURE_IDX_NUM_3, FLASH_MSG_WRITE_ONLY);
-    // flash_msg_check_in(image_NUM_4, FLASH_PICTURE_IDX_NUM_4, FLASH_MSG_WRITE_ONLY);
-    // flash_msg_check_in(image_NUM_5, FLASH_PICTURE_IDX_NUM_5, FLASH_MSG_WRITE_ONLY);
-    // flash_msg_check_in(image_NUM_6, FLASH_PICTURE_IDX_NUM_6, FLASH_MSG_WRITE_ONLY);
-    // flash_msg_check_in(image_NUM_7, FLASH_PICTURE_IDX_NUM_7, FLASH_MSG_WRITE_ONLY);
-    // flash_msg_check_in(image_NUM_8, FLASH_PICTURE_IDX_NUM_8, FLASH_MSG_WRITE_ONLY);
-    // flash_msg_check_in(image_NUM_9, FLASH_PICTURE_IDX_NUM_9, FLASH_MSG_WRITE_ONLY);
-    // //MENU 2
-    // flash_msg_check_in(NULL, FLASH_PICTURE_IDX_MENU_2_ADD, FLASH_MSG_BLOCK_ERASE);
-    // flash_msg_check_in(image_menu_2, FLASH_PICTURE_IDX_MENU_2, FLASH_MSG_WRITE_IDX);
-    // flash_msg_check_in(image_INPUT, FLASH_PICTURE_IDX_INPUT, FLASH_MSG_WRITE_IDX);
-    // flash_msg_check_in(image_OUTPUT, FLASH_PICTURE_IDX_OUTPUT, FLASH_MSG_WRITE_ONLY);
+    //BOT RIGHT
+     flash_msg_check_in(image_TONE,FLASH_PICTURE_IDX_TONE,FLASH_MSG_WRITE_IDX);
+     flash_msg_check_in(image_TONE_2,FLASH_PICTURE_IDX_TONE_2,FLASH_MSG_WRITE_ONLY);
+     flash_msg_check_in(image_VOL,FLASH_PICTURE_IDX_VOL,FLASH_MSG_WRITE_IDX);
+     flash_msg_check_in(image_VOL_2,FLASH_PICTURE_IDX_VOL_2,FLASH_MSG_WRITE_ONLY);
+    #endif
+    #ifdef PICTURE_DL2
+    //TOP LEFT
+    flash_msg_check_in(image_DSD_64, FLASH_PICTURE_IDX_DSD_64, FLASH_MSG_WRITE_IDX);
+    flash_msg_check_in(image_DSD_128, FLASH_PICTURE_IDX_DSD_128, FLASH_MSG_WRITE_ONLY);
+    flash_msg_check_in(image_DSD_256, FLASH_PICTURE_IDX_DSD_256, FLASH_MSG_WRITE_IDX);
+    flash_msg_check_in(image_DSD_512, FLASH_PICTURE_IDX_DSD_512, FLASH_MSG_WRITE_ONLY);
+    flash_msg_check_in(image_PCM_44, FLASH_PICTURE_IDX_PCM_44, FLASH_MSG_WRITE_IDX);
+    flash_msg_check_in(image_PCM_48, FLASH_PICTURE_IDX_PCM_48, FLASH_MSG_WRITE_ONLY);
+    flash_msg_check_in(image_PCM_88, FLASH_PICTURE_IDX_PCM_88, FLASH_MSG_WRITE_IDX);
+    flash_msg_check_in(image_PCM_96, FLASH_PICTURE_IDX_PCM_96, FLASH_MSG_WRITE_ONLY);
+    flash_msg_check_in(image_PCM_176, FLASH_PICTURE_IDX_PCM_176, FLASH_MSG_WRITE_IDX);
+    flash_msg_check_in(image_PCM_192, FLASH_PICTURE_IDX_PCM_192, FLASH_MSG_WRITE_ONLY);
+    flash_msg_check_in(image_PCM_352, FLASH_PICTURE_IDX_PCM_352, FLASH_MSG_WRITE_IDX);
+    flash_msg_check_in(image_PCM_384, FLASH_PICTURE_IDX_PCM_384, FLASH_MSG_WRITE_ONLY);
+    flash_msg_check_in(image_PCM_705, FLASH_PICTURE_IDX_PCM_705, FLASH_MSG_WRITE_IDX);
+    flash_msg_check_in(image_PCM_768, FLASH_PICTURE_IDX_PCM_768, FLASH_MSG_WRITE_ONLY);
+    //TOP RIGHT
+    flash_msg_check_in(image_COAX, FLASH_PICTURE_IDX_COAX, FLASH_MSG_WRITE_IDX);
+    flash_msg_check_in(image_OPT, FLASH_PICTURE_IDX_OPT, FLASH_MSG_WRITE_ONLY);
+    flash_msg_check_in(image_RCA, FLASH_PICTURE_IDX_RCA, FLASH_MSG_WRITE_IDX);
+    flash_msg_check_in(image_USB, FLASH_PICTURE_IDX_USB, FLASH_MSG_WRITE_ONLY);
+    #endif
+    #ifdef PICTURE_DL3
+    //NUM
+    flash_msg_check_in(image_MUTE, FLASH_PICTURE_IDX_MUTE, FLASH_MSG_WRITE_IDX);
+    flash_msg_check_in(image_NUM_0, FLASH_PICTURE_IDX_NUM_0, FLASH_MSG_WRITE_ONLY);
+    flash_msg_check_in(image_NUM_1, FLASH_PICTURE_IDX_NUM_1, FLASH_MSG_WRITE_ONLY);
+    flash_msg_check_in(image_NUM_2, FLASH_PICTURE_IDX_NUM_2, FLASH_MSG_WRITE_ONLY);
+    flash_msg_check_in(image_NUM_3, FLASH_PICTURE_IDX_NUM_3, FLASH_MSG_WRITE_ONLY);
+    flash_msg_check_in(image_NUM_4, FLASH_PICTURE_IDX_NUM_4, FLASH_MSG_WRITE_ONLY);
+    flash_msg_check_in(image_NUM_5, FLASH_PICTURE_IDX_NUM_5, FLASH_MSG_WRITE_ONLY);
+    flash_msg_check_in(image_NUM_6, FLASH_PICTURE_IDX_NUM_6, FLASH_MSG_WRITE_ONLY);
+    flash_msg_check_in(image_NUM_7, FLASH_PICTURE_IDX_NUM_7, FLASH_MSG_WRITE_ONLY);
+    flash_msg_check_in(image_NUM_8, FLASH_PICTURE_IDX_NUM_8, FLASH_MSG_WRITE_ONLY);
+    flash_msg_check_in(image_NUM_9, FLASH_PICTURE_IDX_NUM_9, FLASH_MSG_WRITE_ONLY);
+    //MENU 2
+    flash_msg_check_in(NULL, FLASH_PICTURE_IDX_MENU_2_ADD, FLASH_MSG_BLOCK_ERASE);
+    flash_msg_check_in(image_menu_2, FLASH_PICTURE_IDX_MENU_2, FLASH_MSG_WRITE_IDX);
+    flash_msg_check_in(image_INPUT, FLASH_PICTURE_IDX_INPUT, FLASH_MSG_WRITE_IDX);
+    flash_msg_check_in(image_OUTPUT, FLASH_PICTURE_IDX_OUTPUT, FLASH_MSG_WRITE_ONLY);
+    #endif
+    #ifdef PICTURE_DL4
     // //OUTPUT INPUT
-    // flash_msg_check_in(image_BASS, FLASH_PICTURE_IDX_BASS, FLASH_MSG_WRITE_IDX);
-    // flash_msg_check_in(image_TREBLE, FLASH_PICTURE_IDX_TREBLE, FLASH_MSG_WRITE_ONLY);
-    // flash_msg_check_in(image_INP_COAX, FLASH_PICTURE_IDX_INP_COAX, FLASH_MSG_WRITE_IDX);
-    // flash_msg_check_in(image_INP_RCA, FLASH_PICTURE_IDX_INP_RCA, FLASH_MSG_WRITE_ONLY);
-    // flash_msg_check_in(image_INP_USB, FLASH_PICTURE_IDX_INP_USB, FLASH_MSG_WRITE_ONLY);
-    // flash_msg_check_in(image_INP_OPT, FLASH_PICTURE_IDX_INP_OPT, FLASH_MSG_WRITE_ONLY);
-    // flash_msg_check_in(image_OUT_PO, FLASH_PICTURE_IDX_OUT_PO, FLASH_MSG_WRITE_ONLY);
-    // flash_msg_check_in(image_OUT_LO, FLASH_PICTURE_IDX_OUT_LO, FLASH_MSG_WRITE_ONLY);
-    // flash_msg_check_in(image_OUT_R_X, FLASH_PICTURE_IDX_OUT_R_X, FLASH_MSG_WRITE_ONLY);
-    // flash_msg_check_in(image_DOT_GRAY, FLASH_PICTURE_IDX_DOT_GRAY, FLASH_MSG_WRITE_ONLY);
-    // flash_msg_check_in(image_DOT_ORANGE, FLASH_PICTURE_IDX_DOT_ORANGE, FLASH_MSG_WRITE_ONLY);
-    // flash_msg_check_in(image_INP_COAX_NA, FLASH_PICTURE_IDX_INP_COAX_NA, FLASH_MSG_WRITE_ONLY);
-    // flash_msg_check_in(image_INP_RCA_NA, FLASH_PICTURE_IDX_INP_RCA_NA, FLASH_MSG_WRITE_ONLY);
-    // flash_msg_check_in(image_INP_USB_NA, FLASH_PICTURE_IDX_INP_USB_NA, FLASH_MSG_WRITE_ONLY);
-    // flash_msg_check_in(image_INP_OPT_NA, FLASH_PICTURE_IDX_INP_OPT_NA, FLASH_MSG_WRITE_ONLY);
-    // flash_msg_check_in(image_OUT_PO_NA, FLASH_PICTURE_IDX_OUT_PO_NA, FLASH_MSG_WRITE_ONLY);
-    // flash_msg_check_in(image_OUT_LO_NA, FLASH_PICTURE_IDX_OUT_LO_NA, FLASH_MSG_WRITE_ONLY);
-    // flash_msg_check_in(image_OUT_R_X_NA, FLASH_PICTURE_IDX_OUT_R_X_NA, FLASH_MSG_WRITE_ONLY);
-    // //LITTLE NUM
-    // flash_msg_check_in(image_LIT_NUM_0, FLASH_PICTURE_IDX_LIT_NUM_0, FLASH_MSG_WRITE_IDX);
-    // flash_msg_check_in(image_LIT_NUM_1, FLASH_PICTURE_IDX_LIT_NUM_1, FLASH_MSG_WRITE_ONLY);
-    // flash_msg_check_in(image_LIT_NUM_2, FLASH_PICTURE_IDX_LIT_NUM_2, FLASH_MSG_WRITE_ONLY);
-    // flash_msg_check_in(image_LIT_NUM_3, FLASH_PICTURE_IDX_LIT_NUM_3, FLASH_MSG_WRITE_ONLY);
-    // flash_msg_check_in(image_LIT_NUM_4, FLASH_PICTURE_IDX_LIT_NUM_4, FLASH_MSG_WRITE_ONLY);
-    // flash_msg_check_in(image_LIT_NUM_5, FLASH_PICTURE_IDX_LIT_NUM_5, FLASH_MSG_WRITE_ONLY);
-    // flash_msg_check_in(image_LIT_NUM_6, FLASH_PICTURE_IDX_LIT_NUM_6, FLASH_MSG_WRITE_ONLY);
-    // flash_msg_check_in(image_LIT_NUM_7, FLASH_PICTURE_IDX_LIT_NUM_7, FLASH_MSG_WRITE_ONLY);
-    // flash_msg_check_in(image_LIT_NUM_8, FLASH_PICTURE_IDX_LIT_NUM_8, FLASH_MSG_WRITE_ONLY);
-    // flash_msg_check_in(image_LIT_NUM_9, FLASH_PICTURE_IDX_LIT_NUM_9, FLASH_MSG_WRITE_ONLY);
-    // flash_msg_check_in(image_MINUS, FLASH_PICTURE_IDX_MINUS, FLASH_MSG_WRITE_ONLY);
-    // flash_msg_check_in(image_dB, FLASH_PICTURE_IDX_dB, FLASH_MSG_WRITE_ONLY);
-    // flash_msg_check_in(image_dB_NA, FLASH_PICTURE_IDX_dB_NA, FLASH_MSG_WRITE_ONLY);
-    // //MENU 3
-    // flash_msg_check_in(NULL, FLASH_PICTURE_IDX_MENU_3_ADD, FLASH_MSG_BLOCK_ERASE);
-    // flash_msg_check_in(image_menu_3, FLASH_PICTURE_IDX_MENU_3, FLASH_MSG_WRITE_IDX);
+    flash_msg_check_in(image_BASS, FLASH_PICTURE_IDX_BASS, FLASH_MSG_WRITE_IDX);
+    flash_msg_check_in(image_TREBLE, FLASH_PICTURE_IDX_TREBLE, FLASH_MSG_WRITE_ONLY);
+    flash_msg_check_in(image_INP_COAX, FLASH_PICTURE_IDX_INP_COAX, FLASH_MSG_WRITE_IDX);
+    flash_msg_check_in(image_INP_RCA, FLASH_PICTURE_IDX_INP_RCA, FLASH_MSG_WRITE_ONLY);
+    flash_msg_check_in(image_INP_USB, FLASH_PICTURE_IDX_INP_USB, FLASH_MSG_WRITE_ONLY);
+    flash_msg_check_in(image_INP_OPT, FLASH_PICTURE_IDX_INP_OPT, FLASH_MSG_WRITE_ONLY);
+    flash_msg_check_in(image_OUT_PO, FLASH_PICTURE_IDX_OUT_PO, FLASH_MSG_WRITE_ONLY);
+    flash_msg_check_in(image_OUT_LO, FLASH_PICTURE_IDX_OUT_LO, FLASH_MSG_WRITE_ONLY);
+    flash_msg_check_in(image_OUT_R_X, FLASH_PICTURE_IDX_OUT_R_X, FLASH_MSG_WRITE_ONLY);
+    flash_msg_check_in(image_DOT_GRAY, FLASH_PICTURE_IDX_DOT_GRAY, FLASH_MSG_WRITE_ONLY);
+    flash_msg_check_in(image_DOT_ORANGE, FLASH_PICTURE_IDX_DOT_ORANGE, FLASH_MSG_WRITE_ONLY);
+    flash_msg_check_in(image_INP_COAX_NA, FLASH_PICTURE_IDX_INP_COAX_NA, FLASH_MSG_WRITE_ONLY);
+    flash_msg_check_in(image_INP_RCA_NA, FLASH_PICTURE_IDX_INP_RCA_NA, FLASH_MSG_WRITE_ONLY);
+    flash_msg_check_in(image_INP_USB_NA, FLASH_PICTURE_IDX_INP_USB_NA, FLASH_MSG_WRITE_ONLY);
+    flash_msg_check_in(image_INP_OPT_NA, FLASH_PICTURE_IDX_INP_OPT_NA, FLASH_MSG_WRITE_ONLY);
+    flash_msg_check_in(image_OUT_PO_NA, FLASH_PICTURE_IDX_OUT_PO_NA, FLASH_MSG_WRITE_ONLY);
+    flash_msg_check_in(image_OUT_LO_NA, FLASH_PICTURE_IDX_OUT_LO_NA, FLASH_MSG_WRITE_ONLY);
+    flash_msg_check_in(image_OUT_R_X_NA, FLASH_PICTURE_IDX_OUT_R_X_NA, FLASH_MSG_WRITE_ONLY);
+    #endif
+    #ifdef PICTURE_DL5
+    //LITTLE NUM
+    flash_msg_check_in(image_LIT_NUM_0, FLASH_PICTURE_IDX_LIT_NUM_0, FLASH_MSG_WRITE_IDX);
+    flash_msg_check_in(image_LIT_NUM_1, FLASH_PICTURE_IDX_LIT_NUM_1, FLASH_MSG_WRITE_ONLY);
+    flash_msg_check_in(image_LIT_NUM_2, FLASH_PICTURE_IDX_LIT_NUM_2, FLASH_MSG_WRITE_ONLY);
+    flash_msg_check_in(image_LIT_NUM_3, FLASH_PICTURE_IDX_LIT_NUM_3, FLASH_MSG_WRITE_ONLY);
+    flash_msg_check_in(image_LIT_NUM_4, FLASH_PICTURE_IDX_LIT_NUM_4, FLASH_MSG_WRITE_ONLY);
+    flash_msg_check_in(image_LIT_NUM_5, FLASH_PICTURE_IDX_LIT_NUM_5, FLASH_MSG_WRITE_ONLY);
+    flash_msg_check_in(image_LIT_NUM_6, FLASH_PICTURE_IDX_LIT_NUM_6, FLASH_MSG_WRITE_ONLY);
+    flash_msg_check_in(image_LIT_NUM_7, FLASH_PICTURE_IDX_LIT_NUM_7, FLASH_MSG_WRITE_ONLY);
+    flash_msg_check_in(image_LIT_NUM_8, FLASH_PICTURE_IDX_LIT_NUM_8, FLASH_MSG_WRITE_ONLY);
+    flash_msg_check_in(image_LIT_NUM_9, FLASH_PICTURE_IDX_LIT_NUM_9, FLASH_MSG_WRITE_ONLY);
+    flash_msg_check_in(image_MINUS, FLASH_PICTURE_IDX_MINUS, FLASH_MSG_WRITE_ONLY);
+    flash_msg_check_in(image_dB, FLASH_PICTURE_IDX_dB, FLASH_MSG_WRITE_ONLY);
+    flash_msg_check_in(image_dB_NA, FLASH_PICTURE_IDX_dB_NA, FLASH_MSG_WRITE_ONLY);
+    //MENU 3
+    flash_msg_check_in(NULL, FLASH_PICTURE_IDX_MENU_3_ADD, FLASH_MSG_BLOCK_ERASE);
+    flash_msg_check_in(image_menu_3, FLASH_PICTURE_IDX_MENU_3, FLASH_MSG_WRITE_IDX);
+    #endif
+    #ifdef PICTURE_DL6
+     flash_msg_check_in(image_GAIN, FLASH_PICTURE_IDX_GAIN, FLASH_MSG_WRITE_IDX);
+     flash_msg_check_in(image_UAC, FLASH_PICTURE_IDX_UAC, FLASH_MSG_WRITE_ONLY);
+     flash_msg_check_in(image_FILT, FLASH_PICTURE_IDX_FILT, FLASH_MSG_WRITE_IDX);
+     flash_msg_check_in(image_MENU3_TONE, FLASH_PICTURE_IDX_MENU3_TONE, FLASH_MSG_WRITE_ONLY);
 
-    //  flash_msg_check_in(image_GAIN, FLASH_PICTURE_IDX_GAIN, FLASH_MSG_WRITE_IDX);
-    //  flash_msg_check_in(image_UAC, FLASH_PICTURE_IDX_UAC, FLASH_MSG_WRITE_ONLY);
-    //  flash_msg_check_in(image_FILT, FLASH_PICTURE_IDX_FILT, FLASH_MSG_WRITE_IDX);
-    //  flash_msg_check_in(image_MENU3_TONE, FLASH_PICTURE_IDX_MENU3_TONE, FLASH_MSG_WRITE_ONLY);
+    flash_msg_check_in(image_GAIN_H, FLASH_PICTURE_IDX_GAIN_H, FLASH_MSG_WRITE_IDX);
+    flash_msg_check_in(image_GAIN_H_NA, FLASH_PICTURE_IDX_GAIN_H_NA, FLASH_MSG_WRITE_ONLY);
+    flash_msg_check_in(image_GAIN_L, FLASH_PICTURE_IDX_GAIN_L, FLASH_MSG_WRITE_ONLY);
+    flash_msg_check_in(image_GAIN_L_NA, FLASH_PICTURE_IDX_GAIN_L_NA, FLASH_MSG_WRITE_ONLY);
+    flash_msg_check_in(image_GAIN_M, FLASH_PICTURE_IDX_GAIN_M, FLASH_MSG_WRITE_ONLY);
+    flash_msg_check_in(image_GAIN_M_NA, FLASH_PICTURE_IDX_GAIN_M_NA, FLASH_MSG_WRITE_ONLY);
 
-    // flash_msg_check_in(image_GAIN_H, FLASH_PICTURE_IDX_GAIN_H, FLASH_MSG_WRITE_IDX);
-    // flash_msg_check_in(image_GAIN_H_NA, FLASH_PICTURE_IDX_GAIN_H_NA, FLASH_MSG_WRITE_ONLY);
-    // flash_msg_check_in(image_GAIN_L, FLASH_PICTURE_IDX_GAIN_L, FLASH_MSG_WRITE_ONLY);
-    // flash_msg_check_in(image_GAIN_L_NA, FLASH_PICTURE_IDX_GAIN_L_NA, FLASH_MSG_WRITE_ONLY);
-    // flash_msg_check_in(image_GAIN_M, FLASH_PICTURE_IDX_GAIN_M, FLASH_MSG_WRITE_ONLY);
-    // flash_msg_check_in(image_GAIN_M_NA, FLASH_PICTURE_IDX_GAIN_M_NA, FLASH_MSG_WRITE_ONLY);
+    flash_msg_check_in(image_UAC_1, FLASH_PICTURE_IDX_UAC_1, FLASH_MSG_WRITE_IDX);
+    flash_msg_check_in(image_UAC_1_NA, FLASH_PICTURE_IDX_UAC_1_NA, FLASH_MSG_WRITE_ONLY);
+    flash_msg_check_in(image_UAC_2, FLASH_PICTURE_IDX_UAC_2, FLASH_MSG_WRITE_ONLY);
+    flash_msg_check_in(image_UAC_2_NA, FLASH_PICTURE_IDX_UAC_2_NA, FLASH_MSG_WRITE_ONLY);
 
-    // flash_msg_check_in(image_UAC_1, FLASH_PICTURE_IDX_UAC_1, FLASH_MSG_WRITE_IDX);
-    // flash_msg_check_in(image_UAC_1_NA, FLASH_PICTURE_IDX_UAC_1_NA, FLASH_MSG_WRITE_ONLY);
-    // flash_msg_check_in(image_UAC_2, FLASH_PICTURE_IDX_UAC_2, FLASH_MSG_WRITE_ONLY);
-    // flash_msg_check_in(image_UAC_2_NA, FLASH_PICTURE_IDX_UAC_2_NA, FLASH_MSG_WRITE_ONLY);
-
-    // flash_msg_check_in(image_TONE_NO, FLASH_PICTURE_IDX_TONE_NO, FLASH_MSG_WRITE_IDX);
-    // flash_msg_check_in(image_TONE_NO_NA, FLASH_PICTURE_IDX_TONE_NO_NA, FLASH_MSG_WRITE_ONLY);
-    // flash_msg_check_in(image_TONE_YES, FLASH_PICTURE_IDX_TONE_YES, FLASH_MSG_WRITE_ONLY);
-    // flash_msg_check_in(image_TONE_YES_NA, FLASH_PICTURE_IDX_TONE_YES_NA, FLASH_MSG_WRITE_ONLY);
-
-    // flash_msg_check_in(image_FILT_0, FLASH_PICTURE_IDX_FILT_0, FLASH_MSG_WRITE_IDX);
-    // flash_msg_check_in(image_FILT_1, FLASH_PICTURE_IDX_FILT_1, FLASH_MSG_WRITE_ONLY);
-    // flash_msg_check_in(image_FILT_2, FLASH_PICTURE_IDX_FILT_2, FLASH_MSG_WRITE_ONLY);
-    // flash_msg_check_in(image_FILT_3, FLASH_PICTURE_IDX_FILT_3, FLASH_MSG_WRITE_ONLY);
-    // flash_msg_check_in(image_FILT_4, FLASH_PICTURE_IDX_FILT_4, FLASH_MSG_WRITE_ONLY);
-    // flash_msg_check_in(image_FILT_5, FLASH_PICTURE_IDX_FILT_5, FLASH_MSG_WRITE_ONLY);
-    // flash_msg_check_in(image_FILT_0_NA, FLASH_PICTURE_IDX_FILT_0_NA, FLASH_MSG_WRITE_IDX);
-    // flash_msg_check_in(image_FILT_1_NA, FLASH_PICTURE_IDX_FILT_1_NA, FLASH_MSG_WRITE_ONLY);
-    // flash_msg_check_in(image_FILT_2_NA, FLASH_PICTURE_IDX_FILT_2_NA, FLASH_MSG_WRITE_ONLY);
-    // flash_msg_check_in(image_FILT_3_NA, FLASH_PICTURE_IDX_FILT_3_NA, FLASH_MSG_WRITE_ONLY);
-    // flash_msg_check_in(image_FILT_4_NA, FLASH_PICTURE_IDX_FILT_4_NA, FLASH_MSG_WRITE_ONLY);
-    // flash_msg_check_in(image_FILT_5_NA, FLASH_PICTURE_IDX_FILT_5_NA, FLASH_MSG_WRITE_ONLY);
-    // flash_msg_check_in(image_AUTO, FLASH_PICTURE_IDX_AUTO, FLASH_MSG_WRITE_IDX);
-    // flash_msg_check_in(image_LCD_brightness, FLASH_PICTURE_IDX_LCD_BRIGHTNESS, FLASH_MSG_WRITE_ONLY);
-    // flash_msg_check_in(image_LOGO, FLASH_PICTURE_IDX_LOGO, FLASH_MSG_WRITE_ONLY);
-    // flash_msg_check_in(image_OFF, FLASH_PICTURE_IDX_OFF, FLASH_MSG_WRITE_ONLY);
-    // flash_msg_check_in(image_2min, FLASH_PICTURE_IDX_2MIN, FLASH_MSG_WRITE_IDX);
-    // flash_msg_check_in(image_percent_25, FLASH_PICTURE_IDX_PERCENT_25, FLASH_MSG_WRITE_ONLY);
-    // flash_msg_check_in(image_percent_50, FLASH_PICTURE_IDX_PERCENT_50, FLASH_MSG_WRITE_ONLY);
-    // flash_msg_check_in(image_percent_75, FLASH_PICTURE_IDX_PERCENT_75, FLASH_MSG_WRITE_ONLY);
-    // flash_msg_check_in(image_percent_100, FLASH_PICTURE_IDX_PERCENT_100, FLASH_MSG_WRITE_ONLY);
-    // flash_msg_check_in(image_YES, FLASH_PICTURE_IDX_YES, FLASH_MSG_WRITE_ONLY);
-    // flash_msg_check_in(image_NO, FLASH_PICTURE_IDX_NO, FLASH_MSG_WRITE_ONLY);
-
-    // flash_msg_check_in(NULL, FLASH_PICTURE_IDX_MENU_4_ADD, FLASH_MSG_BLOCK_ERASE);
-    // flash_msg_check_in(image_menu4, FLASH_PICTURE_IDX_MENU_4, FLASH_MSG_WRITE_IDX);
-    // flash_msg_check_in(NULL, FLASH_PICTURE_IDX_MENU_5_ADD, FLASH_MSG_BLOCK_ERASE);
-    // flash_msg_check_in(image_menu5, FLASH_PICTURE_IDX_MENU_5, FLASH_MSG_WRITE_IDX);
+    flash_msg_check_in(image_TONE_NO, FLASH_PICTURE_IDX_TONE_NO, FLASH_MSG_WRITE_IDX);
+    flash_msg_check_in(image_TONE_NO_NA, FLASH_PICTURE_IDX_TONE_NO_NA, FLASH_MSG_WRITE_ONLY);
+    flash_msg_check_in(image_TONE_YES, FLASH_PICTURE_IDX_TONE_YES, FLASH_MSG_WRITE_ONLY);
+    flash_msg_check_in(image_TONE_YES_NA, FLASH_PICTURE_IDX_TONE_YES_NA, FLASH_MSG_WRITE_ONLY);
+    
+    flash_msg_check_in(image_FILT_0, FLASH_PICTURE_IDX_FILT_0, FLASH_MSG_WRITE_IDX);
+    flash_msg_check_in(image_FILT_1, FLASH_PICTURE_IDX_FILT_1, FLASH_MSG_WRITE_ONLY);
+    flash_msg_check_in(image_FILT_2, FLASH_PICTURE_IDX_FILT_2, FLASH_MSG_WRITE_ONLY);
+    flash_msg_check_in(image_FILT_3, FLASH_PICTURE_IDX_FILT_3, FLASH_MSG_WRITE_ONLY);
+    flash_msg_check_in(image_FILT_4, FLASH_PICTURE_IDX_FILT_4, FLASH_MSG_WRITE_ONLY);
+    flash_msg_check_in(image_FILT_5, FLASH_PICTURE_IDX_FILT_5, FLASH_MSG_WRITE_ONLY);
+    flash_msg_check_in(image_FILT_0_NA, FLASH_PICTURE_IDX_FILT_0_NA, FLASH_MSG_WRITE_IDX);
+    flash_msg_check_in(image_FILT_1_NA, FLASH_PICTURE_IDX_FILT_1_NA, FLASH_MSG_WRITE_ONLY);
+    flash_msg_check_in(image_FILT_2_NA, FLASH_PICTURE_IDX_FILT_2_NA, FLASH_MSG_WRITE_ONLY);
+    flash_msg_check_in(image_FILT_3_NA, FLASH_PICTURE_IDX_FILT_3_NA, FLASH_MSG_WRITE_ONLY);
+    flash_msg_check_in(image_FILT_4_NA, FLASH_PICTURE_IDX_FILT_4_NA, FLASH_MSG_WRITE_ONLY);
+    flash_msg_check_in(image_FILT_5_NA, FLASH_PICTURE_IDX_FILT_5_NA, FLASH_MSG_WRITE_ONLY);
+    flash_msg_check_in(image_AUTO, FLASH_PICTURE_IDX_AUTO, FLASH_MSG_WRITE_IDX);
+    flash_msg_check_in(image_LCD_brightness, FLASH_PICTURE_IDX_LCD_BRIGHTNESS, FLASH_MSG_WRITE_ONLY);
+    flash_msg_check_in(image_LOGO, FLASH_PICTURE_IDX_LOGO, FLASH_MSG_WRITE_ONLY);
+    flash_msg_check_in(image_OFF, FLASH_PICTURE_IDX_OFF, FLASH_MSG_WRITE_ONLY);
+    flash_msg_check_in(image_2min, FLASH_PICTURE_IDX_2MIN, FLASH_MSG_WRITE_IDX);
+    flash_msg_check_in(image_percent_25, FLASH_PICTURE_IDX_PERCENT_25, FLASH_MSG_WRITE_ONLY);
+    flash_msg_check_in(image_percent_50, FLASH_PICTURE_IDX_PERCENT_50, FLASH_MSG_WRITE_ONLY);
+    flash_msg_check_in(image_percent_75, FLASH_PICTURE_IDX_PERCENT_75, FLASH_MSG_WRITE_ONLY);
+    flash_msg_check_in(image_percent_100, FLASH_PICTURE_IDX_PERCENT_100, FLASH_MSG_WRITE_ONLY);
+    flash_msg_check_in(image_YES, FLASH_PICTURE_IDX_YES, FLASH_MSG_WRITE_ONLY);
+    flash_msg_check_in(image_NO, FLASH_PICTURE_IDX_NO, FLASH_MSG_WRITE_ONLY);
+    #endif
+    #ifdef PICTURE_DL7
+    flash_msg_check_in(NULL, FLASH_PICTURE_IDX_MENU_4_ADD, FLASH_MSG_BLOCK_ERASE);
+    flash_msg_check_in(image_menu4, FLASH_PICTURE_IDX_MENU_4, FLASH_MSG_WRITE_IDX);
+    flash_msg_check_in(NULL, FLASH_PICTURE_IDX_MENU_5_ADD, FLASH_MSG_BLOCK_ERASE);
+    flash_msg_check_in(image_menu5, FLASH_PICTURE_IDX_MENU_5, FLASH_MSG_WRITE_IDX);
+    #endif
     while (1)
     {
         switch (flash_st)
@@ -700,20 +721,24 @@ void flash_task(void *pvParameters)
         case TONE_ST_WRITE_START:
             gpio_bit_reset(GPIO_TONE_CS_PORT, GPIO_TONE_CS_PIN);
             tone_config();
+
             flash_st = TONE_ST_WRITE_DATA;
             break;
         case TONE_ST_WRITE_DATA:
         {
             uint8_t cmd = FLASH_CMD_INVAL;
-            uint32_t addr = flash_blk.flash_addr_tmp;
-            uint8_t *data = NULL;
-            uint32_t data_length = 1;
+            uint32_t addr = FLASH_ADDR_INVAL;
+            uint8_t *data = tone_data;
+            uint32_t data_length = 2;
             flash_tx_buf_setting(cmd, addr, data, data_length);
         }
             flash_st = TONE_ST_WRITE_DATA_WAITING;
             break;
         case TONE_ST_WRITE_DATA_WAITING:
-
+            if (flash_blk.flash_tx_busy)
+            {
+                break;
+            }
             flash_st = TONE_ST_WRITE_COMPLETE;
             break;
         case TONE_ST_WRITE_CHA_TREBLE_DATA:

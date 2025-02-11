@@ -24,4 +24,6 @@ typedef struct
 
 extern tone_blk_t tone_blk;
 extern uint8_t tone_data[2];
+
+extern void tone_data_setting(int8_t gain_val,uint8_t bypass,uint8_t mute,uint8_t tone_channal);
 #endif

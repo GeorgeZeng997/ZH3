@@ -155,6 +155,7 @@
 
 extern SemaphoreHandle_t lcd_sema;
 extern SemaphoreHandle_t menu_sema;
+extern SemaphoreHandle_t flash_sema;
 
 void systick_config(void);
 void rcu_config(void);
