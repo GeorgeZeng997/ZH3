@@ -1,0 +1,8 @@
+GD32F303RET6
+SeriesGD32F303
+PackageLQFP64
+Max Speed (MHz)120
+Flash (Bytes)512K
+SRAM (Bytes)64K
+I/O up to 55
+RTOS freeRTOS
