@@ -1,11 +1,11 @@
 /*
-GD32F303VET6
+GD32F303RET6
 SeriesGD32F303
-PackageLQFP100
+PackageLQFP64
 Max Speed (MHz)120
 Flash (Bytes)512K
 SRAM (Bytes)64K
-I/O up to 80
+I/O up to 55
 */
 
 #include "config.h"
