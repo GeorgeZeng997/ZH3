@@ -78,12 +78,12 @@ uint8_t uart_package(uint8_t *data, uint16_t length, xmos_cmd_idx_t xmos_cmd_idx
     }
     extra_length = frame->frame.data_length;
     frame->frame.hearder = EXCHANGEENDIANS(XMOS_HEADER);
-    frame->frame.version = XMOS_VERSION;
+    frame->frame.version = xmos_cmd_array[xmos_cmd_idx].version;
     frame->frame.command = xmos_cmd_array[xmos_cmd_idx].cmd;
-    if (xmos_cmd_idx == XMOS_CMD_IDX_UPDATE_PACK_SUCCESS || xmos_cmd_idx == XMOS_CMD_IDX_UPDATE_PACK_FAILURE
-        || xmos_cmd_idx == XMOS_CMD_IDX_UPDATE_PACK_RESTART)
+    if (xmos_cmd_idx == XMOS_CMD_IDX_UPDATE_PACK_SUCCESS || xmos_cmd_idx == XMOS_CMD_IDX_UPDATE_PACK_FAILURE || xmos_cmd_idx == XMOS_CMD_IDX_UPDATE_PACK_RESTART)
     {
         frame->frame.hearder = XMOS_HEADER;
+
         uint16_t crc_val = crc16_ccitt(frame->buf, 6);
         frame->buf[6] = crc_val >> 8;
         frame->buf[7] = crc_val;
@@ -243,7 +243,6 @@ void uart_rx_proc()
                     fmc_blk.file_length = ((uint32_t)uart_rx_qu.frame[uart_rx_qu.idx_out].buf[7] << 16) | ((uint32_t)uart_rx_qu.frame[uart_rx_qu.idx_out].buf[8] << 8) | ((uint32_t)uart_rx_qu.frame[uart_rx_qu.idx_out].buf[9]);
                     fmc_blk.file_crc = ((uint16_t)uart_rx_qu.frame[uart_rx_qu.idx_out].buf[10] << 8) | ((uint16_t)uart_rx_qu.frame[uart_rx_qu.idx_out].buf[11]);
                     uart_tx_qu_check_in(XMOS_CMD_IDX_UPDATE_PACK_SUCCESS, uart_tx_frame.buf, uart_package(NULL, 0, XMOS_CMD_IDX_UPDATE_PACK_SUCCESS));
-                    
                 }
                 else if (pack_idx == fmc_blk.pack_idx + 1)
                 {
@@ -259,10 +258,9 @@ void uart_rx_proc()
                         fmc_program_update_success();
                     }
                 }
-                else if (pack_idx == fmc_blk.pack_idx )
+                else if (pack_idx == fmc_blk.pack_idx)
                 {
                     uart_tx_qu_check_in(XMOS_CMD_IDX_UPDATE_PACK_SUCCESS, uart_tx_frame.buf, uart_package(NULL, 0, XMOS_CMD_IDX_UPDATE_PACK_SUCCESS));
-                    
                 }
                 else
                 {
@@ -276,12 +274,24 @@ void uart_rx_proc()
         }
         else if (uart_rx_qu.frame[uart_rx_qu.idx_out].frame.version == 0x00)
         {
+            uint8_t data[64];
             switch (uart_rx_qu.frame[uart_rx_qu.idx_out].frame.command)
             {
+            case XMOS_CMD_BOOT:
+                data[0]=0x00;
+                uart_tx_qu_check_in(XMOS_CMD_IDX_BOOT,uart_tx_frame.buf,uart_package(data,1,XMOS_CMD_IDX_BOOT));
+                break;
+            case XMOS_CMD_READ_PRODUCT:
+                break;
+            case XMOS_CMD_READ_BOOT_CONFIG:
+                break;
             case XMOS_CMD_READ_AUDIO_MODE:
                 /* code */
                 break;
-
+            case XMOS_CMD_READ_CLIENT_CONFIG:
+                break;
+            case XMOS_CMD_COMPLETE:
+                break;
             default:
                 break;
             }
@@ -314,17 +324,19 @@ void usart0_rx_callback(uint8_t data)
             }
             break;
         case 2:
-            if (data == 0x00)
-            {
-                rx_idx++;
-                uart_rx_frame.frame.version = 0x00;
-            }
-            else if (data == 0x01)
-            {
-                rx_idx++;
-                uart_rx_frame.frame.version = 0x01;
-                // uart_update_f = 1;
-            }
+            // if (data == 0x00)
+            // {
+            //     rx_idx++;
+            //     uart_rx_frame.frame.version = 0x00;
+            // }
+            // else if (data == 0x01)
+            // {
+            //     rx_idx++;
+            //     uart_rx_frame.frame.version = 0x01;
+            //     // uart_update_f = 1;
+            // }
+            rx_idx++;
+            uart_rx_frame.frame.version = data;
             break;
         case 3:
             uart_rx_frame.frame.command = data;

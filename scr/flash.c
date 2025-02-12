@@ -162,6 +162,11 @@ void flash_msg_check_in(uint8_t *data, flash_picture_idx_t flash_picture_idx, fl
             flash_msg_qu.frame[flash_msg_qu.idx_in].msg = flash_msg_st;
             flash_msg_qu.frame[flash_msg_qu.idx_in].buf_p = data;
             flash_msg_qu.frame[flash_msg_qu.idx_in].flash_picture_idx = flash_picture_idx;
+            if(flash_msg_st == FLASH_MSG_WRITE_TONE)
+            {
+                flash_msg_qu.frame[flash_msg_qu.idx_in].tone_data[0] = data[0];
+                flash_msg_qu.frame[flash_msg_qu.idx_in].tone_data[1] = data[1];
+            }
             // flash_msg_qu.frame[flash_msg_qu.idx_in].length = 2*flash_picture_array[flash_picture_idx].width*flash_picture_array[flash_picture_idx].height;
             if (++flash_msg_qu.idx_in >= FLASH_MSG_FRAME_BUF_SIZE)
             {
@@ -728,7 +733,7 @@ void flash_task(void *pvParameters)
         {
             uint8_t cmd = FLASH_CMD_INVAL;
             uint32_t addr = FLASH_ADDR_INVAL;
-            uint8_t *data = tone_data;
+            uint8_t *data = flash_msg_qu.frame[flash_msg_qu.idx_in].tone_data;
             uint32_t data_length = 2;
             flash_tx_buf_setting(cmd, addr, data, data_length);
         }
@@ -796,6 +801,7 @@ void flash_task(void *pvParameters)
             break;
         case TONE_ST_WRITE_COMPLETE:
             flash_config();
+            flash_msg_check_out();
             break;
         default:
             break;

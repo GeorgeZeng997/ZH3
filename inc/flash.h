@@ -479,6 +479,7 @@ typedef struct
     flash_msg_st_t msg;
     uint8_t *buf_p;
     uint32_t length;
+    uint8_t tone_data[2];
     flash_picture_idx_t flash_picture_idx;
 } flash_msg_frame_t;
 
@@ -510,6 +511,7 @@ typedef struct
     uint8_t flash_tx_busy;
     uint32_t flash_addr_tmp;
     flash_msg_st_t last_msg;
+    
 } flash_blk_t;
 
 extern flash_st_t flash_st;

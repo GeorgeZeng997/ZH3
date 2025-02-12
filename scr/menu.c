@@ -767,9 +767,9 @@ void option_select(option_idx_t option_idx)
 void menu_init()
 {
 
-    menu_blk.menu_array_p_idx = MENU_IDX_NAME0;
-     lcd_fill_screen(BLACK);
-    //menu1_init();
+    menu_blk.menu_array_p_idx = MENU_IDX_NAME1;
+    //lcd_fill_screen(BLACK);
+    menu1_init();
     // switch (user_data.lcd_bright)
     // {
     // case 0:

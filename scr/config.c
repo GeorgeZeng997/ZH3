@@ -228,7 +228,7 @@ void pwm_config()
 
     timer_channel_output_config(TIMER0, TIMER_CH_3, &timer_ocintpara);
 
-    timer_channel_output_pulse_value_config(TIMER0, TIMER_CH_3, 0);
+    timer_channel_output_pulse_value_config(TIMER0, TIMER_CH_3, 15);
     timer_channel_output_mode_config(TIMER0, TIMER_CH_3, TIMER_OC_MODE_PWM0);
     timer_channel_output_shadow_config(TIMER0, TIMER_CH_3, TIMER_OC_SHADOW_DISABLE);
 

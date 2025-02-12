@@ -972,6 +972,8 @@ void menu0_init()
 }
 void menu1_init()
 {
+    //tone_data_setting(0,TONE_BYPASS_ENABLE,TONE_MUTE_DISABLE,TONE_CHANNAL_A_TRE);
+    //flash_msg_check_in(tone_data,FLASH_PICTURE_IDX_INVAL,FLASH_MSG_WRITE_TONE);
     lcd_display_picture(0, 0, FLASH_PICTURE_IDX_MENU_1);
     lcd_display_menu1_update();
 }

@@ -7,16 +7,16 @@
 #define IR_FRAME_SIZE       8    
 
 //IR CODE 
-#define BOOT_CODE_MIN       (12442 - 1400)//1493)
-#define BOOT_CODE_MAX       (12442 + 1400)//1493)
+#define BOOT_CODE_MIN       (12442 - 1200)//1493)
+#define BOOT_CODE_MAX       (12442 + 1200)//1493)
 #define BIT_0_MIN           (1041 - 270)
 #define BIT_0_MAX           (1041 + 270)
 #define BIT_1_MIN           (2073 - 330)
 #define BIT_1_MAX           (2073 + 330)
 
 
-#define REPEAT_CODE_MIN		(10368 - 1444)//1000//1244)
-#define REPEAT_CODE_MAX		(10368 + 1444)//1000//1244)
+#define REPEAT_CODE_MIN		(10368 - 1244)//1000//1244)
+#define REPEAT_CODE_MAX		(10368 + 1244)//1000//1244)
 
 // #define IR_CODE_USER        0x00FE
 // #define IR_CODE_USER_H      0x00

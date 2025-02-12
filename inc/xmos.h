@@ -4,7 +4,7 @@
 #include "stdint.h"
 
 #define XMOS_HEADER     0X55AA
-#define XMOS_VERSION    0X01
+#define XMOS_UPDATE_VERSION    0X01
 
 #define XMOS_DEFAULT_LENGTH 6
 
@@ -49,10 +49,58 @@ typedef enum
 
 typedef struct 
 {
-    
+    uint8_t version;
     uint8_t cmd;
     char *content;
 }xmos_cmd_t;
+
+typedef struct 
+{
+    uint8_t reason;
+    uint16_t uac_1_vid;
+    uint16_t uac_1_pid;
+    uint16_t uac_2_vid;
+    uint16_t uac_2_pid;
+    uint32_t product_crc;
+    uint32_t config_crc;
+    uint8_t checksum;
+}xmos_reboot_t;
+
+
+typedef struct 
+{
+    uint16_t uac_1_vid;
+    uint16_t uac_1_pid;
+    uint16_t uac_2_vid;
+    uint16_t uac_2_pid;
+    uint8_t manu_name[16];
+    uint8_t product_name[16];
+    uint8_t serial_num[16];
+    uint32_t crc;
+}xmos_product_info_t;
+
+typedef struct 
+{
+    uint8_t audio_mode[5];
+    uint16_t mute_time;
+    uint8_t mic_volume;
+    uint8_t left_channal_volume;
+    uint8_t right_channal_volume;
+    uint32_t crc;
+}xmos_config_info_t;
+
+typedef struct 
+{
+    uint8_t i2s_mode;
+    uint8_t sample_rate;
+    uint16_t config;
+    uint8_t play_mode;
+}xmos_loading_firmware_t;
+
+xmos_reboot_t xmos_reboot;
+xmos_product_info_t xmos_product_info;
+xmos_config_info_t xmos_config_info;
+xmos_loading_firmware_t xmos_loading_firmware;
 
 extern xmos_cmd_t xmos_cmd_array[];
 
